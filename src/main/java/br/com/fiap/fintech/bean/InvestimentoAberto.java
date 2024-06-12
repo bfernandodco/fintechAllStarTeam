@@ -6,6 +6,7 @@ import java.util.List;
 public class InvestimentoAberto {
 	
 	private Integer codigoDoInvestimento;
+	private Long numeroDoCPF;
 	private LocalDate mes;
 	private Double valorTotalDoRendimento;
 	private List<InvestimentoAberto> investimentosAbertos;
@@ -14,8 +15,10 @@ public class InvestimentoAberto {
 		
 	}
 
-	public InvestimentoAberto(Integer codigoDoInvestimento, LocalDate mes, Double valorTotalDoRendimento) {
+	public InvestimentoAberto(Integer codigoDoInvestimento, Long numeroDoCPF, LocalDate mes, 
+			Double valorTotalDoRendimento) {
 		this.codigoDoInvestimento = codigoDoInvestimento;
+		this.numeroDoCPF = numeroDoCPF;
 		this.mes = mes;
 		this.valorTotalDoRendimento = valorTotalDoRendimento;
 	}
@@ -26,6 +29,14 @@ public class InvestimentoAberto {
 
 	public void setCodigoDoInvestimento(Integer codigoDoInvestimento) {
 		this.codigoDoInvestimento = codigoDoInvestimento;
+	}
+
+	public Long getNumeroDoCPF() {
+		return numeroDoCPF;
+	}
+
+	public void setNumeroDoCPF(Long numeroDoCPF) {
+		this.numeroDoCPF = numeroDoCPF;
 	}
 
 	public LocalDate getMes() {
@@ -56,6 +67,7 @@ public class InvestimentoAberto {
 	public String toString() {
 		return "\nInvestimento Aberto"
 				+ "\nCodigo Do Investimento: " + codigoDoInvestimento 
+				+ "\nNumero do CPF: " + numeroDoCPF
 				+ "\nMes=" + mes.getMonth()
 				+ "\nValor Total Do Rendimento: R$ " + valorTotalDoRendimento;
 	}

@@ -35,7 +35,7 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 		PreparedStatement stmt = null;
 		
 
-		String sql = "INSERT INTO T_FNT_INVST (CD_INVESTIMENTO, NR_CPF, VL_RENTABILIDADE, DT_ENTRADA, DT_VENCIMENTO, VL_INVESTIMENTO, NM_APLICACAO, TP_INVST, BANCO) VALUES (SQ_TB_INVST.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO T_FNT_INVST (CD_INVESTIMENTO, NR_CPF, VL_RENTABILIDADE, DT_ENTRADA, DT_VENCIMENTO, VL_INVESTIMENTO, NM_APLICACAO, TP_INVESTIMENTO, NM_BANCO) VALUES (SQ_TB_INVST.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		
 		try {			
@@ -146,11 +146,11 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 				investimento.setValorDeInvestimento(rs.getDouble("VL_INVESTIMENTO"));
 				investimento.setNomeDoInvestimento(rs.getString("NM_APLICACAO"));
 				
-				String tipoInvestimentoString = rs.getString("TP_INVST");
+				String tipoInvestimentoString = rs.getString("TP_INVESTIMENTO");
 				TipoDeInvestimento tipoInvestimento = TipoDeInvestimento.valueOf(tipoInvestimentoString.toUpperCase().replace(" ", "_"));
 				investimento.setTipoDeInvestimento(tipoInvestimento);
 				
-				String tipoBancoString = rs.getString("BANCO").toUpperCase().replace(" ", "_");
+				String tipoBancoString = rs.getString("NM_BANCO").toUpperCase().replace(" ", "_");
 				Banco banco = Banco.valueOf(tipoBancoString);
 				investimento.setBanco(banco);
 				
@@ -190,7 +190,7 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 		conexao = ConnectionManager.getInstance().getConnection();
 
 		try {
-			String sql = "UPDATE T_FNT_INVST SET VL_RENTABILIDADE = ?, DT_ENTRADA = ?, DT_VENCIMENTO = ?, VL_INVESTIMENTO = ?, NM_APLICACAO = ?, TP_INVST = ?, BANCO = ? WHERE CD_INVESTIMENTO = ? AND NR_CPF = ?";
+			String sql = "UPDATE T_FNT_INVST SET VL_RENTABILIDADE = ?, DT_ENTRADA = ?, DT_VENCIMENTO = ?, VL_INVESTIMENTO = ?, NM_APLICACAO = ?, TP_INVESTIMENTO = ?, NM_BANCO = ? WHERE CD_INVESTIMENTO = ? AND NR_CPF = ?";
 			stmt = conexao.prepareStatement(sql);
 			stmt.setDouble(1, investimento.getValorDaRentabilidade());
 			stmt.setDate(2, Date.valueOf(investimento.getDataDeEntrada()));

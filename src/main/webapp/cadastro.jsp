@@ -41,24 +41,24 @@
                             A foto de perfil deve estar em formato JPG ou PNG, com tamanho máximo de 2 MB e resolução mínima de 400x400 pixels para garantir qualidade e compatibilidade.
                         </small>
                     </div>
-                    <form class="col-lg-6 flex-grow-1">
+                    <form class="col-lg-6 flex-grow-1" action="cadastro" method="post">
                         <h4>CADASTRO</h4>
                         <div class="mb-3">
-                            <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" aria-describedby="nomeHelp">
+                            <label for="nomeCompleto" class="form-label">Nome</label>
+                            <input type="text" required="required" class="form-control" id="nomeCompleto" name="nomeCompleto" aria-describedby="nomeHelp">
                         </div>
                         <div>
-                            <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" class="form-control" id="cpf">
+                            <label for="numeroDeCPF" class="form-label">CPF</label>
+                            <input type="text" required="required" class="form-control" id="numeroDeCPF" name="numeroDeCPF">
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="dataNascimento">
+                                <label for="dataDeNascimento" class="form-label">Data de Nascimento</label>
+                                <input type="date" required="required" class="form-control" id="dataDeNascimento" name="dataDeNascimento">
                             </div>
                             <div class="col">
                                 <label for="genero" class="form-label">Gênero</label>
-                                <select class="form-select" id="genero">
+                                <select class="form-select" required="required" id="genero" name="genero">
                                     <option value="masculino">Masculino</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="outro">Outro</option>
@@ -67,18 +67,18 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" required="required" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="exampleInputPassword1" class="form-label">Senha</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <label for="senha" class="form-label">Senha</label>
+                                <input type="password" required="required" class="form-control" id="senha" name="senha">
                             </div>
                             <div class="col">
-                                <label for="exampleInputPassword2" class="form-label">Confirmar Senha</label>
-                                <input type="password" class="form-control" id="exampleInputPassword2">
+                                <label for="confirmar-senha" class="form-label">Confirmar Senha</label>
+                                <input type="password" required="required" class="form-control" id="confirmar-senha">
                             </div>
                         </div>
                         <div class="mb-3 form-check">

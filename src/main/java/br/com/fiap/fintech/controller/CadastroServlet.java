@@ -1,6 +1,5 @@
 package br.com.fiap.fintech.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -14,14 +13,15 @@ import br.com.fiap.fintech.bean.Usuario;
 import br.com.fiap.fintech.dao.UsuarioDAO;
 import br.com.fiap.fintech.factory.DAOFactory;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/cadastro")
+public class CadastroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	private UsuarioDAO dao;
 	
-    public LoginServlet() {
+    private UsuarioDAO dao;   
+	
+    public CadastroServlet() {
     	dao = DAOFactory.getUsuarioDAO();
+    
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,10 +29,33 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nome = request.getParameter("nomeCompleto");
+		Long cpf = Long.valueOf(request.getParameter("numeroDeCPF"));
+		LocalDate dataDeNascimento = LocalDate.parse(request.getParameter("dataDeNascimento"));
+		String genero = request.getParameter("genero");
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
+		String confirmarSenha = request.getParameter("confirmar-senha");
+        
+		Usuario usuario = new Usuario();
+		usuario.setNomeCompleto(nome);
+		usuario.setNumeroDeCPF(cpf);
+		usuario.setDataDeNascimento(dataDeNascimento);
+		usuario.setGenero(genero);
+		usuario.setEmail(email);
+		
+		if(senha.equals(confirmarSenha)) {
+			usuario.setSenha(senha);
+		}
 		
 		
+		try {
+			dao.cadastrarNovoUsuario(usuario);
+			response.sendRedirect("home.jsp");
+		} catch(Exception e) {
+			 e.printStackTrace();
+	         response.sendRedirect("login.jsp");
+		} 
 	}
 
 }

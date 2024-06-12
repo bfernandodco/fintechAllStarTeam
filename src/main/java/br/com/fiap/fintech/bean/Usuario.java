@@ -3,7 +3,8 @@ package br.com.fiap.fintech.bean;
 import java.io.File;
 
 import java.time.LocalDate;
-import br.com.fiap.fintech.util.CriptografiaUtils;
+
+import br.com.fiap.fintech.util.criptography.CriptografiaUtils;
 
 public class Usuario {
 

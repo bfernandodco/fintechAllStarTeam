@@ -1,4 +1,4 @@
-package br.com.fiap.fintech.util;
+package br.com.fiap.fintech.util.criptography;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

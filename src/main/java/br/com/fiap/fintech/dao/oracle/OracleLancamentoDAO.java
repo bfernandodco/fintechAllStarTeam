@@ -37,19 +37,11 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 		} catch(SQLException e) {
 			e.printStackTrace();
 			throw new DatabaseException("Erro ao cadastrar lançamento.");
-		} finally {
-			try {
-				connection.close();
-				pstmt.close();
-			} catch(SQLException e) {
-				System.err.println("Erro ao fechar conexão em OracleLancamentoDAO.cadastrarLancamento()");
-				e.printStackTrace();
-			}
-		}
+		} 
 	}
 	
 	@Override
-	public void atualizarLancamento(Lancamento lancamento) throws DatabaseException {
+	public void editarLancamento(Lancamento lancamento) throws DatabaseException {
 		String sqlQuery = "UPDATE T_FNT_LANTO "
 				+ "SET dt_lancamento = ?, hr_lancamento = ?, vl_lancamento = ?, tx_lancamento = ? "
 				+ "WHERE cd_lancamento = ? AND nr_cpf = ?";
@@ -70,7 +62,7 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 			throw new DatabaseException("Erro ao atualizar lançamento.");
 		} finally {
 			try {
-				connection.close();
+				
 				pstmt.close();
 			} catch(SQLException e) {
 				System.err.println("Erro ao fechar conexão em OracleLancamentoDAO.atualizarLancamento()");
@@ -83,20 +75,17 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 	public void removerLancamento(Integer codigoDoLancamento) throws DatabaseException {
 		String sqlQuery = "DELETE FROM T_FNT_LANTO "
 				+ "WHERE cd_lancamento = ?";
-		
+
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
 			pstmt.setInt(1, codigoDoLancamento);
 			pstmt.executeUpdate();
-			connection.commit();
-			
 		} catch(SQLException e) {
 			e.printStackTrace();
 			throw new DatabaseException("Erro ao remover lançamento.");
 		} finally {
 			try {
-				connection.close();
 				pstmt.close();
 			} catch(SQLException e) {
 				System.err.println("Erro ao fechar conexão em OracleLancamentoDAO.cadastrarLancamento()");
@@ -105,19 +94,19 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 		}
 	}
 
-
-
 	@Override
-	public List<Lancamento> listarLancamentos() {
+	public List<Lancamento> listarLancamentos(Long numeroDoCPF) {
 		String sqlQuery = "SELECT * FROM T_FNT_LANTO";
 		List<Lancamento> lancamentos = new ArrayList<Lancamento>();	
-		Lancamento lancamento = new Lancamento();
+		Lancamento lancamento;
+		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				lancamento = new Lancamento();
 				lancamento.setCodigoDoLancamento(rs.getInt("cd_lancamento"));
 				lancamento.setNumeroDoCPF(rs.getLong("nr_cpf"));
 				lancamento.setDataDoLancamento(rs.getDate("dt_lancamento").toLocalDate());
@@ -134,12 +123,11 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 			return null;
 		} finally {
 			try {
-				connection.close();
 				pstmt.close();
+				rs.close();
 			} catch(SQLException e) {
 				System.err.println("Erro ao fechar conexão em OraclelancamentoDAO.listarlancamento()");
 				e.printStackTrace();
-				return null;
 			}
 		}
 	}

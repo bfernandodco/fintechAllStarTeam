@@ -1,4 +1,4 @@
-package br.com.fiap.fintech.dao.implement;
+package br.com.fiap.fintech.dao.oracle;
 
 import java.io.File;  
 import java.io.FileInputStream;
@@ -12,76 +12,73 @@ import java.sql.SQLException;
 import br.com.fiap.fintech.bean.Usuario;
 import br.com.fiap.fintech.dao.LoginDAO;
 import br.com.fiap.fintech.dao.UsuarioDAO;
-import br.com.fiap.fintech.exception.DBException;
+import br.com.fiap.fintech.exception.DatabaseException;
 import br.com.fiap.fintech.singleton.ConnectionManager;
 import java.io.InputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO{
-
-
-	private Connection conexao;
-	private PreparedStatement stmt;
+	
+	private Connection connection;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
 	
 	@Override
-	public void cadastrarNovoUsuario(Usuario usuario) throws DBException, SQLException {
-
-		conexao = ConnectionManager.getInstance().getConnection();
-		
-	    String sqlUsuario = "INSERT INTO T_FNT_USUARIO (NR_CPF, NM_COMPLETO, DT_NASCIMENTO, DS_GENERO, TX_EMAIL, IM_FOTO) VALUES (?, ?, ?, ?, ?, ?)";
-	    String sqlLogin = "INSERT INTO T_FNT_LOGIN (NR_CPF, TX_SENHA) VALUES (?, ?)";
+	public void cadastrarUsuario(Usuario usuario) throws DatabaseException {
+	    String sqlUsuario = "INSERT INTO T_FNT_USUARIO (nr_cpf, nm_completo, dt_nascimento, "
+	    		+ "ds_genero, tx_email, im_foto) "
+	    		+ "VALUES (?, ?, ?, ?, ?, ?)";
+	    String sqlLogin = "INSERT INTO T_FNT_LOGIN (nr_cpf, tx_senha) "
+	    		+ "VALUES (?, ?)";
 	    
-	    PreparedStatement stmtUsuario = null;
+	    PreparedStatement pstmtUsuario = null;
 	    PreparedStatement stmtLogin = null;
-	    boolean autoCommitOriginal = conexao.getAutoCommit();
 	    
 	    try {
-	        conexao.setAutoCommit(false);
-
-	        stmtUsuario = conexao.prepareStatement(sqlUsuario);
-	        stmtUsuario.setLong(1, usuario.getNumeroDeCPF());
-	        stmtUsuario.setString(2, usuario.getNomeCompleto());
-	        stmtUsuario.setDate(3, Date.valueOf(usuario.getDataDeNascimento()));
-	        stmtUsuario.setString(4, usuario.getGenero());
-	        stmtUsuario.setString(5, usuario.getEmail());
+	    	connection = ConnectionManager.getInstance().getConnection();
+	        pstmtUsuario = connection.prepareStatement(sqlUsuario);
+	        pstmtUsuario.setLong(1, usuario.getNumeroDeCPF());
+	        pstmtUsuario.setString(2, usuario.getNomeCompleto());
+	        pstmtUsuario.setDate(3, Date.valueOf(usuario.getDataDeNascimento()));
+	        pstmtUsuario.setString(4, usuario.getGenero());
+	        pstmtUsuario.setString(5, usuario.getEmail());
 
 	        File arquivoImagem = usuario.getImagemFoto();
 	        if (arquivoImagem != null) {
 	            try (InputStream inputStream = new FileInputStream(arquivoImagem)) {
-	                stmtUsuario.setBinaryStream(6, inputStream);
-	            	//stmtUsuario.setBinaryStream(6, inputStream, (int) arquivoImagem.length());
+	                pstmtUsuario.setBinaryStream(6, inputStream);
+	            	//pstmtUsuario.setBinaryStream(6, inputStream, (int) arquivoImagem.length());
 	            } catch (FileNotFoundException e) {
 	                e.printStackTrace();
-	                throw new DBException("Erro ao carregar o arquivo de imagem.", e);
+	                throw new DatabaseException("Erro ao carregar o arquivo de imagem.", e);
 	            } catch (IOException e) {
 	                e.printStackTrace();
-	                throw new DBException("Erro ao ler o arquivo de imagem.", e);
+	                throw new DatabaseException("Erro ao ler o arquivo de imagem.", e);
 	            }
 	        } else {
-	            stmtUsuario.setNull(6, java.sql.Types.BLOB);
+	            pstmtUsuario.setNull(6, java.sql.Types.BLOB);
 	        }
 	        
-	        stmtLogin = conexao.prepareStatement(sqlLogin);
+	        stmtLogin = connection.prepareStatement(sqlLogin);
 	        stmtLogin.setLong(1, usuario.getNumeroDeCPF());
 	        
 	        if (isSenhaValida(usuario.getSenha())) {
 	        	stmtLogin.setString(2, usuario.getSenha());
 	        	
-	        	stmtUsuario.executeUpdate();
+	        	pstmtUsuario.executeUpdate();
 	        	stmtLogin.executeUpdate();
 	        } else {
-	        	throw new DBException("Senha Invalida.");
+	        	throw new DatabaseException("Senha Invalida.");
 	        }
-	        conexao.commit();
+	        connection.commit();
 	    } catch (SQLException e) {
-	        conexao.rollback();
 	        e.printStackTrace();
-	        throw new DBException("Erro ao criar novo Usuario.", e);
+	        throw new DatabaseException("Erro ao criar novo Usuario.", e);
 	    } finally {
-	        if (stmtUsuario != null) {
+	        if (pstmtUsuario != null) {
 	            try {
-	                stmtUsuario.close();
+	                pstmtUsuario.close();
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
@@ -94,8 +91,7 @@ public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO{
 	            }
 	        }
 	        try {
-	            conexao.setAutoCommit(autoCommitOriginal);
-	            conexao.close();
+	            connection.close();
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
@@ -103,48 +99,47 @@ public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO{
 	}
 
 	@Override
-	public void editarCadastroDoUsuario(Usuario usuario) throws DBException {
-
-	conexao = ConnectionManager.getInstance().getConnection();
-		
+	public void editarCadastroDoUsuario(Usuario usuario) throws DatabaseException {
+		String sql = "UPDATE T_FNT_USUARIO SET nm_completo = ?, dt_nascimento = ?, ds_genero = ?, "
+				+ "tx_email = ?, im_foto = ? "
+				+ "WHERE nr_cpf = ?";
 	try {
-			String sql = "UPDATE T_FNT_USUARIO SET NM_COMPLETO = ?, DT_NASCIMENTO = ?, DS_GENERO = ?, TX_EMAIL = ?, IM_FOTO = ? WHERE NR_CPF = ?";
-			stmt = conexao.prepareStatement(sql);
-			
-			stmt.setString(1, usuario.getNomeCompleto());
-			stmt.setDate(2, Date.valueOf(usuario.getDataDeNascimento()));
-			stmt.setString(3, usuario.getGenero());
-			stmt.setString(4, usuario.getEmail());
-			
-			File arquivoImagem = usuario.getImagemFoto();
-	        if (arquivoImagem != null) {
-	            try {
-	                InputStream inputStream = new FileInputStream(arquivoImagem);
-	                stmt.setBinaryStream(5, inputStream);
-	            } catch (FileNotFoundException e) {
-	                e.printStackTrace();
-	                throw new DBException("Erro ao carregar o arquivo de imagem.", e);
-	            }
-	        } else {
-	            stmt.setNull(5, java.sql.Types.BLOB);
-	        }
-	        
-	        stmt.setLong(6, usuario.getNumeroDeCPF());
-			stmt.executeUpdate();
+		connection = ConnectionManager.getInstance().getConnection();
+		pstmt = connection.prepareStatement(sql);
+		pstmt.setString(1, usuario.getNomeCompleto());
+		pstmt.setDate(2, Date.valueOf(usuario.getDataDeNascimento()));
+		pstmt.setString(3, usuario.getGenero());
+		pstmt.setString(4, usuario.getEmail());
+		
+		File arquivoImagem = usuario.getImagemFoto();
+        if (arquivoImagem != null) {
+            try {
+                InputStream inputStream = new FileInputStream(arquivoImagem);
+                pstmt.setBinaryStream(5, inputStream);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                throw new DatabaseException("Erro ao carregar o arquivo de imagem.", e);
+            }
+        } else {
+            pstmt.setNull(5, java.sql.Types.BLOB);
+        }
+        
+        pstmt.setLong(6, usuario.getNumeroDeCPF());
+		pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DBException("Erro ao editar o Cadastro do Usuario.");
+			throw new DatabaseException("Erro ao editar o Cadastro do Usuario.");
 		} finally {
-			if (stmt != null) {
+			if (pstmt != null) {
 	            try {
-	                stmt.close();
+	                pstmt.close();
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
 	        }
-			if (conexao != null) {
+			if (connection != null) {
 				try {
-					conexao.close();
+					connection.close();
 				} catch (SQLException e) {
 		            e.printStackTrace();
 		        }
@@ -156,68 +151,57 @@ public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO{
 	public boolean isSenhaValida(String senhaParaValidacao) {
 		String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
 	    return senhaParaValidacao != null && senhaParaValidacao.matches(regex);
-		
+	    
 	}
 	
 	@Override
-	public void alterarSenhaDoUsuario(String novaSenha, Usuario usuario) throws DBException {
-		
-		conexao = ConnectionManager.getInstance().getConnection();
+	public void alterarSenhaDoUsuario(String novaSenha, Usuario usuario) throws DatabaseException {
+		String sql = "UPDATE T_FNT_LOGIN SET tx_senha = ? WHERE nr_cpf = ?";
 		
 		if (isSenhaValida(novaSenha)) {
-			
 			try {
-				String sql = "UPDATE T_FNT_LOGIN SET TX_SENHA = ? WHERE NR_CPF = ?";
-
-				stmt = conexao.prepareStatement(sql);
+				connection = ConnectionManager.getInstance().getConnection();
+				pstmt = connection.prepareStatement(sql);
 				usuario.setSenha(novaSenha);
-				stmt.setString(1, usuario.getSenha());
-				stmt.setLong(2, usuario.getNumeroDeCPF());
-				
-				stmt.executeUpdate();
-				
+				pstmt.setString(1, usuario.getSenha());
+				pstmt.setLong(2, usuario.getNumeroDeCPF());
+				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				
 			} finally {
-					if (stmt != null) {
+					if (pstmt != null) {
 			            try {
-			                stmt.close();
+			                pstmt.close();
 			            } catch (SQLException e) {
 			                e.printStackTrace();
 			            }
 			        }
-					if (conexao != null) {
+					if (connection != null) {
 						try {
-							conexao.close();
+							connection.close();
 						} catch (SQLException e) {
 				            e.printStackTrace();
 				        }
 					}
 				}
 			} else {
-				throw new DBException("Senha Invalida.");
+				throw new DatabaseException("Senha Invalida.");
 			}
 		}
 
 //***************************************************************************************
 	
-public void salvarImagemDoBanco(String caminhoDestino, Usuario usuario) throws DBException {
-	        Connection conexao = null;
-	        PreparedStatement stmt = null;
-	        ResultSet rs = null;
-
+public void salvarImagemDoBanco(String caminhoDestino, Usuario usuario) throws DatabaseException {
+	 String sql = "SELECT im_foto FROM T_FNT_USUARIO WHERE nr_cpf = ?";
+	       
 	        try {
-	            conexao = ConnectionManager.getInstance().getConnection();
-
-	            String sql = "SELECT IM_FOTO FROM T_FNT_USUARIO WHERE NR_CPF = ?";
-	            stmt = conexao.prepareStatement(sql);
-
-	            stmt.setLong(1, usuario.getNumeroDeCPF());
-
-	            rs = stmt.executeQuery();
+	            connection = ConnectionManager.getInstance().getConnection();
+	            pstmt = connection.prepareStatement(sql);
+	            pstmt.setLong(1, usuario.getNumeroDeCPF());
+	            rs = pstmt.executeQuery();
 	            
 	            if (rs.next()) {
-	                byte[] imagemBytes = rs.getBytes("IM_FOTO");
+	                byte[] imagemBytes = rs.getBytes("im_foto");
 	                if (imagemBytes != null) {
 	                    File fileDestino = new File(caminhoDestino);
 	                    try (OutputStream outputStream = new FileOutputStream(fileDestino)) {
@@ -232,7 +216,7 @@ public void salvarImagemDoBanco(String caminhoDestino, Usuario usuario) throws D
 	            }
 	        } catch (SQLException | IOException e) {
 	            e.printStackTrace();
-	            throw new DBException("Erro ao salvar imagem do banco.", e);
+	            throw new DatabaseException("Erro ao salvar imagem do banco.", e);
 	        } finally {
 	            if (rs != null) {
 	                try {
@@ -241,16 +225,16 @@ public void salvarImagemDoBanco(String caminhoDestino, Usuario usuario) throws D
 	                    e.printStackTrace();
 	                }
 	            }
-	            if (stmt != null) {
+	            if (pstmt != null) {
 	                try {
-	                    stmt.close();
+	                    pstmt.close();
 	                } catch (SQLException e) {
 	                    e.printStackTrace();
 	                }
 	            }
-	            if (conexao != null) {
+	            if (connection != null) {
 	                try {
-	                    conexao.close();
+	                    connection.close();
 	                } catch (SQLException e) {
 	                    e.printStackTrace();
 	                }

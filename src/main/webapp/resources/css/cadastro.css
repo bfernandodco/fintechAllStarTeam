@@ -9,7 +9,7 @@ body {
 }
 
 .form {
-    margin: 10vh 18vw;
+   	margin: 4vh 9vw;
     background-color: #fff;
     border-radius: 10px;
 }
@@ -47,3 +47,4 @@ body {
     border: solid 1px #ccc;
     border-radius: 10px;
 }
+

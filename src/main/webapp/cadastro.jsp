@@ -27,7 +27,7 @@
 
 	<body>
         <div class="d-flex">
-            <div class="form d-flex flex-column p-5">
+            <div class="form d-flex flex-column p-2">
                 <div class="row">
                     <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
                         <label for="fotoPerfil" class="form-label">Foto de Perfil</label>
@@ -100,7 +100,7 @@
 </body>
 
 <footer>
-    <@ include file="footer.jsp" %>
+    <%@ include file="footer.jsp" %>
 </footer>
 
 </html>

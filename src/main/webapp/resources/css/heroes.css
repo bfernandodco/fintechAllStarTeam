@@ -86,7 +86,11 @@ body {
 }
 
 .main .container-heroes {
-	margin: 10vh 18vw;
 	background-color: #fff;
 	border-radius: 10px;
+}
+
+.body {
+	margin: 222vh 2vw;
+	
 }

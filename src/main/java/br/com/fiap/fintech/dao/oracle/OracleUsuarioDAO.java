@@ -38,7 +38,7 @@ public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO{
 	    try {
 	    	connection = ConnectionManager.getInstance().getConnection();
 	        pstmtUsuario = connection.prepareStatement(sqlUsuario);
-	        pstmtUsuario.setLong(1, usuario.getNumeroDeCPF());
+	        pstmtUsuario.setLong(1, usuario.getNumeroDoCPF());
 	        pstmtUsuario.setString(2, usuario.getNomeCompleto());
 	        pstmtUsuario.setDate(3, Date.valueOf(usuario.getDataDeNascimento()));
 	        pstmtUsuario.setString(4, usuario.getGenero());
@@ -61,7 +61,7 @@ public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO{
 	        }
 	        
 	        stmtLogin = connection.prepareStatement(sqlLogin);
-	        stmtLogin.setLong(1, usuario.getNumeroDeCPF());
+	        stmtLogin.setLong(1, usuario.getNumeroDoCPF());
 	        
 	        if (isSenhaValida(usuario.getSenha())) {
 	        	stmtLogin.setString(2, usuario.getSenha());
@@ -124,7 +124,7 @@ public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO{
             pstmt.setNull(5, java.sql.Types.BLOB);
         }
         
-        pstmt.setLong(6, usuario.getNumeroDeCPF());
+        pstmt.setLong(6, usuario.getNumeroDoCPF());
 		pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -164,7 +164,7 @@ public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO{
 				pstmt = connection.prepareStatement(sql);
 				usuario.setSenha(novaSenha);
 				pstmt.setString(1, usuario.getSenha());
-				pstmt.setLong(2, usuario.getNumeroDeCPF());
+				pstmt.setLong(2, usuario.getNumeroDoCPF());
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				
@@ -197,7 +197,7 @@ public void salvarImagemDoBanco(String caminhoDestino, Usuario usuario) throws D
 	        try {
 	            connection = ConnectionManager.getInstance().getConnection();
 	            pstmt = connection.prepareStatement(sql);
-	            pstmt.setLong(1, usuario.getNumeroDeCPF());
+	            pstmt.setLong(1, usuario.getNumeroDoCPF());
 	            rs = pstmt.executeQuery();
 	            
 	            if (rs.next()) {
@@ -209,10 +209,10 @@ public void salvarImagemDoBanco(String caminhoDestino, Usuario usuario) throws D
 	                        System.out.println("Imagem salva com sucesso em: " + caminhoDestino);
 	                    }
 	                } else {
-	                    System.out.println("Nenhum imagem cadastrado no CPF: " + usuario.getNumeroDeCPF());
+	                    System.out.println("Nenhum imagem cadastrado no CPF: " + usuario.getNumeroDoCPF());
 	                }
 	            } else {
-	                System.out.println("Usuário com CPF " + usuario.getNumeroDeCPF() + " não encontrado.");
+	                System.out.println("Usuário com CPF " + usuario.getNumeroDoCPF() + " não encontrado.");
 	            }
 	        } catch (SQLException | IOException e) {
 	            e.printStackTrace();

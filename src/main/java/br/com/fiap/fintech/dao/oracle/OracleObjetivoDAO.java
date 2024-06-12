@@ -30,7 +30,7 @@ public class OracleObjetivoDAO implements ObjetivoDAO {
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sql);
-			pstmt.setLong(1, objetivo.getNumeroDeCPF());
+			pstmt.setLong(1, objetivo.getNumeroDoCPF());
 			pstmt.setString(2, objetivo.getNomeDoObjetivo());
 			pstmt.setDouble(3, objetivo.getValorDoObjetivo());
 			pstmt.setDouble(4, objetivo.getValorAtual());
@@ -53,7 +53,7 @@ public class OracleObjetivoDAO implements ObjetivoDAO {
 	}
 
 	@Override
-	public List<Objetivo> listarObjetivos(Long numeroDeCPF) {
+	public List<Objetivo> listarObjetivos(Long NumeroDoCPF) {
 		String sqlQuery = "SELECT * FROM T_FNT_OBJTVO WHERE nr_cpf = ?";
 		List<Objetivo> objetivos = new ArrayList<Objetivo>();
 		Objetivo objetivo;
@@ -61,7 +61,7 @@ public class OracleObjetivoDAO implements ObjetivoDAO {
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, numeroDeCPF);		
+			pstmt.setLong(1, NumeroDoCPF);		
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -109,7 +109,7 @@ public class OracleObjetivoDAO implements ObjetivoDAO {
 			pstmt.setDate(5, Date.valueOf(objetivo.getDataDeConclusao()));
 			pstmt.setString(6, objetivo.getDescricaoDoObjetivo());
 			pstmt.setInt(7, objetivo.getCodigoDoObjetivo());
-			pstmt.setLong(8, objetivo.getNumeroDeCPF());
+			pstmt.setLong(8, objetivo.getNumeroDoCPF());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

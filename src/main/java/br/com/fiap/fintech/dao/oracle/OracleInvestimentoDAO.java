@@ -38,8 +38,8 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 			pstmt.setLong(1, 41300);
 			pstmt.setDouble(2, investimento.getValorDaRentabilidade());
 			pstmt.setDate(3, Date.valueOf(investimento.getDataDeEntrada()));
-			pstmt.setDate(4, Date.valueOf(investimento.getDataDeVencimento()));
-			pstmt.setDouble(5, investimento.getValorDeInvestimento());
+			pstmt.setDate(4, Date.valueOf(investimento.getDataDeVencimento().toLocalDate()));
+			pstmt.setDouble(5, investimento.getValorDoInvestimento());
 			pstmt.setString(6, investimento.getNomeDoInvestimento());
 			pstmt.setString(7, investimento.getTipoDeInvestimento().getTipoDeInvestimento());
 			pstmt.setString(8, investimento.getBanco().getBanco());			
@@ -183,8 +183,8 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 			pstmt = connection.prepareStatement(sqlQuery);
 			pstmt.setDouble(1, investimento.getValorDaRentabilidade());
 			pstmt.setDate(2, Date.valueOf(investimento.getDataDeEntrada()));
-			pstmt.setDate(3, Date.valueOf(investimento.getDataDeVencimento()));
-			pstmt.setDouble(4, investimento.getValorDeInvestimento());
+			pstmt.setDate(3, Date.valueOf(investimento.getDataDeVencimento().toLocalDate()));
+			pstmt.setDouble(4, investimento.getValorDoInvestimento());
 			pstmt.setString(5, investimento.getNomeDoInvestimento());
 			pstmt.setString(6, investimento.getTipoDeInvestimento().getTipoDeInvestimento());
 			pstmt.setString(7, investimento.getBanco().getBanco());

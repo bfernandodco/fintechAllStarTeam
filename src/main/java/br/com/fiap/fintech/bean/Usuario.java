@@ -8,7 +8,7 @@ import br.com.fiap.fintech.util.criptography.CriptografiaUtils;
 
 public class Usuario {
 
-	private Long numeroDeCPF;
+	private Long numeroDoCPF;
 	private String nomeCompleto;
 	private LocalDate dataDeNascimento;
 	private String genero;
@@ -17,13 +17,13 @@ public class Usuario {
 	private String senha;
 	
 	public Usuario() {
-		super();
+		
 	}
 
-	public Usuario(Long numeroDeCPF, String nomeCompleto, LocalDate dataDeNascimento, String genero, String email,
+	public Usuario(Long numeroDoCPF, String nomeCompleto, LocalDate dataDeNascimento, String genero, String email,
 			File imagemFoto, String senha) {
 		super();
-		this.numeroDeCPF = numeroDeCPF;
+		this.numeroDoCPF = numeroDoCPF;
 		this.nomeCompleto = nomeCompleto;
 		this.dataDeNascimento = dataDeNascimento;
 		this.genero = genero;
@@ -32,12 +32,12 @@ public class Usuario {
 		setSenha(senha);
 	}
 
-	public Long getNumeroDeCPF() {
-		return numeroDeCPF;
+	public Long getNumeroDoCPF() {
+		return numeroDoCPF;
 	}
 
-	public void setNumeroDeCPF(Long numeroDeCPF) {
-		this.numeroDeCPF = numeroDeCPF;
+	public void setNumeroDoCPF(Long numeroDoCPF) {
+		this.numeroDoCPF = numeroDoCPF;
 	}
 
 	public String getNomeCompleto() {
@@ -94,5 +94,14 @@ public class Usuario {
 			}
 	    } 
 	}
-	
+
+	@Override
+	public String toString() {
+		return "\nUsuario"
+				+ "\nNumero Do CPF: " + numeroDoCPF 
+				+ "\nNome Completo: " + nomeCompleto 
+				+ "\nData De Nascimento: "+ dataDeNascimento 
+				+ "\nGenero: " + genero 
+				+ "\nEmail: " + email;
+	}
 }

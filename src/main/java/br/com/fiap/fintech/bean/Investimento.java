@@ -10,7 +10,7 @@ public class Investimento {
 	private Long numeroDoCPF;
 	private Double valorDaRentabilidade;
 	private LocalDate dataDeEntrada;
-	private LocalDateTime dataDeVencimento;
+	private LocalDate dataDeVencimento;
 	private Double valorDoInvestimento;
 	private String nomeDoInvestimento;
 	private TipoDeInvestimento tipoDeInvestimento;
@@ -23,9 +23,9 @@ public class Investimento {
 	}
 
 	public Investimento(Integer codigoDoInvestimento, Long numeroDoCPF, Double valorDaRentabilidade,
-			LocalDate dataDeEntrada, LocalDateTime dataDeVencimento, Double valorDoInvestimento,
+			LocalDate dataDeEntrada, LocalDate dataDeVencimento, Double valorDoInvestimento,
 			String nomeDoInvestimento, TipoDeInvestimento tipoDeInvestimento, Banco banco,
-			Integer statusDoInvestimento, List<Investimento> investimentos) {
+			Integer statusDoInvestimento) {
 		this.codigoDoInvestimento = codigoDoInvestimento;
 		this.numeroDoCPF = numeroDoCPF;
 		this.valorDaRentabilidade = valorDaRentabilidade;
@@ -36,7 +36,6 @@ public class Investimento {
 		this.tipoDeInvestimento = tipoDeInvestimento;
 		this.banco = banco;
 		this.statusDoInvestimento = statusDoInvestimento;
-		this.investimentos = investimentos;
 	}
 
 	public Integer getCodigoDoInvestimento() {
@@ -71,11 +70,11 @@ public class Investimento {
 		this.dataDeEntrada = dataDeEntrada;
 	}
 
-	public LocalDateTime getDataDeVencimento() {
+	public LocalDate getDataDeVencimento() {
 		return dataDeVencimento;
 	}
 
-	public void setDataDeVencimento(LocalDateTime dataDeVencimento) {
+	public void setDataDeVencimento(LocalDate dataDeVencimento) {
 		this.dataDeVencimento = dataDeVencimento;
 	}
 

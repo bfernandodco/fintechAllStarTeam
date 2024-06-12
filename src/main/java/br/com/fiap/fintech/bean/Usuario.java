@@ -29,7 +29,6 @@ public class Usuario {
 		this.genero = genero;
 		this.email = email;
 		this.imagemFoto = imagemFoto;
-		setSenha(senha);
 	}
 
 	public Long getNumeroDoCPF() {
@@ -84,15 +83,18 @@ public class Usuario {
 		return senha;
 	}
 
-	public void setSenha(String senha) {
+	public Boolean isSenhaValida(String senha) {
+		Boolean senhaValida = false;
 		String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
 	    if (senha != null && senha.matches(regex)) {
 	    	try { 
 				this.senha = CriptografiaUtils.criptografar(senha);
+				senhaValida = true;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	    } 
+	    }
+	    return senhaValida;
 	}
 
 	@Override

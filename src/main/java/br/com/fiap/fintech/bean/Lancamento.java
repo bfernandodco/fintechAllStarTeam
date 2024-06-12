@@ -22,7 +22,7 @@ public class Lancamento {
 
 	public Lancamento(Integer codigoDoLancamento, Long numeroDoCPF, LocalDate dataDoLancamento,
 			LocalDateTime horaDoLancamento, Double valorDoLancamento, TipoDoLancamento tipoDoLancamento,
-			CategoriaDoLancamento categoriaDoLancamento, String descricaoDoLancamento, List<Lancamento> lancamentos) {
+			CategoriaDoLancamento categoriaDoLancamento, String descricaoDoLancamento) {
 		this.codigoDoLancamento = codigoDoLancamento;
 		this.numeroDoCPF = numeroDoCPF;
 		this.dataDoLancamento = dataDoLancamento;
@@ -31,7 +31,6 @@ public class Lancamento {
 		this.tipoDoLancamento = tipoDoLancamento;
 		this.categoriaDoLancamento = categoriaDoLancamento;
 		this.descricaoDoLancamento = descricaoDoLancamento;
-		this.lancamentos = lancamentos;
 	}
 
 	public Integer getCodigoDoLancamento() {

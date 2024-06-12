@@ -14,11 +14,10 @@ public class InvestimentoFechado {
 		
 	}
 
-	public InvestimentoFechado(Integer codigoDoInvestimento, LocalDate dataDeSaida, Double valorDaLiquidez, List<InvestimentoFechado> investimentosFechados) {
+	public InvestimentoFechado(Integer codigoDoInvestimento, LocalDate dataDeSaida, Double valorDaLiquidez) {
 		this.codigoDoInvestimento = codigoDoInvestimento;
 		this.dataDeSaida = dataDeSaida;
 		this.valorDaLiquidez = valorDaLiquidez;
-		this.investimentosFechados = investimentosFechados;
 	}
 
 	public Integer getCodigoDoInvestimento() {

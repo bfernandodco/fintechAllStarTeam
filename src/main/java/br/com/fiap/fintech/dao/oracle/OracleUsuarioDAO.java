@@ -162,7 +162,7 @@ public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO{
 			try {
 				connection = ConnectionManager.getInstance().getConnection();
 				pstmt = connection.prepareStatement(sql);
-				usuario.setSenha(novaSenha);
+				//campoSenha;
 				pstmt.setString(1, usuario.getSenha());
 				pstmt.setLong(2, usuario.getNumeroDoCPF());
 				pstmt.executeUpdate();

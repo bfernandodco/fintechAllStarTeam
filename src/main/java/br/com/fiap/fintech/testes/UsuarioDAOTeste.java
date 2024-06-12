@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import br.com.fiap.fintech.bean.Usuario;
 import br.com.fiap.fintech.dao.UsuarioDAO;
-import br.com.fiap.fintech.dao.implement.OracleUsuarioDAO;
+import br.com.fiap.fintech.dao.oracle.OracleUsuarioDAO;
 import br.com.fiap.fintech.exception.DBException;
 
 public class UsuarioDAOTeste {

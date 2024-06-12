@@ -29,7 +29,7 @@ public class DAOFactory {
 	
 	public static UsuarioDAO getUsuarioDAO() {
 		return new OracleUsuarioDAO();
-	}
+	} 
 	
 	public static ObjetivoDAO getObjetivoDAO() {
 		return new OracleObjetivoDAO();

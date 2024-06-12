@@ -1,21 +1,31 @@
 package br.com.fiap.fintech.bean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class InvestimentoFechado {
 	
+	private Integer codigoDoInvestimento;
 	private LocalDate dataDeSaida;
 	private Double valorDaLiquidez;
-	private Integer chavePrimariaEstrantrangeira;
+	private List<InvestimentoFechado> investimentosFechados;
 	
 	public InvestimentoFechado() {
 		
 	}
 
-	public InvestimentoFechado(LocalDate dataDeSaida, Double valorDaLiquidez) {
-		super();
+	public InvestimentoFechado(Integer codigoDoInvestimento, LocalDate dataDeSaida, Double valorDaLiquidez) {
+		this.codigoDoInvestimento = codigoDoInvestimento;
 		this.dataDeSaida = dataDeSaida;
 		this.valorDaLiquidez = valorDaLiquidez;
+	}
+
+	public Integer getCodigoDoInvestimento() {
+		return codigoDoInvestimento;
+	}
+
+	public void setCodigoDoInvestimento(Integer codigoDoInvestimento) {
+		this.codigoDoInvestimento = codigoDoInvestimento;
 	}
 
 	public LocalDate getDataDeSaida() {
@@ -34,20 +44,20 @@ public class InvestimentoFechado {
 		this.valorDaLiquidez = valorDaLiquidez;
 	}
 
-	public Integer getChavePrimariaEstrantrangeira() {
-		return chavePrimariaEstrantrangeira;
+	public List<InvestimentoFechado> getInvestimentosFechados() {
+		return investimentosFechados;
 	}
 
-	public void setChavePrimariaEstrantrangeira(Integer chavePrimariaEstrantrangeira) {
-		this.chavePrimariaEstrantrangeira = chavePrimariaEstrantrangeira;
+	public void setInvestimentosFechados(List<InvestimentoFechado> investimentosFechados) {
+		this.investimentosFechados = investimentosFechados;
 	}
-	
-	 @Override
-	    public String toString() {
-	        return "Investimento Fechado{" +
-	                "Data do Fechamento = " + dataDeSaida +
-	                ", Valor líquido da aplicação = " + valorDaLiquidez +
-	                '}';
-	    }
-	
+
+	@Override
+	public String toString() {
+		return "\nInvestimento Fechado "
+				+ "\nCodigo Do Investimento: " + codigoDoInvestimento 
+				+ "\nData De Saida: " + dataDeSaida.getDayOfMonth() + "/" + dataDeSaida.getMonthValue() + "/" + dataDeSaida.getYear()
+				+ "\nValor Da Liquidez: R$ " + valorDaLiquidez;
+	}
+
 }

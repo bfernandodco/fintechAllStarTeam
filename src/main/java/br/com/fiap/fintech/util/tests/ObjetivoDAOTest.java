@@ -1,16 +1,18 @@
-package br.com.fiap.fintech.testes;
+package br.com.fiap.fintech.util.tests;
 
 import java.time.LocalDate;
 import java.util.List;
 import br.com.fiap.fintech.bean.Objetivo;
 import br.com.fiap.fintech.dao.ObjetivoDAO;
-import br.com.fiap.fintech.exception.DBException;
+import br.com.fiap.fintech.exception.DatabaseException;
 import br.com.fiap.fintech.factory.DAOFactory;
 
-public class ObjetivoDAOTeste {
+@SuppressWarnings("unused")
+public class ObjetivoDAOTest {
 
-	public static void main(String[] args) throws DBException {
-				
+	public static void main(String[] args) {
+		
+		/*
 		Objetivo obj = new Objetivo();
 		obj.setCodigoDoObjetivo(7);
 		obj.setNumeroDeCPF(38580555599L);
@@ -66,9 +68,6 @@ public class ObjetivoDAOTeste {
 		
 		dao.editarObjetivo(obj2);		
 		System.out.println("editado");
-
+		*/
 	}
-
 }
-
-

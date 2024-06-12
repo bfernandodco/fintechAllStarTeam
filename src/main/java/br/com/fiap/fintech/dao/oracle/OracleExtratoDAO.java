@@ -1,4 +1,4 @@
-package br.com.fiap.fintech.dao.implement;
+package br.com.fiap.fintech.dao.oracle;
 
 import br.com.fiap.fintech.bean.Extrato;
 import br.com.fiap.fintech.dao.ExtratoDAO;

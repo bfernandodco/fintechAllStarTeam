@@ -29,6 +29,6 @@ public class ConnectionManager implements OracleConnection {
 			System.err.println("Erro ao conectar no Oracle DB.");
 			e.printStackTrace();
 			return null;
-		}
+		} 
 	}
 }

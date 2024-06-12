@@ -1,20 +1,31 @@
 package br.com.fiap.fintech.bean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class InvestimentoAberto {
 	
+	private Integer codigoDoInvestimento;
 	private LocalDate mes;
 	private Double valorTotalDoRendimento;
-	private Integer chavePrimariaEstrantrangeira;
+	private List<InvestimentoAberto> investimentosAbertos;
 	
 	public InvestimentoAberto() {
+		
 	}
 
-	public InvestimentoAberto(LocalDate mes, Double valorTotalDoRendimento) {
-		super();
+	public InvestimentoAberto(Integer codigoDoInvestimento, LocalDate mes, Double valorTotalDoRendimento) {
+		this.codigoDoInvestimento = codigoDoInvestimento;
 		this.mes = mes;
 		this.valorTotalDoRendimento = valorTotalDoRendimento;
+	}
+
+	public Integer getCodigoDoInvestimento() {
+		return codigoDoInvestimento;
+	}
+
+	public void setCodigoDoInvestimento(Integer codigoDoInvestimento) {
+		this.codigoDoInvestimento = codigoDoInvestimento;
 	}
 
 	public LocalDate getMes() {
@@ -33,20 +44,20 @@ public class InvestimentoAberto {
 		this.valorTotalDoRendimento = valorTotalDoRendimento;
 	}
 
-	public Integer getChavePrimariaEstrantrangeira() {
-		return chavePrimariaEstrantrangeira;
+	public List<InvestimentoAberto> getInvestimentosAbertos() {
+		return investimentosAbertos;
 	}
 
-	public void setChavePrimariaEstrantrangeira(Integer chavePrimariaEstrantrangeira) {
-		this.chavePrimariaEstrantrangeira = chavePrimariaEstrantrangeira;
+	public void setInvestimentosAbertos(List<InvestimentoAberto> investimentosAbertos) {
+		this.investimentosAbertos = investimentosAbertos;
 	}
 	
 	@Override
-    public String toString() {
-        return "Investimento Aberto{" +
-                "Data de abertura = " + mes +
-                ", Valor total de rendimento = " + valorTotalDoRendimento +
-                '}';
-    }
-	
+	public String toString() {
+		return "\nInvestimento Aberto"
+				+ "\nCodigo Do Investimento: " + codigoDoInvestimento 
+				+ "\nMes=" + mes.getMonth()
+				+ "\nValor Total Do Rendimento: R$ " + valorTotalDoRendimento;
+	}
+
 }

@@ -2,7 +2,7 @@ package br.com.fiap.fintech.dao;
 
 public interface LoginDAO {
 
-	void validarLogin(String email, String senha);
+	boolean validarLogin(String email, String senha) throws Exception;
 	void logarComGmail();
 		
 }

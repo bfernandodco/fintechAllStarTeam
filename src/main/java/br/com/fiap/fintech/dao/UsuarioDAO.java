@@ -11,6 +11,6 @@ public interface UsuarioDAO {
 	void editarCadastroDoUsuario(Usuario usuario) throws DBException;
 	void alterarSenhaDoUsuario(String novaSenha, Usuario usuario) throws DBException;
 	boolean isSenhaValida(String senhaParaValidacao);
-	void validarLogin(String email, String senha);
+	boolean validarLogin(String email, String senha) throws Exception;
 	void logarComGmail();
 }

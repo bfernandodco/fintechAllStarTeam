@@ -42,43 +42,43 @@
                         </small>
                     </div>
                     <form class="col-lg-6 flex-grow-1">
-                        <h4>CADASTRO</h4>
+                        <h4>PERFIL</h4>
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" aria-describedby="nomeHelp">
+                            <input type="text" class="form-control" id="nome" name="nome" value="${usuario.getNomeCompleto}" required>
                         </div>
                         <div>
                             <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" class="form-control" id="cpf">
+                            <input type="text" class="form-control" id="cpf" name="cpf" value="${usuario.getNumeroDoCPF}" required>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="dataNascimento">
+                                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" value="${usuario.getDataDeNascimento}" required>
                             </div>
                             <div class="col">
                                 <label for="genero" class="form-label">Gênero</label>
                                 <select class="form-select" id="genero">
-                                    <option value="masculino">Masculino</option>
-                                    <option value="feminino">Feminino</option>
-                                    <option value="outro">Outro</option>
+                                    <option value="masculino" ${usuario.getGenero == 'masculino' ? 'selected' :''}>Masculino</option>
+                                    <option value="feminino" ${usuario.getGenero == 'feminino' ? 'selected' : ''}>Feminino</option>
+                                    <option value="outro" ${usuario.getGenero == 'outro' ? 'selected' : ''}>Outro</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="email" class="form-label"">Email</label>
+                                <input type="email" class="form-control" aria-describedby="emailHelp"  id="email" name="email" value="${usuario.getEmail}" required>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="exampleInputPassword1" class="form-label">Senha</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <label for="senha" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="senha" name="senha">
                             </div>
                             <div class="col">
-                                <label for="exampleInputPassword2" class="form-label">Confirmar Senha</label>
-                                <input type="password" class="form-control" id="exampleInputPassword2">
+                                <label for="confirmaSenha" class="form-label">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="confirmaSenha">
                             </div>
                         </div>
                         <div class="mb-3 form-check">

@@ -16,7 +16,7 @@ public class OracleAtribuirMetaDAO implements AtribuirMetaDAO{
 	@Override
 	public void atribuirMetaAoObjetivoPorLancamento(Integer codigoDoObjetivo, Integer codigoDoLancamento)
 			throws DatabaseException {
-		String sqlQuery = "INSERT INTO T_META_OBJ("
+		String sqlQuery = "INSERT INTO T_META_LANTO("
 				+ "cd_objetivo, cd_lancamento)"
 				+ "VALUES(?, ?)";
 		

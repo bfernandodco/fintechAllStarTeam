@@ -9,7 +9,6 @@ import br.com.fiap.fintech.dao.LoginDAO;
 import br.com.fiap.fintech.exception.DatabaseException;
 import br.com.fiap.fintech.singleton.ConnectionManager;
 
-@SuppressWarnings("unused")
 public class OracleLoginDAO implements LoginDAO {
 
 	private Connection connection;
@@ -71,8 +70,4 @@ public class OracleLoginDAO implements LoginDAO {
 		return null;
 	}
 
-	@Override
-	public void logarComGmail() {
-		
-	}
 }

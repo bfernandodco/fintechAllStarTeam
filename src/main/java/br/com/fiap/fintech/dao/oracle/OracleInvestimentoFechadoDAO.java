@@ -82,7 +82,7 @@ public class OracleInvestimentoFechadoDAO implements InvestimentoFechadoDAO{
 
 	@Override
 	public void fecharInvestimentoFechado(Integer codigoDoInvestimento) throws DatabaseException {
-String sqlQuery = "DELETE FROM T_FNT_INV_FCHDO WHERE cd_investimento = ?";
+		String sqlQuery = "DELETE FROM T_FNT_INV_FCHDO WHERE cd_investimento = ?";
 		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();

@@ -9,7 +9,6 @@ public interface InvestimentoFechadoDAO {
 	
 	void registrarInvestimentoFechado(InvestimentoFechado investimentoFechado) throws DatabaseException;
 	Double consultarLiquidezMensalDoInvestimentoFechado(InvestimentoFechado investimentoFechado);
-	void fecharInvestimentoFechado(Integer codigoDoInvestimento) throws DatabaseException;
 	List<InvestimentoFechado> listarInvestimentosFechadoss(Long numeroDoCPF);
 
 }

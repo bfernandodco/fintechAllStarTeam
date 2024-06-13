@@ -12,7 +12,7 @@ import br.com.fiap.fintech.dao.InvestimentoFechadoDAO;
 import br.com.fiap.fintech.exception.DatabaseException;
 import br.com.fiap.fintech.singleton.ConnectionManager;
 
-public class OracleInvestimentoFechado implements InvestimentoFechadoDAO{
+public class OracleInvestimentoFechadoDAO implements InvestimentoFechadoDAO{
 	
 	private Connection connection;
 	private PreparedStatement pstmt;

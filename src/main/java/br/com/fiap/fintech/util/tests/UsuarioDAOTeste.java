@@ -1,38 +1,52 @@
 package br.com.fiap.fintech.util.tests;
 
-import java.io.File;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import br.com.fiap.fintech.bean.Usuario;
 import br.com.fiap.fintech.dao.UsuarioDAO;
 import br.com.fiap.fintech.dao.oracle.OracleUsuarioDAO;
+import br.com.fiap.fintech.exception.DatabaseException;
 
 @SuppressWarnings("unused")
 public class UsuarioDAOTeste {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DatabaseException {
+		Usuario usuario = new Usuario(16887351862L, "Harry Potter", LocalDate.now(), "Masculino", "harry@potter.com", "123456");
+		UsuarioDAO usuarioDAO = new OracleUsuarioDAO();
+		
+		/* CADASTRAR USUARIO
+		try {
+			usuarioDAO.cadastrarUsuario(usuario);
+			System.out.println("Usuário cadastrado com sucesso!");
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+			throw new DatabaseException("Erro ao testar cadastro do usuário");
+		}
+		*/
+		
+		/* EDITAR USUARIO
+		try {
+			usuarioDAO.editarUsuario(usuario);
+			System.out.println("Usuário editado com sucesso!");
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+			throw new DatabaseException("Erro ao testar edição do usuário");
+		}
+		*/
+		
+		/* BUSCAR USUARIO
+		usuario = usuarioDAO.buscarUsuario(usuario.getNumeroDoCPF());
+		System.out.println(usuario);
+		*/
 		
 		/*
-		String caminhoImg = "C:\\Users\\andre\\OneDrive\\Área de Trabalho\\NovaImagemBanco2.jpg";
-		File imagem = new File (caminhoImg);
-		
-		Usuario usuario = new Usuario(33344466688L, "Melissa", LocalDate.of(1991, 03, 28), "Masculino", "email@email.com", null, "12X3456");
-		Usuario usuarioTesteEditado = new Usuario(33344466688L, "Melissa Soares", LocalDate.of(1991, 9, 10), "Feminino", "mel@email.com", imagem, "12X3456");
-		
-		UsuarioDAO dao = new OracleUsuarioDAO();
-		
-		System.out.println("Criando DAO de cadastro");
-		dao.cadastrarNovoUsuario(usuario);
-		System.out.println("Usuario Cadastrado");
-		
-		System.out.println("Criando DAO de edicao");
-		dao.editarCadastroDoUsuario(usuarioTesteEditado);
-		System.out.println("Edicao Concluida");
-		
-		System.out.println("Criando Alteracao Senha");
-		dao.alterarSenhaDoUsuario("11111a", usuarioTesteEditado);
-		System.out.println("Alteracao Concluida");
+		try {
+			usuarioDAO.removerUsuario(usuario.getNumeroDoCPF());
+			System.out.println("Usuário removido com sucesso!");
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+			throw new DatabaseException("Erro ao testar a remoção do usuário.");
+		}
 		*/
 	}
 

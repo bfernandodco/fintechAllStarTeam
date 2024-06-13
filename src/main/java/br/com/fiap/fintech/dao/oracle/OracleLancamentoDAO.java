@@ -37,7 +37,15 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 		} catch(SQLException e) {
 			e.printStackTrace();
 			throw new DatabaseException("Erro ao cadastrar lançamento.");
-		} 
+		} finally {
+			try {
+				connection.close();
+				pstmt.close();
+			} catch(SQLException e) {
+				System.err.println("Erro ao fechar conexão em OracleLancamentoDAO.atualizarLancamento()");
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	@Override
@@ -62,7 +70,7 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 			throw new DatabaseException("Erro ao atualizar lançamento.");
 		} finally {
 			try {
-				
+				connection.close();
 				pstmt.close();
 			} catch(SQLException e) {
 				System.err.println("Erro ao fechar conexão em OracleLancamentoDAO.atualizarLancamento()");

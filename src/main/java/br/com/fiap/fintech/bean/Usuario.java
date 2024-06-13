@@ -13,22 +13,21 @@ public class Usuario {
 	private LocalDate dataDeNascimento;
 	private String genero;
 	private String email;
-	private File imagemFoto;
+	private File fotoDoPerfil;
 	private String senha;
 	
 	public Usuario() {
 		
 	}
 
-	public Usuario(Long numeroDoCPF, String nomeCompleto, LocalDate dataDeNascimento, String genero, String email,
-			File imagemFoto, String senha) {
-		super();
+	public Usuario(Long numeroDoCPF, String nomeCompleto, LocalDate dataDeNascimento, String genero, 
+			String email, String senha) {
 		this.numeroDoCPF = numeroDoCPF;
 		this.nomeCompleto = nomeCompleto;
 		this.dataDeNascimento = dataDeNascimento;
 		this.genero = genero;
 		this.email = email;
-		this.imagemFoto = imagemFoto;
+		this.senha = senha;
 	}
 
 	public Long getNumeroDoCPF() {
@@ -71,12 +70,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public File getImagemFoto() {
-		return imagemFoto;
+	public File getFotoDoPerfil() {
+		return fotoDoPerfil;
 	}
 
-	public void setImagemFoto(File imagemFoto) {
-		this.imagemFoto = imagemFoto;
+	public void setFotoDoPerfil(File FotoDoPerfil) {
+		this.fotoDoPerfil = FotoDoPerfil;
 	}
 
 	public String getSenha() {

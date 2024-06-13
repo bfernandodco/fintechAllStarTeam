@@ -88,13 +88,14 @@
                     </div>
     
                     <div class="col-10 col-sm-8 col-lg-6">
-                        <img src="./undraw_questions_re_1fy7.svg" class="d-block mx-lg-auto img-fluid"
-                            alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                        <img src="resources/images/undraw_questions_re_1fy7.svg" class="d-block mx-lg-auto img-fluid"
+                            alt="ilustração pesquisa" width="700" height="500" loading="lazy">
                     </div>
                 </div>
             </div>
         </main>
-		<script src="./resources/js/bootstrap.bundle.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
 	</body>
     <footer>
         <%@ include file="footer.jsp" %>

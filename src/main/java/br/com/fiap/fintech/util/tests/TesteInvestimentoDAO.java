@@ -6,7 +6,6 @@ import java.util.List;
 
 import br.com.fiap.fintech.bean.Banco;
 import br.com.fiap.fintech.bean.Investimento;
-import br.com.fiap.fintech.bean.InvestimentoAberto;
 import br.com.fiap.fintech.bean.InvestimentoFechado;
 import br.com.fiap.fintech.bean.TipoDeInvestimento;
 import br.com.fiap.fintech.dao.InvestimentoDAO;

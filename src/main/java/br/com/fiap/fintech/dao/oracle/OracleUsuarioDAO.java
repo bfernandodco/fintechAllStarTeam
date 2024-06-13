@@ -149,11 +149,5 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void logarComGmail() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }

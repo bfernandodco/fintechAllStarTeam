@@ -6,7 +6,7 @@ import java.util.List;
 public class InvestimentoFechado {
 	
 	private Integer codigoDoInvestimento;
-	private LocalDate dataDeSaida;
+	private LocalDate dataDeFechamento;
 	private Double valorDaLiquidez;
 	private List<InvestimentoFechado> investimentosFechados;
 	
@@ -14,9 +14,9 @@ public class InvestimentoFechado {
 		
 	}
 
-	public InvestimentoFechado(Integer codigoDoInvestimento, LocalDate dataDeSaida, Double valorDaLiquidez) {
+	public InvestimentoFechado(Integer codigoDoInvestimento, LocalDate dataDeFechamento, Double valorDaLiquidez) {
 		this.codigoDoInvestimento = codigoDoInvestimento;
-		this.dataDeSaida = dataDeSaida;
+		this.dataDeFechamento = dataDeFechamento;
 		this.valorDaLiquidez = valorDaLiquidez;
 	}
 
@@ -28,12 +28,12 @@ public class InvestimentoFechado {
 		this.codigoDoInvestimento = codigoDoInvestimento;
 	}
 
-	public LocalDate getDataDeSaida() {
-		return dataDeSaida;
+	public LocalDate getDataDeFechamento() {
+		return dataDeFechamento;
 	}
 
-	public void setDataDeSaida(LocalDate dataDeSaida) {
-		this.dataDeSaida = dataDeSaida;
+	public void setDataDeFechamento(LocalDate dataDeFechamento) {
+		this.dataDeFechamento = dataDeFechamento;
 	}
 
 	public Double getValorDaLiquidez() {
@@ -56,7 +56,7 @@ public class InvestimentoFechado {
 	public String toString() {
 		return "\nInvestimento Fechado "
 				+ "\nCodigo Do Investimento: " + codigoDoInvestimento 
-				+ "\nData De Saida: " + dataDeSaida.getDayOfMonth() + "/" + dataDeSaida.getMonthValue() + "/" + dataDeSaida.getYear()
+				+ "\nData De Saida: " + dataDeFechamento.getDayOfMonth() + "/" + dataDeFechamento.getMonthValue() + "/" + dataDeFechamento.getYear()
 				+ "\nValor Da Liquidez: R$ " + valorDaLiquidez;
 	}
 

@@ -22,8 +22,6 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet">
 
-
-<!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath}/resources/css/header.css"
 	rel="stylesheet">
 </head>
@@ -42,8 +40,8 @@
 				</div>
 
 				<ul class="nav nav-pills">
-					<li class="nav-item"><a href="#" class="nav-link active"
-						aria-current="page">Dashboard</a></li>
+					<li class="nav-item"><a href="#" class="nav-link"
+						>Dashboard</a></li>
 					<li class="nav-item"><a href="#" class="nav-link">Lançamentos</a></li>
 					<li class="nav-item"><a href="#" class="nav-link">Investimentos</a></li>
 					<li class="nav-item"><a href="#" class="nav-link">Objetivos</a></li>

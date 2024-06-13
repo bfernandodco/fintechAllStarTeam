@@ -17,9 +17,9 @@
 
 	<body>
 	
-		<main class="main">
+		<main class="main d-flex justify-content-center m-5 p-5">
 			<div class="container container-heroes col-xxl-8">
-				<div class="row flex-lg-row-reverse align-items-center g-5">
+				<div class="row flex-lg-row-reverse align-items-center">
 					<div class="col-10 col-sm-8 col-lg-6">
 						<img src="resources/images/undraw_projections_re_ulc6.svg" class="d-block mx-lg-auto img-fluid"
 							alt="Bootstrap Themes" width="700" height="500" loading="lazy">

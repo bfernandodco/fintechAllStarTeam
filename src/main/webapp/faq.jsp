@@ -94,8 +94,8 @@
                 </div>
             </div>
         </main>
-		<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 	</body>
     <footer>
         <%@ include file="footer.jsp" %>

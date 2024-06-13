@@ -8,7 +8,7 @@ import br.com.fiap.fintech.dao.oracle.OracleUsuarioDAO;
 import br.com.fiap.fintech.exception.DatabaseException;
 
 @SuppressWarnings("unused")
-public class UsuarioDAOTeste {
+public class TesteUsuarioDAO {
 
 	public static void main(String[] args) throws DatabaseException {
 		Usuario usuario = new Usuario(16887351862L, "Harry Potter", LocalDate.now(), "Masculino", "harry@potter.com", "123456");

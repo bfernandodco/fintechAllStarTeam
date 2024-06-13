@@ -78,6 +78,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 		String sqlQuery = "SELECT * FROM T_FNT_USUARIO "
 				+ "WHERE nr_cpf = ?";
 		Usuario usuario = new Usuario();
+		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
@@ -99,6 +100,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 			try {
 				connection.close();
 				pstmt.close();
+				rs.close();
 			} catch(SQLException e) {
 				System.err.println("Erro ao fechar conexão em buscarUsuario()");
 				e.printStackTrace();

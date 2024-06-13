@@ -10,7 +10,6 @@ public interface UsuarioDAO {
 	Usuario buscarUsuario(Long numeroDoCPF);
 	void removerUsuario(Long numeroDoCPF) throws DatabaseException;
 	void alterarSenhaDoUsuario(String novaSenha, Usuario usuario) throws DatabaseException;
-	
 	boolean isSenhaValida(String senhaParaValidacao);
 	void validarLogin(String email, String senha);
 	void logarComGmail();

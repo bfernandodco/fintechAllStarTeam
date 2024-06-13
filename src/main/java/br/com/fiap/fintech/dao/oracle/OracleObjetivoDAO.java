@@ -19,17 +19,16 @@ public class OracleObjetivoDAO implements ObjetivoDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	
 	@Override
 	public void cadastrarObjetivo(Objetivo objetivo) throws DatabaseException {
-		String sql = "INSERT INTO T_FNT_OBJTVO ("
+		String sqlQuery = "INSERT INTO T_FNT_OBJTVO ("
 				+ "cd_objetivo, nr_cpf, nm_objetivo, vl_objetivo, vl_atual, dt_criacao, "
 				+ "dt_conclusao, ds_objetivo) "
 				+ "VALUES (SQ_TB_OBJTVO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
-			pstmt = connection.prepareStatement(sql);
+			pstmt = connection.prepareStatement(sqlQuery);
 			pstmt.setLong(1, objetivo.getNumeroDoCPF());
 			pstmt.setString(2, objetivo.getNomeDoObjetivo());
 			pstmt.setDouble(3, objetivo.getValorDoObjetivo());
@@ -53,7 +52,7 @@ public class OracleObjetivoDAO implements ObjetivoDAO {
 	}
 
 	@Override
-	public List<Objetivo> listarObjetivos(Long NumeroDoCPF) {
+	public List<Objetivo> listarObjetivos(Long numeroDoCPF) {
 		String sqlQuery = "SELECT * FROM T_FNT_OBJTVO WHERE nr_cpf = ?";
 		List<Objetivo> objetivos = new ArrayList<Objetivo>();
 		Objetivo objetivo;
@@ -61,7 +60,7 @@ public class OracleObjetivoDAO implements ObjetivoDAO {
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, NumeroDoCPF);		
+			pstmt.setLong(1, numeroDoCPF);		
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

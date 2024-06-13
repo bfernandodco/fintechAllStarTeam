@@ -8,7 +8,7 @@ import br.com.fiap.fintech.exception.DatabaseException;
 import br.com.fiap.fintech.factory.DAOFactory;
 
 @SuppressWarnings("unused")
-public class ObjetivoDAOTest {
+public class TesteObjetivoDAO {
 
 	public static void main(String[] args) {
 		

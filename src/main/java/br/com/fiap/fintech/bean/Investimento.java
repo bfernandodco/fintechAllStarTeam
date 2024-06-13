@@ -10,7 +10,7 @@ public class Investimento {
 	private Double valorDaRentabilidade;
 	private LocalDate dataDeEntrada;
 	private LocalDate dataDeVencimento;
-	private Double valorDoInvestimento;
+	private Double valorDosInvestimentos;
 	private String nomeDoInvestimento;
 	private TipoDeInvestimento tipoDeInvestimento;
 	private Banco banco;
@@ -30,7 +30,7 @@ public class Investimento {
 		this.valorDaRentabilidade = valorDaRentabilidade;
 		this.dataDeEntrada = dataDeEntrada;
 		this.dataDeVencimento = dataDeVencimento;
-		this.valorDoInvestimento = valorDoInvestimento;
+		this.valorDosInvestimentos = valorDoInvestimento;
 		this.nomeDoInvestimento = nomeDoInvestimento;
 		this.tipoDeInvestimento = tipoDeInvestimento;
 		this.banco = banco;
@@ -78,11 +78,11 @@ public class Investimento {
 	}
 
 	public Double getValorDoInvestimento() {
-		return valorDoInvestimento;
+		return valorDosInvestimentos;
 	}
 
 	public void setValorDoInvestimento(Double valorDoInvestimento) {
-		this.valorDoInvestimento = valorDoInvestimento;
+		this.valorDosInvestimentos = valorDoInvestimento;
 	}
 
 	public String getNomeDoInvestimento() {
@@ -133,7 +133,7 @@ public class Investimento {
 				+ "\nValor Da Rentabilidade: R$ " + valorDaRentabilidade 
 				+ "\nData De Entrada: " + dataDeEntrada.getDayOfMonth() + "/" + dataDeEntrada.getMonthValue() + "/" + dataDeEntrada.getYear()
 				+ "\nData De Vencimento: " + dataDeVencimento.getDayOfMonth() + "/" + dataDeVencimento.getMonthValue() + "/" + dataDeVencimento.getYear()
-				+ "\nValor De Investimento: R$ " + valorDoInvestimento
+				+ "\nValor De Investimento: R$ " + valorDosInvestimentos
 				+ "\nNome Do Investimento: " + nomeDoInvestimento 
 				+ "\nTipo De Investimento: " + tipoDeInvestimento
 				+ "\nBanco: " + banco 

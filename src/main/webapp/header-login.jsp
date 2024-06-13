@@ -42,7 +42,7 @@
 				</div>
 
 				<ul class="nav nav-pills">
-					<li class="nav-item"><a href="#" class="nav-link active"
+					<li class="nav-item"><a href="#" class="nav-link"
 						aria-current="page">Home</a></li>
 					<li class="nav-item"><a href="#" class="nav-link">Quem
 							somos</a></li>

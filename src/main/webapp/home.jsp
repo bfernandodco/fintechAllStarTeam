@@ -15,32 +15,34 @@
         <h2>Olá ${usuario.getNomeCompleto()}</h2>
     </div>
 
-    <div class="d-flex justify-content-around pb-3">
-        <div class="lancamentos boxes p-5">
-            <h3>Resumo de Lançamentos</h3>
-            <div class="d-flex justify-content-around mb-3">
-                <p class="text-primary text-decoration-underline">No dia</p>
-                <p>Na semana</p>
-                <p>No mês</p>
-            </div>
-            <div class="p-2 mb-3 b-box">
-                <h5>Saldo Atual</h5>
-                <h4 class="text-primary">SALDO DOS LANÇAMENTOS</h4>
-            </div>
-            <div class="p-2 mb-3 b-box">
-                <h5>Total de Recebimentos</h5>
-                <h4>TOTAL RECEBIMENTOS</h4>
-            </div>
-            <div class="p-2 mb-3 b-box">
-                <h5>Total de Gastos</h5>
-                <h4>TOTAL GASTOS</h4>
-            </div>
-            <div class="p-2 mb-3 b-box">
-                <h5>Último Valor Gasto</h5>
-                <h4>ULTIMO VALOR GASTO</h4>
-            </div>
-            <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-sm px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalLancamento">+ Novo Lançamento</button>
+    <div class="d-flex justify-content-around px-5 gap-3">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="lancamentos boxes p-5">
+                <h3>Resumo de Lançamentos</h3>
+                <div class="d-flex justify-content-around mb-3">
+                    <p class="text-primary text-decoration-underline">No dia</p>
+                    <p>Na semana</p>
+                    <p>No mês</p>
+                </div>
+                <div class="p-2 mb-3 b-box">
+                    <h5>Saldo Atual</h5>
+                    <h4 class="text-primary">SALDO DOS LANÇAMENTOS</h4>
+                </div>
+                <div class="p-2 mb-3 b-box">
+                    <h5>Total de Recebimentos</h5>
+                    <h4>TOTAL RECEBIMENTOS</h4>
+                </div>
+                <div class="p-2 mb-3 b-box">
+                    <h5>Total de Gastos</h5>
+                    <h4>TOTAL GASTOS</h4>
+                </div>
+                <div class="p-2 mb-3 b-box">
+                    <h5>Último Valor Gasto</h5>
+                    <h4>ULTIMO VALOR GASTO</h4>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary btn-sm px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalLancamento">+ Novo Lançamento</button>
+                </div>
             </div>
         </div>
 
@@ -108,33 +110,35 @@
             </div>
         </div>
 
-        <div class="investimentos boxes p-5">
-            <h3>Resumo de Investimentos</h3>
-            <div class="d-flex justify-content-around mb-3">
-                <p class="text-primary text-decoration-underline">No dia</p>
-                <p>Na semana</p>
-                <p>No mês</p>
-            </div>
-            <div class="p-2 mb-3 b-box">
-                <h5>Total de Investimentos</h5>
-                <h4 class="text-primary">TOTAL DE INVESTIMENTOS</h4>
-            </div>
-            <div class="p-2 mb-3 b-box">
-                <h5>Último Investimento</h5>
-                <h4>TOTAL DE INVESTIMENTOS</h4>
-            </div>
-            <div class="p-2 mb-3 b-box">
-                <h5>Montante Rentabilizado</h5>
-                <h4>MONTANTE</h4>
-            </div>
-            <div class="p-2 mb-3 b-box">
-                <h5>Último Invest. Realizado</h5>
-                <h4>MONTANTE</h4>
-                <p>Nome: ${investimento.getNomeDoInvestimento()}</p>
-                <p>Data liquidação: ${investimento.getDataDeVencimento()}</p>
-            </div>
-            <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-sm px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalInvestimento">+ Novo Investimento</button>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="investimentos boxes p-5">
+                <h3>Resumo de Investimentos</h3>
+                <div class="d-flex justify-content-around mb-3">
+                    <p class="text-primary text-decoration-underline">No dia</p>
+                    <p>Na semana</p>
+                    <p>No mês</p>
+                </div>
+                <div class="p-2 mb-3 b-box">
+                    <h5>Total de Investimentos</h5>
+                    <h4 class="text-primary">TOTAL DE INVESTIMENTOS</h4>
+                </div>
+                <div class="p-2 mb-3 b-box">
+                    <h5>Último Investimento</h5>
+                    <h4>TOTAL DE INVESTIMENTOS</h4>
+                </div>
+                <div class="p-2 mb-3 b-box">
+                    <h5>Montante Rentabilizado</h5>
+                    <h4>MONTANTE</h4>
+                </div>
+                <div class="p-2 mb-3 b-box">
+                    <h5>Último Invest. Realizado</h5>
+                    <h4>MONTANTE</h4>
+                    <p>Nome: ${investimento.getNomeDoInvestimento()}</p>
+                    <p>Data liquidação: ${investimento.getDataDeVencimento()}</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary btn-sm px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalInvestimento">+ Novo Investimento</button>
+                </div>
             </div>
         </div>
 
@@ -212,37 +216,39 @@
             </div>
         </div>
 
-        <div class="objetivos boxes p-5">
-            <div>
-                <h3>Objetivos</h3>
-                <div class="d-flex">
-                    <h5>${objetivo.getNomeDoObjetivo()}</h5>
-                    <p>${objetivo.getDataDeVencimento()}</p>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="objetivos boxes p-5">
+                <div>
+                    <h3>Objetivos</h3>
+                    <div class="d-flex">
+                        <h5>${objetivo.getNomeDoObjetivo()}</h5>
+                        <p>${objetivo.getDataDeVencimento()}</p>
+                    </div>
+                    <figure>
+                        <img src="resources/images/image 1.png" alt="imagem disney">
+                    </figure>
+                    <div class="d-flex">
+                        <h6 class="text-primary">Valor Atual: ${objetivo.getValorAtual()}</h6>
+                        <h6>Valor do Objetivo: ${objetivo.getValorDoObjetivo()}</h6>
+                    </div>
                 </div>
-                <figure>
-                    <img src="resources/images/image 1.png" alt="imagem disney">
-                </figure>
-                <div class="d-flex">
-                    <h6 class="text-primary">Valor Atual: ${objetivo.getValorAtual()}</h6>
-                    <h6>Valor do Objetivo: ${objetivo.getValorDoObjetivo()}</h6>
+                <hr>
+                <div>
+                    <div class="d-flex">
+                        <h5>${objetivo.getNomeDoObjetivo()}</h5>
+                        <p>${objetivo.getDataDeVencimento()}</p>
+                    </div>
+                    <figure>
+                        <img src="resources/images/image 2.png" alt="imagem carro preto">
+                    </figure>
+                    <div class="d-flex">
+                        <h6 class="text-primary">Valor Atual: ${objetivo.getValorAtual()}</h6>
+                        <h6>Valor do Objetivo: ${objetivo.getValorDoObjetivo()}</h6>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div>
-                <div class="d-flex">
-                    <h5>${objetivo.getNomeDoObjetivo()}</h5>
-                    <p>${objetivo.getDataDeVencimento()}</p>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary btn-sm px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalObjetivo">+ Novo Objetivo</button>
                 </div>
-                <figure>
-                    <img src="resources/images/image 2.png" alt="imagem carro preto">
-                </figure>
-                <div class="d-flex">
-                    <h6 class="text-primary">Valor Atual: ${objetivo.getValorAtual()}</h6>
-                    <h6>Valor do Objetivo: ${objetivo.getValorDoObjetivo()}</h6>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-sm px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalObjetivo">+ Novo Objetivo</button>
             </div>
         </div>
     </div>

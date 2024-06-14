@@ -24,6 +24,10 @@ public class Usuario {
 		this.genero = genero;
 		this.email = email;
 	}
+	
+	public Usuario(Long numeroDoCPF) {
+		this.numeroDoCPF = numeroDoCPF;
+	}
 
 	public Long getNumeroDoCPF() {
 		return numeroDoCPF;

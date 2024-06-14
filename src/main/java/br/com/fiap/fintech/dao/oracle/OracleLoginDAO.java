@@ -74,6 +74,8 @@ public class OracleLoginDAO implements LoginDAO {
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
+			pstmt.setLong(1, login.getNumeroDoCPF());
+			pstmt.setString(2, login.getSenha());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

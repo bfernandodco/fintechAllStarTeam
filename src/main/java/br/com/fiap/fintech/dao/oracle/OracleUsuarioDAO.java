@@ -146,7 +146,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 
 	@Override
 	public Long validarUsuario(String email) {
-		String sqlQuery = "SELECT FROM T_FNT_USUARIO "
+		String sqlQuery = "SELECT nr_cpf FROM T_FNT_USUARIO "
 				+ "WHERE tx_email = ?";
 		Long numeroDoCPF = null;
 		

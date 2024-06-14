@@ -21,18 +21,18 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 	@Override
 	public void cadastrarLancamento(Lancamento lancamento) throws DatabaseException {
 		String sqlQuery = "INSERT INTO T_FNT_LANTO("
-				+ "cd_lancamento, nr_cpf, dt_lancamento, hr_lancamento, "
-				+ "vl_lancamento, tx_lancamento, tp_lancamento, ds_categoria) "
+				+ "cd_lancamento, nr_cpf, dt_lancamento, vl_lancamento, tp_lancamento, ct_lancamento, ds_lancamento) "
 				+ "VALUES(SQ_LANTO.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
 			pstmt.setLong(1, lancamento.getNumeroDoCPF());
-			pstmt.setDate(2, java.sql.Date.valueOf(lancamento.getDataDoLancamento()));
-			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(lancamento.getHoraDoLancamento()));
-			pstmt.setDouble(4, lancamento.getValorDoLancamento());
-			pstmt.setString(5, lancamento.getDescricaoDoLancamento());
+			pstmt.setDate(2, lancamento.getDataHoraDoLancamento());
+			pstmt.setDouble(3, lancamento.getValorDoLancamento());
+			pstmt.setString(4, lancamento.getTipoDoLancamento());
+			pstmt.setString(5, lancamento.getCategoriaDoLancamento());
+			pstmt.setString(6, lancamento.getDescricaoDoLancamento());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -51,18 +51,20 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 	@Override
 	public void editarLancamento(Lancamento lancamento) throws DatabaseException {
 		String sqlQuery = "UPDATE T_FNT_LANTO "
-				+ "SET dt_lancamento = ?, hr_lancamento = ?, vl_lancamento = ?, tx_lancamento = ? "
+				+ "SET dt_lancamento = ?, vl_lancamento = ?, tp_lancamento = ?, "
+				+ "ct_lancamento = ?, ds_lancamento = ?"
 				+ "WHERE cd_lancamento = ? AND nr_cpf = ?";
 		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setDate(1, java.sql.Date.valueOf(lancamento.getDataDoLancamento()));
-			pstmt.setTimestamp(2, java.sql.Timestamp.valueOf(lancamento.getHoraDoLancamento()));
-			pstmt.setDouble(3, lancamento.getValorDoLancamento());
-			pstmt.setString(4, lancamento.getDescricaoDoLancamento());
-			pstmt.setInt(5,lancamento.getCodigoDoLancamento());
-			pstmt.setLong(6, lancamento.getNumeroDoCPF());
+			pstmt.setDate(1, lancamento.getDataHoraDoLancamento());
+			pstmt.setDouble(2, lancamento.getValorDoLancamento());
+			pstmt.setString(3, lancamento.getTipoDoLancamento());
+			pstmt.setString(5, lancamento.getCategoriaDoLancamento());
+			pstmt.setString(6, lancamento.getDescricaoDoLancamento());
+			pstmt.setInt(7, lancamento.getCodigoDoLancamento());
+			pstmt.setLong(8, lancamento.getNumeroDoCPF());
 			pstmt.executeUpdate();
 			
 		} catch(SQLException e) {
@@ -117,10 +119,11 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 				lancamento = new Lancamento();
 				lancamento.setCodigoDoLancamento(rs.getInt("cd_lancamento"));
 				lancamento.setNumeroDoCPF(rs.getLong("nr_cpf"));
-				lancamento.setDataDoLancamento(rs.getDate("dt_lancamento").toLocalDate());
-				lancamento.setHoraDoLancamento(rs.getTimestamp("hr_lancamento").toLocalDateTime());
+				lancamento.setDataHoraDoLancamento(rs.getDate("dt_lancamento"));
 				lancamento.setValorDoLancamento(rs.getDouble("vl_lancamento"));
-				lancamento.setDescricaoDoLancamento(rs.getString("tx_lancamento"));
+				lancamento.setTipoDoLancamento(rs.getString("tp_lancamento"));
+				lancamento.setCategoriaDoLancamento(rs.getString("ct_lancamento"));
+				lancamento.setDescricaoDoLancamento(rs.getString("ds_lancamento"));
 				lancamentos.add(lancamento);
 			}
 			

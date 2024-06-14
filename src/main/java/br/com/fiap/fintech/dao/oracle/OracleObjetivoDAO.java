@@ -10,139 +10,178 @@ import java.util.List;
 
 import br.com.fiap.fintech.bean.Objetivo;
 import br.com.fiap.fintech.dao.ObjetivoDAO;
-import br.com.fiap.fintech.exception.DatabaseException;
+import br.com.fiap.fintech.exception.DBException;
 import br.com.fiap.fintech.singleton.ConnectionManager;
 
-public class OracleObjetivoDAO implements ObjetivoDAO {
+public class OracleObjetivoDAO implements ObjetivoDAO{
 
-	private Connection connection;
-	private PreparedStatement pstmt;
+	private Connection conexao = ConnectionManager.getInstance().getConnection();
+	private PreparedStatement stmt;
 	private ResultSet rs;
 	
+	
 	@Override
-	public void cadastrarObjetivo(Objetivo objetivo) throws DatabaseException {
-		String sqlQuery = "INSERT INTO T_FNT_OBJTVO ("
-				+ "cd_objetivo, nr_cpf, nm_objetivo, vl_objetivo, vl_atual, dt_criacao, "
-				+ "dt_conclusao, ds_objetivo) "
-				+ "VALUES (SQ_TB_OBJTVO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+	public void criarNovoObjetivo(Objetivo objetivo) throws DBException {
+	
+		Connection conexao = ConnectionManager.getInstance().getConnection();
 		
 		try {
-			connection = ConnectionManager.getInstance().getConnection();
-			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, objetivo.getNumeroDoCPF());
-			pstmt.setString(2, objetivo.getNomeDoObjetivo());
-			pstmt.setDouble(3, objetivo.getValorDoObjetivo());
-			pstmt.setDouble(4, objetivo.getValorAtual());
-			pstmt.setDate(5, Date.valueOf(objetivo.getDataDeCriacao()));
-			pstmt.setDate(6, Date.valueOf(objetivo.getDataDeConclusao()));
-			pstmt.setString(7, objetivo.getDescricaoDoObjetivo());
-			pstmt.executeUpdate();
+			
+			String sql = "INSERT INTO T_FNT_OBJTVO (CD_OBJETIVO, NR_CPF, NM_OBJETIVO, VL_OBJETIVO, VL_ATUAL, DT_CRIACAO, DT_CONCLUSAO, DS_OBJETIVO) VALUES (SQ_TB_OBJTVO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, objetivo.getNumeroDeCPF());
+			stmt.setString(2, objetivo.getNomeDoObjetivo());
+			stmt.setDouble(3, objetivo.getValorDoObjetivo());
+			stmt.setDouble(4, objetivo.getValorAtual());
+			stmt.setDate(5, Date.valueOf(objetivo.getDataDeCriacao()));
+			stmt.setDate(6, Date.valueOf(objetivo.getDataDeConclusao()));
+			stmt.setString(7, objetivo.getDescricaoDoObjetivo());
+			
+			stmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DatabaseException("Erro ao criar novo Objetivo.");
+			throw new DBException("Erro ao criar novo Objetivo.");
 		} finally {
-			try {
-				connection.close();
-				pstmt.close();
-			} catch(SQLException e) {
-				System.err.println("Erro ao fechar conexão em OracleObjetivoDAO.cadastrarObjetivo()");
-				e.printStackTrace();
+			if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+			if (conexao != null) {
+				try {
+					conexao.close();
+				} catch (SQLException e) {
+		            e.printStackTrace();
+		        }
 			}
 		}
 	}
 
 	@Override
-	public List<Objetivo> listarObjetivos(Long numeroDoCPF) {
-		String sqlQuery = "SELECT * FROM T_FNT_OBJTVO WHERE nr_cpf = ?";
-		List<Objetivo> objetivos = new ArrayList<Objetivo>();
-		Objetivo objetivo;
+	public List<Objetivo> listarObjetivos(Long numeroDeCPF) {
+		conexao = ConnectionManager.getInstance().getConnection();
+		List<Objetivo> lista = new ArrayList<Objetivo>();
+		PreparedStatement stmt = null;
 		
 		try {
-			connection = ConnectionManager.getInstance().getConnection();
-			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, numeroDoCPF);		
-			rs = pstmt.executeQuery();
 			
+			conexao = ConnectionManager.getInstance().getConnection();
+			
+			String sql = "SELECT * FROM T_FNT_OBJTVO WHERE NR_CPF = ?";
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, numeroDeCPF);
+						
+			rs = stmt.executeQuery();
 			while(rs.next()) {
-				objetivo = new Objetivo();
-				objetivo.setCodigoDoObjetivo(rs.getInt("cd_objetivo")); 
-				objetivo.setNomeDoObjetivo(rs.getString("nm_objetivo"));
-				objetivo.setValorDoObjetivo(rs.getDouble("vl_objetivo"));
-				objetivo.setValorAtual(rs.getDouble("vl_atual"));
-				objetivo.setDataDeCriacao(rs.getDate("dt_criacao").toLocalDate());
-				objetivo.setDataDeConclusao(rs.getDate("dt_conclusao").toLocalDate());
-				objetivo.setDescricaoDoObjetivo(rs.getString("ds_objetivo"));
-				objetivos.add(objetivo);
+				Objetivo objetivoLista = new Objetivo();
+				
+				objetivoLista.setCodigoDoObjetivo(rs.getInt("CD_OBJETIVO")); 
+				objetivoLista.setNomeDoObjetivo(rs.getString("NM_OBJETIVO"));
+				objetivoLista.setValorDoObjetivo(rs.getDouble("VL_OBJETIVO"));
+				objetivoLista.setValorAtual(rs.getDouble("VL_ATUAL"));
+				objetivoLista.setDataDeCriacao(rs.getDate("DT_CRIACAO").toLocalDate());
+				objetivoLista.setDataDeConclusao(rs.getDate("DT_CONCLUSAO").toLocalDate());
+				objetivoLista.setDescricaoDoObjetivo(rs.getString("DS_OBJETIVO"));
+
+				lista.add(objetivoLista);
 			}
 			
-			return objetivos;
-		} catch(SQLException e) {
-			System.err.println("Erro ao listar objetivos em OracleObjetivoDAO.listarObjetivos()");
+		} catch(Exception e) {
 			e.printStackTrace();
-			return null;
 		} finally {
-			try {
-				connection.close();
-				pstmt.close();
-				rs.close();
-			} catch(SQLException e) {
-				System.err.println("Erro ao fechar conexão em OracleObjetivoDAO.listarObjetivos()");
-				e.printStackTrace();
+			if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+			if (conexao != null) {
+				try {
+					conexao.close();
+				} catch (SQLException e) {
+		            e.printStackTrace();
+		        }
 			}
 		}
+		return lista;
 	}
 
 	@Override
-	public void editarObjetivo(Objetivo objetivo) throws DatabaseException {
-		String sqlQuery = "UPDATE T_FNT_OBJTVO SET nm_objetivo = ?, vl_objetivo = ?, "
-				+ "vl_atual = ?, dt_criacao = ?, dt_conclusao = ?, ds_objetivo = ? "
-				+ "WHERE cd_objetivo = ? AND nr_cpf = ?";
+	public void editarObjetivo(Objetivo objetivo) throws DBException {
+		
+		conexao = ConnectionManager.getInstance().getConnection();
 		
 		try {
-			connection = ConnectionManager.getInstance().getConnection();
-			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setString(1, objetivo.getNomeDoObjetivo());
-			pstmt.setDouble(2, objetivo.getValorDoObjetivo());
-			pstmt.setDouble(3, objetivo.getValorAtual());
-			pstmt.setDate(4, Date.valueOf(objetivo.getDataDeCriacao()));
-			pstmt.setDate(5, Date.valueOf(objetivo.getDataDeConclusao()));
-			pstmt.setString(6, objetivo.getDescricaoDoObjetivo());
-			pstmt.setInt(7, objetivo.getCodigoDoObjetivo());
-			pstmt.setLong(8, objetivo.getNumeroDoCPF());
-			pstmt.executeUpdate();
+			
+			String sql = "UPDATE T_FNT_OBJTVO SET NM_OBJETIVO = ?, VL_OBJETIVO = ?, VL_ATUAL = ?, DT_CRIACAO = ?, DT_CONCLUSAO = ?, DS_OBJETIVO = ? WHERE CD_OBJETIVO = ? AND NR_CPF = ?";
+			
+			stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, objetivo.getNomeDoObjetivo());
+			stmt.setDouble(2, objetivo.getValorDoObjetivo());
+			stmt.setDouble(3, objetivo.getValorAtual());
+			stmt.setDate(4, Date.valueOf(objetivo.getDataDeCriacao()));
+			stmt.setDate(5, Date.valueOf(objetivo.getDataDeConclusao()));
+			stmt.setString(6, objetivo.getDescricaoDoObjetivo());
+			stmt.setInt(7, objetivo.getCodigoDoObjetivo());
+			stmt.setLong(8, objetivo.getNumeroDeCPF());
+			
+			stmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DatabaseException("Erro ao editar o Objetivo.");
+			throw new DBException("Erro ao editar o Objetivo.");
 		} finally {
-			try {
-				connection.close();
-				pstmt.close();
-			} catch(SQLException e) {
-				System.err.println("Erro ao fechar conexão em OracleObjetivoDAO.editarObjetivos()");
-				e.printStackTrace();
+			if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+			if (conexao != null) {
+				try {
+					conexao.close();
+				} catch (SQLException e) {
+		            e.printStackTrace();
+		        }
 			}
 		}
 	}
 	
 	@Override
-	public void removerObjetivo(Integer codigoDoObjetivo) throws DatabaseException {
-		String sqlQuery = "DELETE FROM T_FNT_OBJTVO WHERE cd_objetivo = ?";
+	public void excluirObjetivo(Integer codigoDoObjetivo) throws DBException {
+		
+		Connection conexao = ConnectionManager.getInstance().getConnection();
 		
 		try {
-			connection = ConnectionManager.getInstance().getConnection();
-			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setInt(1, codigoDoObjetivo);
-			pstmt.executeUpdate();
+			
+			String sql = "DELETE FROM T_FNT_OBJTVO WHERE CD_OBJETIVO = ?";
+			
+			stmt = conexao.prepareStatement(sql);
+			stmt.setInt(1, codigoDoObjetivo);
+			stmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DatabaseException("Erro ao remover Objetivo.");
+			throw new DBException("Erro ao remover Objetivo.");
 		} finally {
-			try {
-				connection.close();
-				pstmt.close();
-			} catch(SQLException e) {
-				System.err.println("Erro ao fechar conexão em OracleObjetivoDAO.removerObjetivos()");
-				e.printStackTrace();
+			if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+			if (conexao != null) {
+				try {
+					conexao.close();
+				} catch (SQLException e) {
+		            e.printStackTrace();
+		        }
 			}
 		}
 	}

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -68,13 +69,13 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="exampleInputPassword1" class="form-label">Senha</label>
-                                <input type="password" class="form-control" name="senha" id="exampleInputPassword1">
+                                <input type="password" class="form-control" name="senha" id="senha">
                             </div>
                             <div class="col">
                                 <label for="exampleInputPassword2" class="form-label">Confirmar Senha</label>

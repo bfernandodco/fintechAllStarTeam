@@ -1,7 +1,6 @@
 package br.com.fiap.fintech.dao.oracle;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,12 +30,12 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 			pstmt = connection.prepareStatement(sqlQuery);			
 			pstmt.setLong(1, investimento.getNumeroDoCPF());
 			pstmt.setDouble(2, investimento.getValorDaRentabilidade());
-			pstmt.setDate(3, Date.valueOf(investimento.getDataDeEntrada()));
-			pstmt.setDate(4, Date.valueOf(investimento.getDataDeVencimento()));
+			pstmt.setDate(3, investimento.getDataDeEntrada());
+			pstmt.setDate(4, investimento.getDataDeVencimento());
 			pstmt.setDouble(5, investimento.getValorDoInvestimento());
 			pstmt.setString(6, investimento.getNomeDoInvestimento());
-			pstmt.setString(7, investimento.getTipoDeInvestimento().getTipoDeInvestimento());
-			pstmt.setString(8, investimento.getBanco().getBanco());			
+			pstmt.setString(7, investimento.getTipoDeInvestimento());
+			pstmt.setString(8, investimento.getBanco());			
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,12 +61,12 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
 			pstmt.setDouble(1, investimento.getValorDaRentabilidade());
-			pstmt.setDate(2, Date.valueOf(investimento.getDataDeEntrada()));
-			pstmt.setDate(3, Date.valueOf(investimento.getDataDeVencimento()));
+			pstmt.setDate(2, investimento.getDataDeEntrada());
+			pstmt.setDate(3, investimento.getDataDeVencimento());
 			pstmt.setDouble(4, investimento.getValorDoInvestimento());
 			pstmt.setString(5, investimento.getNomeDoInvestimento());
-			pstmt.setString(6, investimento.getTipoDeInvestimento().getTipoDeInvestimento());
-			pstmt.setString(7, investimento.getBanco().getBanco());
+			pstmt.setString(6, investimento.getTipoDeInvestimento());
+			pstmt.setString(7, investimento.getBanco());
 			pstmt.setInt(8, investimento.getCodigoDoInvestimento());
 			pstmt.setLong(9, investimento.getNumeroDoCPF());
 			pstmt.executeUpdate();
@@ -125,8 +124,8 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 				investimento = new Investimento();
 				investimento.setCodigoDoInvestimento(rs.getInt("cd_investimento"));
 				investimento.setValorDaRentabilidade(rs.getDouble("vl_rentabilidade"));
-				investimento.setDataDeEntrada(rs.getDate("dt_entrada").toLocalDate());
-				investimento.setDataDeVencimento(rs.getDate("dt_vencimento").toLocalDate());
+				investimento.setDataDeEntrada(rs.getDate("dt_entrada"));
+				investimento.setDataDeVencimento(rs.getDate("dt_vencimento"));
 				investimento.setValorDoInvestimento(rs.getDouble("vl_investimento"));
 				investimento.setNomeDoInvestimento(rs.getString("nm_aplicacao"));
 				investimentos.add(investimento);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+ 
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -74,12 +75,12 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="exampleInputPassword1" class="form-label">Senha</label>
+                                <label for="senha" class="form-label">Senha</label>
                                 <input type="password" class="form-control" name="senha" id="senha">
                             </div>
                             <div class="col">
-                                <label for="exampleInputPassword2" class="form-label">Confirmar Senha</label>
-                                <input type="password" class="form-control" id="exampleInputPassword2">
+                                <label for="confirmaSenha" class="form-label">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="confirmaSenha">
                             </div>
                         </div>
                         <div class="mb-3 form-check">
@@ -97,6 +98,7 @@
 
 		    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
             <script src="${pageContext.request.contextPath}/resources/js/foto-perfil.js"></script>
+            <script src="${pageContext.request.contextPath}/resources/js/validacaoSenha.js"></script>
 
 </body>
 

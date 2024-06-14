@@ -1,38 +1,46 @@
 package br.com.fiap.fintech.bean;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.List;
 
 public class Lancamento {
 
 	private Integer codigoDoLancamento;
 	private Long numeroDoCPF;
-	private LocalDate dataDoLancamento;
-	private LocalDateTime horaDoLancamento;
+	private Date dataHoraDoLancamento;
 	private Double valorDoLancamento;
-	private TipoDoLancamento tipoDoLancamento;
-	private CategoriaDoLancamento categoriaDoLancamento;
+	private String tipoDoLancamento;
+	private String categoriaDoLancamento;
 	private String descricaoDoLancamento;
 	private List<Lancamento> lancamentos;
 	
 	public Lancamento() {
 		
 	}
-
-	public Lancamento(Integer codigoDoLancamento, Long numeroDoCPF, LocalDate dataDoLancamento,
-			LocalDateTime horaDoLancamento, Double valorDoLancamento, TipoDoLancamento tipoDoLancamento,
-			CategoriaDoLancamento categoriaDoLancamento, String descricaoDoLancamento) {
-		this.codigoDoLancamento = codigoDoLancamento;
+	
+	public Lancamento(Long numeroDoCPF, Integer codigoDoLancamento, Date dataHoraDoLancamento, Double valorDoLancamento,
+			String tipoDoLancamento, String categoriaDoLancamento, String descricaoDoLancamento) {
+		super();
 		this.numeroDoCPF = numeroDoCPF;
-		this.dataDoLancamento = dataDoLancamento;
-		this.horaDoLancamento = horaDoLancamento;
+		this.codigoDoLancamento = codigoDoLancamento;
+		this.dataHoraDoLancamento = dataHoraDoLancamento;
 		this.valorDoLancamento = valorDoLancamento;
 		this.tipoDoLancamento = tipoDoLancamento;
 		this.categoriaDoLancamento = categoriaDoLancamento;
 		this.descricaoDoLancamento = descricaoDoLancamento;
 	}
 
+	public Lancamento(Long numeroDoCPF, Date dataHoraDoLancamento, Double valorDoLancamento, String tipoDoLancamento,
+			String categoriaDoLancamento, String descricaoDoLancamento) {
+		super();
+		this.numeroDoCPF = numeroDoCPF;
+		this.dataHoraDoLancamento = dataHoraDoLancamento;
+		this.valorDoLancamento = valorDoLancamento;
+		this.tipoDoLancamento = tipoDoLancamento;
+		this.categoriaDoLancamento = categoriaDoLancamento;
+		this.descricaoDoLancamento = descricaoDoLancamento;
+	}
+	
 	public Integer getCodigoDoLancamento() {
 		return codigoDoLancamento;
 	}
@@ -49,20 +57,12 @@ public class Lancamento {
 		this.numeroDoCPF = numeroDoCPF;
 	}
 
-	public LocalDate getDataDoLancamento() {
-		return dataDoLancamento;
+	public Date getDataHoraDoLancamento() {
+		return dataHoraDoLancamento;
 	}
 
-	public void setDataDoLancamento(LocalDate dataDoLancamento) {
-		this.dataDoLancamento = dataDoLancamento;
-	}
-
-	public LocalDateTime getHoraDoLancamento() {
-		return horaDoLancamento;
-	}
-
-	public void setHoraDoLancamento(LocalDateTime horaDoLancamento) {
-		this.horaDoLancamento = horaDoLancamento;
+	public void setDataHoraDoLancamento(Date dataHoraDoLancamento) {
+		this.dataHoraDoLancamento = dataHoraDoLancamento;
 	}
 
 	public Double getValorDoLancamento() {
@@ -73,19 +73,19 @@ public class Lancamento {
 		this.valorDoLancamento = valorDoLancamento;
 	}
 
-	public TipoDoLancamento getTipoDoLancamento() {
+	public String getTipoDoLancamento() {
 		return tipoDoLancamento;
 	}
 
-	public void setTipoDoLancamento(TipoDoLancamento tipoDoLancamento) {
+	public void setTipoDoLancamento(String tipoDoLancamento) {
 		this.tipoDoLancamento = tipoDoLancamento;
 	}
 
-	public CategoriaDoLancamento getCategoriaDoLancamento() {
+	public String getCategoriaDoLancamento() {
 		return categoriaDoLancamento;
 	}
 
-	public void setCategoriaDoLancamento(CategoriaDoLancamento categoriaDoLancamento) {
+	public void setCategoriaDoLancamento(String categoriaDoLancamento) {
 		this.categoriaDoLancamento = categoriaDoLancamento;
 	}
 
@@ -110,11 +110,10 @@ public class Lancamento {
 		return "\nLancamento "
 				+ "\nCodigo Do Lancamento: " + codigoDoLancamento 
 				+ "\nNumero Do CPF: " + numeroDoCPF
-				+ "\nData Do Lancamento: " + dataDoLancamento.getDayOfMonth() + "/" + dataDoLancamento.getMonthValue() + "/" + dataDoLancamento.getYear()
-				+ "\nHora Do Lancamento: " + horaDoLancamento.getHour() + "h:" + horaDoLancamento.getMinute() + "min"
+				+ "\nData Do Lancamento: " + dataHoraDoLancamento
 				+ "\nValor Do Lancamento: R$ " + valorDoLancamento 
-				+ "\nTipo Do Lancamento: " + tipoDoLancamento.getTipoDoLancamento()
-				+ "\nCategoria Do Lancamento: " + categoriaDoLancamento.getCategoriaDoLancamento() 
+				+ "\nTipo Do Lancamento: " + tipoDoLancamento
+				+ "\nCategoria Do Lancamento: " + categoriaDoLancamento
 				+ "\nDescricao Do Lancamento: " + descricaoDoLancamento;
 	}
 }

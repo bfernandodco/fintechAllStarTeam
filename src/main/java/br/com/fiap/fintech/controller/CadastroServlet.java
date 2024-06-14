@@ -45,7 +45,7 @@ public class CadastroServlet extends HttpServlet {
 			
 			Usuario usuario = new Usuario(numeroDoCPF, nomeCompleto, dataNascimento, genero, email);
 			Login login = new Login(numeroDoCPF, senha);
-			
+		
 			usuarioDAO.cadastrarUsuario(usuario);
 			loginDAO.cadastrarLogin(login);
 			

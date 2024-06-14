@@ -4,10 +4,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-import br.com.fiap.fintech.bean.Banco;
 import br.com.fiap.fintech.bean.Investimento;
 import br.com.fiap.fintech.bean.InvestimentoFechado;
-import br.com.fiap.fintech.bean.TipoDeInvestimento;
 import br.com.fiap.fintech.dao.InvestimentoDAO;
 import br.com.fiap.fintech.factory.DAOFactory;
 

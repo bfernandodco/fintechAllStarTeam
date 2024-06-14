@@ -17,7 +17,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	
 	@Override
 	public void cadastrarUsuario(Usuario usuario) throws DatabaseException {
-	    String sqlQuery = "INSERT INTO T_FNT_USUARIO (nr_cpf, nm_completo, dt_nascimento, "
+	    String sqlQuery = "INSERT IntegerO T_FNT_USUARIO (nr_cpf, nm_completo, dt_nascimento, "
 	    		+ "ds_genero, tx_email) "
 	    		+ "VALUES (?, ?, ?, ?, ?)";
 	    
@@ -139,7 +139,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	}
 
 	@Override
-	public boolean isSenhaValida(String senhaParaValidacao) {
+	public Boolean isSenhaValida(String senhaParaValidacao) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -178,7 +178,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 
 	
 	@Override
-	public boolean isCPFValido(Long numeroDoCPF) {
+	public Boolean isCPFValido(Long numeroDoCPF) {
         String cpf = numeroDoCPF.toString();
         
         if (cpf.length() != 11) {
@@ -189,24 +189,22 @@ public class OracleUsuarioDAO implements UsuarioDAO{
             return false;
         }
 
-        int[] pesos1 = {10, 9, 8, 7, 6, 5, 4, 3, 2};
-        int[] pesos2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
+        Integer[] pesos1 = {10, 9, 8, 7, 6, 5, 4, 3, 2};
+        Integer[] pesos2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
         
         try {
-            int soma1 = 0;
-            for (int i = 0; i < 9; i++) {
+            Integer soma1 = 0;
+            for (Integer i = 0; i < 9; i++) {
                 soma1 += Character.getNumericValue(cpf.charAt(i)) * pesos1[i];
             }
-            int digito1 = 11 - (soma1 % 11);
-            System.out.println(digito1);
+            Integer digito1 = 11 - (soma1 % 11);
             digito1 = (digito1 > 9) ? 0 : digito1;
 
-            int soma2 = 0;
-            for (int i = 0; i < 10; i++) {
+            Integer soma2 = 0;
+            for (Integer i = 0; i < 10; i++) {
                 soma2 += Character.getNumericValue(cpf.charAt(i)) * pesos2[i];
             }
-            int digito2 = 11 - (soma2 % 11);
-            System.out.println(digito2);
+            Integer digito2 = 11 - (soma2 % 11);
             digito2 = (digito2 > 9) ? 0 : digito2;
 
             return cpf.charAt(9) == Character.forDigit(digito1, 10) &&

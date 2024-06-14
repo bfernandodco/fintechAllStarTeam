@@ -33,18 +33,26 @@ public class InvestimentoServlet extends HttpServlet {
 		try {
 			System.out.println("metodo post");
 			String nomeDaAplicacao = request.getParameter("nome");
+			System.out.println(nomeDaAplicacao);
 			String bancoDaAplicacao = request.getParameter("banco");
+			System.out.println(bancoDaAplicacao);
 			String tipoDaAplicacao = request.getParameter("tipo");
+			System.out.println(tipoDaAplicacao);
 			Double valorDaAplicacao = Double.parseDouble(request.getParameter("valor"));
+			System.out.println(valorDaAplicacao);
 			Double valorDaRentabilidade = Double.parseDouble(request.getParameter("rentabilidade"));
+			System.out.println(valorDaRentabilidade);
 			Date dataHoraEntrada = Date.valueOf(request.getParameter("dataHoraEntrada"));
+			System.out.println(dataHoraEntrada);
 			Date dataHoraVencimento = Date.valueOf(request.getParameter("dataHoraVencimento"));
+			System.out.println(dataHoraVencimento);
 			//String objetivoDaAplicacao = request.getParameter("objetivo");
 			
-			Long numeroDoCPF = 12345678977L;
+			Long numeroDoCPF = 31176731050L;
 			Investimento investimento = new Investimento(numeroDoCPF, valorDaRentabilidade, dataHoraEntrada, dataHoraVencimento, valorDaAplicacao, nomeDaAplicacao, tipoDaAplicacao, bancoDaAplicacao, 1);
+			System.out.println("Investimento criado");
 			investimentoDAO.cadastrarInvestimento(investimento);
-			
+			System.out.println("Investimento enviado para DAO");
 			
 		} catch(DatabaseException e) {
 			request.setAttribute("error", "Erro ao cadastrar usuário.");

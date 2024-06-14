@@ -1,33 +1,28 @@
 package br.com.fiap.fintech.bean;
 
 import java.io.File;
-
-import java.time.LocalDate;
-
-import br.com.fiap.fintech.util.criptography.CriptografiaUtils;
+import java.sql.Date;
 
 public class Usuario {
 
 	private Long numeroDoCPF;
 	private String nomeCompleto;
-	private LocalDate dataDeNascimento;
+	private Date dataDeNascimento;
 	private String genero;
 	private String email;
 	private File fotoDoPerfil;
-	private String senha;
 	
 	public Usuario() {
 		
 	}
 
-	public Usuario(Long numeroDoCPF, String nomeCompleto, LocalDate dataDeNascimento, String genero, 
-			String email, String senha) {
+	public Usuario(Long numeroDoCPF, String nomeCompleto, Date dataDeNascimento, String genero, 
+			String email) {
 		this.numeroDoCPF = numeroDoCPF;
 		this.nomeCompleto = nomeCompleto;
 		this.dataDeNascimento = dataDeNascimento;
 		this.genero = genero;
 		this.email = email;
-		this.senha = senha;
 	}
 
 	public Long getNumeroDoCPF() {
@@ -46,11 +41,11 @@ public class Usuario {
 		this.nomeCompleto = nomeCompleto;
 	}
 
-	public LocalDate getDataDeNascimento() {
+	public Date getDataDeNascimento() {
 		return dataDeNascimento;
 	}
 
-	public void setDataDeNascimento(LocalDate dataDeNascimento) {
+	public void setDataDeNascimento(Date dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 
@@ -78,10 +73,7 @@ public class Usuario {
 		this.fotoDoPerfil = FotoDoPerfil;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
+	/*
 	public Boolean isSenhaValida(String senha) {
 		Boolean senhaValida = false;
 		String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
@@ -95,13 +87,14 @@ public class Usuario {
 	    }
 	    return senhaValida;
 	}
+	*/
 
 	@Override
 	public String toString() {
 		return "\nUsuario"
 				+ "\nNumero Do CPF: " + numeroDoCPF 
 				+ "\nNome Completo: " + nomeCompleto 
-				+ "\nData De Nascimento: "+ dataDeNascimento 
+				+ "\nData De Nascimento: "+ dataDeNascimento
 				+ "\nGenero: " + genero 
 				+ "\nEmail: " + email;
 	}

@@ -1,7 +1,6 @@
 package br.com.fiap.fintech.dao.oracle;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +26,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	    	pstmt = connection.prepareStatement(sqlQuery);
 	    	pstmt.setLong(1, usuario.getNumeroDoCPF());
 	    	pstmt.setString(2, usuario.getNomeCompleto());
-	    	pstmt.setDate(3, Date.valueOf(usuario.getDataDeNascimento()));
+	    	pstmt.setDate(3, usuario.getDataDeNascimento());
 	    	pstmt.setString(4, usuario.getGenero());
 	    	pstmt.setString(5, usuario.getEmail());
 	    	pstmt.executeUpdate();
@@ -54,7 +53,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
 			pstmt.setString(1, usuario.getNomeCompleto());
-			pstmt.setDate(2, Date.valueOf(usuario.getDataDeNascimento()));
+			pstmt.setDate(2, usuario.getDataDeNascimento());
 			pstmt.setString(3, usuario.getGenero());
 			pstmt.setString(4, usuario.getEmail());
 			pstmt.setLong(5, usuario.getNumeroDoCPF());
@@ -87,10 +86,11 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 			
 			if(rs.next()) {
 				usuario.setNomeCompleto(rs.getString("nm_completo"));
-				usuario.setDataDeNascimento(rs.getDate("dt_nascimento").toLocalDate());
+				usuario.setDataDeNascimento(rs.getDate("dt_nascimento"));
 				usuario.setGenero(rs.getString("ds_genero"));
 				usuario.setEmail(rs.getString("tx_email"));
 				usuario.setNumeroDoCPF(numeroDoCPF);
+				return usuario;
 			}
 
 		} catch(SQLException e) {
@@ -106,7 +106,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 				e.printStackTrace();
 			}
 		}
-		return usuario;
+		return null;
 	}
 		
 	@Override
@@ -145,9 +145,34 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	}
 
 	@Override
-	public void validarLogin(String email, String senha) {
-		// TODO Auto-generated method stub
+	public Long validarUsuario(String email) {
+		String sqlQuery = "SELECT FROM T_FNT_USUARIO "
+				+ "WHERE tx_email = ?";
+		Long numeroDoCPF = null;
 		
+		try {
+			connection = ConnectionManager.getInstance().getConnection();
+			pstmt = connection.prepareStatement(sqlQuery);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return numeroDoCPF = rs.getLong("nr_cpf");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.err.println("Erro ao validar usuario.");
+		} finally {
+			try {
+				connection.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException e) {
+				System.err.println("Erro ao fechar conexão em validarUsuario()");
+				e.printStackTrace();
+			}
+		}
+		return numeroDoCPF;
 	}
-	
 }

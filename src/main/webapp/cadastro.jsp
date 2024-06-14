@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -41,24 +42,24 @@
                             A foto de perfil deve estar em formato JPG ou PNG, com tamanho máximo de 2 MB e resolução mínima de 400x400 pixels para garantir qualidade e compatibilidade.
                         </small>
                     </div>
-                    <form class="col-lg-6 flex-grow-1">
+                    <form action="cadastro" method="post" class="col-lg-6 flex-grow-1">
                         <h4>CADASTRO</h4>
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" aria-describedby="nomeHelp">
+                            <input type="text" class="form-control" name="nome" id="nome" aria-describedby="nomeHelp">
                         </div>
                         <div>
                             <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" class="form-control" id="cpf">
+                            <input type="text" class="form-control" name="cpf" id="cpf">
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="dataNascimento">
+                                <input type="date" class="form-control" name="dataNascimento" id="dataNascimento">
                             </div>
                             <div class="col">
                                 <label for="genero" class="form-label">Gênero</label>
-                                <select class="form-select" id="genero">
+                                <select class="form-select" name="genero" id="genero">
                                     <option value="masculino">Masculino</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="outro">Outro</option>
@@ -68,13 +69,13 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="exampleInputPassword1" class="form-label">Senha</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <input type="password" class="form-control" name="senha" id="senha">
                             </div>
                             <div class="col">
                                 <label for="exampleInputPassword2" class="form-label">Confirmar Senha</label>

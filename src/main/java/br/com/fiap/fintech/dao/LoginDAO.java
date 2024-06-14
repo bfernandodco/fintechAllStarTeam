@@ -7,7 +7,6 @@ public interface LoginDAO {
 
 	void cadastrarLogin(Login login) throws DatabaseException;
 	void removerLogin(Long numeroDoCPF) throws DatabaseException;
-	Boolean validarLogin(String email, String senha);
-	void logarComGmail();
-	
+	Boolean validarLogin(Login login);
+
 }

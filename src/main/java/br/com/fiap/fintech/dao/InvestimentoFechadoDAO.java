@@ -7,9 +7,7 @@ import br.com.fiap.fintech.exception.DatabaseException;
 
 public interface InvestimentoFechadoDAO {
 	
-	void registrarInvestimentoFechado(InvestimentoFechado investimentoFechado) throws DatabaseException;
-	Double consultarLiquidezMensalDoInvestimentoFechado(InvestimentoFechado investimentoFechado);
-	void fecharInvestimentoFechado(Integer codigoDoInvestimento) throws DatabaseException;
+	void fecharInvestimento(InvestimentoFechado investimentoFechado) throws DatabaseException;
+	Double consultarLiquidezDeInvestimentoFechado(InvestimentoFechado investimentoFechado);
 	List<InvestimentoFechado> listarInvestimentosFechadoss(Long numeroDoCPF);
-
 }

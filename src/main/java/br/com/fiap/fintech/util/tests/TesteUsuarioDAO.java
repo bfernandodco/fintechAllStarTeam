@@ -11,7 +11,7 @@ import br.com.fiap.fintech.exception.DatabaseException;
 public class TesteUsuarioDAO {
 
 	public static void main(String[] args) throws DatabaseException {
-		Usuario usuario = new Usuario(16887351862L, "Harry Potter", LocalDate.now(), "Masculino", "harry@potter.com", "123456");
+		//Usuario usuario = new Usuario(16887351862L, "Harry Potter", LocalDate.now(), "Masculino", "harry@potter.com");
 		UsuarioDAO usuarioDAO = new OracleUsuarioDAO();
 		
 		/* CADASTRAR USUARIO

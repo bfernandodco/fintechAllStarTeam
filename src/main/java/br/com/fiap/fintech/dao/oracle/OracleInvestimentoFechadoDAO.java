@@ -19,7 +19,7 @@ public class OracleInvestimentoFechadoDAO implements InvestimentoFechadoDAO{
 	private ResultSet rs;
 	
 	@Override
-	public void registrarInvestimentoFechado(InvestimentoFechado investimentoFechado) throws DatabaseException {
+	public void fecharInvestimento(InvestimentoFechado investimentoFechado) throws DatabaseException {
 		String sqlQuery = "INSERT INTO T_FNT_INV_FCHDO("
 				+ "cd_investimento, dt_fechamento, vl_liquidez) "
 				+ "VALUES(?, ?, ?)";
@@ -47,7 +47,7 @@ public class OracleInvestimentoFechadoDAO implements InvestimentoFechadoDAO{
 
 	//VERIFICAR ESSE METODO
 	@Override
-	public Double consultarLiquidezMensalDoInvestimentoFechado(InvestimentoFechado investimentoFechado) {
+	public Double consultarLiquidezDeInvestimentoFechado(InvestimentoFechado investimentoFechado) {
 		String sqlQuery = "SELECT SUM(vl_liquidez) AS total_mensal FROM T_FNT_INV_FCHADO "
 		        + "WHERE cd_investimento = ? AND EXTRACT(MONTH FROM dt_fechamento) = EXTRACT("
 		        + "MONTH FROM CURRENT_DATE)AND EXTRACT(YEAR FROM dt_fechamento) = EXTRACT("
@@ -78,29 +78,6 @@ public class OracleInvestimentoFechadoDAO implements InvestimentoFechadoDAO{
 			}
 		}
 		return totalMensal;
-	}
-
-	@Override
-	public void fecharInvestimentoFechado(Integer codigoDoInvestimento) throws DatabaseException {
-		String sqlQuery = "DELETE FROM T_FNT_INV_FCHDO WHERE cd_investimento = ?";
-		
-		try {
-			connection = ConnectionManager.getInstance().getConnection();
-			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setInt(1, codigoDoInvestimento);
-			pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				System.err.println("Erro ao fechar conexão em fecharInvestimentoFechado()");
-				e.printStackTrace();
-			}
-		}	
 	}
 
 	@Override

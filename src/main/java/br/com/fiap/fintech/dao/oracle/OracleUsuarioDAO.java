@@ -175,4 +175,44 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 		}
 		return numeroDoCPF;
 	}
+
+	
+	@Override
+	public boolean isCPFValido(Long numeroDoCPF) {
+        String cpf = numeroDoCPF.toString();
+        
+        if (cpf.length() != 11) {
+            return false;
+        }
+
+        if (cpf.matches("(\\d)\\1{10}")) {
+            return false;
+        }
+
+        int[] pesos1 = {10, 9, 8, 7, 6, 5, 4, 3, 2};
+        int[] pesos2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
+        
+        try {
+            int soma1 = 0;
+            for (int i = 0; i < 9; i++) {
+                soma1 += Character.getNumericValue(cpf.charAt(i)) * pesos1[i];
+            }
+            int digito1 = 11 - (soma1 % 11);
+            System.out.println(digito1);
+            digito1 = (digito1 > 9) ? 0 : digito1;
+
+            int soma2 = 0;
+            for (int i = 0; i < 10; i++) {
+                soma2 += Character.getNumericValue(cpf.charAt(i)) * pesos2[i];
+            }
+            int digito2 = 11 - (soma2 % 11);
+            System.out.println(digito2);
+            digito2 = (digito2 > 9) ? 0 : digito2;
+
+            return cpf.charAt(9) == Character.forDigit(digito1, 10) &&
+                   cpf.charAt(10) == Character.forDigit(digito2, 10);
+        } catch (NumberFormatException e) {
+            return false; // 
+        }
+    }
 }

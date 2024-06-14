@@ -12,5 +12,5 @@ public interface UsuarioDAO {
 	void alterarSenhaDoUsuario(String novaSenha, Usuario usuario) throws DatabaseException;
 	boolean isSenhaValida(String senhaParaValidacao);
 	Long validarUsuario(String email);
-	
+	boolean isCPFValido(Long numeroDoCPF);
 }

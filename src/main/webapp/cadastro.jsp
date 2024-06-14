@@ -28,7 +28,7 @@
 
 	<body>
         <div class="d-flex">
-            <div class="form d-flex flex-column p-5">
+            <div class="form d-flex flex-column p-2">
                 <div class="row">
                     <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
                         <label for="fotoPerfil" class="form-label">Foto de Perfil</label>
@@ -78,8 +78,8 @@
                                 <input type="password" class="form-control" name="senha" id="senha">
                             </div>
                             <div class="col">
-                                <label for="exampleInputPassword2" class="form-label">Confirmar Senha</label>
-                                <input type="password" class="form-control" id="exampleInputPassword2">
+                                <label for="confirmar-senha" class="form-label">Confirmar Senha</label>
+                                <input type="password" required="required" class="form-control" id="confirmar-senha">
                             </div>
                         </div>
                         <div class="mb-3 form-check">

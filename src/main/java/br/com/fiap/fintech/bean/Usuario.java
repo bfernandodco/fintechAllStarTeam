@@ -3,8 +3,6 @@ package br.com.fiap.fintech.bean;
 import java.io.File;
 import java.sql.Date;
 
-import br.com.fiap.fintech.util.criptography.CriptografiaUtils;
-
 public class Usuario {
 
 	private Long numeroDoCPF;
@@ -13,7 +11,6 @@ public class Usuario {
 	private String genero;
 	private String email;
 	private File fotoDoPerfil;
-	private String senha;
 	
 	public Usuario() {
 		
@@ -76,10 +73,7 @@ public class Usuario {
 		this.fotoDoPerfil = FotoDoPerfil;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
+	/*
 	public Boolean isSenhaValida(String senha) {
 		Boolean senhaValida = false;
 		String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
@@ -93,13 +87,14 @@ public class Usuario {
 	    }
 	    return senhaValida;
 	}
+	*/
 
 	@Override
 	public String toString() {
 		return "\nUsuario"
 				+ "\nNumero Do CPF: " + numeroDoCPF 
 				+ "\nNome Completo: " + nomeCompleto 
-				+ "\nData De Nascimento: "+ dataDeNascimento 
+				+ "\nData De Nascimento: "+ dataDeNascimento
 				+ "\nGenero: " + genero 
 				+ "\nEmail: " + email;
 	}

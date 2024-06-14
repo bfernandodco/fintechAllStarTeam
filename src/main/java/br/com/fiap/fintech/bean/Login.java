@@ -1,25 +1,27 @@
 package br.com.fiap.fintech.bean;
 
+import br.com.fiap.fintech.util.criptography.CriptografiaUtils;
+
 public class Login {
 
-	private Long numeroDoCPF;
+	private Long numeroDoCpf;
 	private String senha;
 	
 	public Login() {
 		
 	}
 
-	public Login(Long numeroDoCPF, String senha) {
-		this.numeroDoCPF = numeroDoCPF;
+	public Login(Long numeroDoCpf, String senha) {
+		this.numeroDoCpf = numeroDoCpf;
 		this.senha = senha;
 	}
 
 	public Long getNumeroDoCPF() {
-		return numeroDoCPF;
+		return numeroDoCpf;
 	}
 
 	public void setNumeroDoCPF(Long numeroDoCPF) {
-		this.numeroDoCPF = numeroDoCPF;
+		this.numeroDoCpf = numeroDoCPF;
 	}
 
 	public String getSenha() {
@@ -27,13 +29,18 @@ public class Login {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		try {
+			this.senha = CriptografiaUtils.criptografar(senha);
+		} catch (Exception e) {
+			System.err.println("Erro ao criptografar senha.");
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public String toString() {
 		return "\nLogin "
-				+ "\nNumero Do CPF: " + numeroDoCPF 
+				+ "\nNumero Do CPF: " + numeroDoCpf 
 				+ "\nSenha: " + senha;
 	}
 }

@@ -17,7 +17,7 @@
 </head>
 
 <body>
-	<c:if test="${not empty message}">
+	<c:if test="${not empty message}">	
 		<div class="alert alert-success">${message}</div>
 	</c:if>
 	<c:if test="${not empty error}">
@@ -60,15 +60,15 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form>
+					<form action="login" method="post">
 						<div class="mb-3 mx-3">
 							<label for="exampleInputEmail1" class="form-label">Email</label>
-							<input type="email" class="form-control" id="exampleInputEmail1"
+							<input type="email" class="form-control" name="email" id="exampleInputEmail1"
 								aria-describedby="emailHelp">
 						</div>
 						<div class="mb-3 mx-3">
 							<label for="exampleInputPassword1" class="form-label">Senha</label>
-							<input type="password" class="form-control" id="exampleInputPassword1">
+							<input type="password" class="form-control" name="senha" id="exampleInputPassword1">
 						</div>
 						<div class="d-flex justify-content-end mx-3">
 							<a href="#">Esqueci minha senha</a>

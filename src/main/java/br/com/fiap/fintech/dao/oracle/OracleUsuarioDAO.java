@@ -90,6 +90,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 				usuario.setGenero(rs.getString("ds_genero"));
 				usuario.setEmail(rs.getString("tx_email"));
 				usuario.setNumeroDoCPF(numeroDoCPF);
+				return usuario;
 			}
 
 		} catch(SQLException e) {
@@ -105,7 +106,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 				e.printStackTrace();
 			}
 		}
-		return usuario;
+		return null;
 	}
 		
 	@Override
@@ -144,9 +145,34 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	}
 
 	@Override
-	public void validarLogin(String email, String senha) {
-		// TODO Auto-generated method stub
+	public Long validarUsuario(String email) {
+		String sqlQuery = "SELECT FROM T_FNT_USUARIO "
+				+ "WHERE tx_email = ?";
+		Long numeroDoCPF = null;
 		
+		try {
+			connection = ConnectionManager.getInstance().getConnection();
+			pstmt = connection.prepareStatement(sqlQuery);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return numeroDoCPF = rs.getLong("nr_cpf");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.err.println("Erro ao validar usuario.");
+		} finally {
+			try {
+				connection.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException e) {
+				System.err.println("Erro ao fechar conexão em validarUsuario()");
+				e.printStackTrace();
+			}
+		}
+		return numeroDoCPF;
 	}
-	
 }

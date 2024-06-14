@@ -37,6 +37,21 @@ public class Investimento {
 		this.statusDoInvestimento = statusDoInvestimento;
 	}
 
+	public Investimento(Long numeroDoCPF, Double valorDaRentabilidade,
+			Date dataDeEntrada, Date dataDeVencimento, Double valorDoInvestimento,
+			String nomeDoInvestimento, String tipoDeInvestimento, String banco,
+			Integer statusDoInvestimento) {
+		this.numeroDoCPF = numeroDoCPF;
+		this.valorDaRentabilidade = valorDaRentabilidade;
+		this.dataDeEntrada = dataDeEntrada;
+		this.dataDeVencimento = dataDeVencimento;
+		this.valorDosInvestimentos = valorDoInvestimento;
+		this.nomeDoInvestimento = nomeDoInvestimento;
+		this.tipoDeInvestimento = tipoDeInvestimento;
+		this.banco = banco;
+		this.statusDoInvestimento = statusDoInvestimento;
+	}
+	
 	public Integer getCodigoDoInvestimento() {
 		return codigoDoInvestimento;
 	}

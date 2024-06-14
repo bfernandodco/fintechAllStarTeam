@@ -1,6 +1,6 @@
 package br.com.fiap.fintech.bean;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 public class Investimento {
@@ -8,12 +8,12 @@ public class Investimento {
 	private Integer codigoDoInvestimento;
 	private Long numeroDoCPF;
 	private Double valorDaRentabilidade;
-	private LocalDate dataDeEntrada;
-	private LocalDate dataDeVencimento;
+	private Date dataDeEntrada;
+	private Date dataDeVencimento;
 	private Double valorDosInvestimentos;
 	private String nomeDoInvestimento;
-	private TipoDeInvestimento tipoDeInvestimento;
-	private Banco banco;
+	private String tipoDeInvestimento;
+	private String banco;
 	private Integer statusDoInvestimento;
 	private List<Investimento> investimentos;
 
@@ -22,8 +22,8 @@ public class Investimento {
 	}
 
 	public Investimento(Integer codigoDoInvestimento, Long numeroDoCPF, Double valorDaRentabilidade,
-			LocalDate dataDeEntrada, LocalDate dataDeVencimento, Double valorDoInvestimento,
-			String nomeDoInvestimento, TipoDeInvestimento tipoDeInvestimento, Banco banco,
+			Date dataDeEntrada, Date dataDeVencimento, Double valorDoInvestimento,
+			String nomeDoInvestimento, String tipoDeInvestimento, String banco,
 			Integer statusDoInvestimento) {
 		this.codigoDoInvestimento = codigoDoInvestimento;
 		this.numeroDoCPF = numeroDoCPF;
@@ -61,19 +61,19 @@ public class Investimento {
 		this.valorDaRentabilidade = valorDaRentabilidade;
 	}
 
-	public LocalDate getDataDeEntrada() {
+	public Date getDataDeEntrada() {
 		return dataDeEntrada;
 	}
 
-	public void setDataDeEntrada(LocalDate dataDeEntrada) {
+	public void setDataDeEntrada(Date dataDeEntrada) {
 		this.dataDeEntrada = dataDeEntrada;
 	}
 
-	public LocalDate getDataDeVencimento() {
+	public Date getDataDeVencimento() {
 		return dataDeVencimento;
 	}
 
-	public void setDataDeVencimento(LocalDate dataDeVencimento) {
+	public void setDataDeVencimento(Date dataDeVencimento) {
 		this.dataDeVencimento = dataDeVencimento;
 	}
 
@@ -93,19 +93,19 @@ public class Investimento {
 		this.nomeDoInvestimento = nomeDoInvestimento;
 	}
 
-	public TipoDeInvestimento getTipoDeInvestimento() {
+	public String getTipoDeInvestimento() {
 		return tipoDeInvestimento;
 	}
 
-	public void setTipoDeInvestimento(TipoDeInvestimento tipoDeInvestimento) {
+	public void setTipoDeInvestimento(String tipoDeInvestimento) {
 		this.tipoDeInvestimento = tipoDeInvestimento;
 	}
 
-	public Banco getBanco() {
+	public String getBanco() {
 		return banco;
 	}
 
-	public void setBanco(Banco banco) {
+	public void setBanco(String banco) {
 		this.banco = banco;
 	}
 
@@ -131,8 +131,8 @@ public class Investimento {
 				+ "\nCodigo Do Investimento=" + codigoDoInvestimento 
 				+ "\nNumero Do CPF: " + numeroDoCPF
 				+ "\nValor Da Rentabilidade: R$ " + valorDaRentabilidade 
-				+ "\nData De Entrada: " + dataDeEntrada.getDayOfMonth() + "/" + dataDeEntrada.getMonthValue() + "/" + dataDeEntrada.getYear()
-				+ "\nData De Vencimento: " + dataDeVencimento.getDayOfMonth() + "/" + dataDeVencimento.getMonthValue() + "/" + dataDeVencimento.getYear()
+				+ "\nData De Entrada: " + dataDeEntrada
+				+ "\nData De Vencimento: " + dataDeVencimento
 				+ "\nValor De Investimento: R$ " + valorDosInvestimentos
 				+ "\nNome Do Investimento: " + nomeDoInvestimento 
 				+ "\nTipo De Investimento: " + tipoDeInvestimento

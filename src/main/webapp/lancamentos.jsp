@@ -58,7 +58,7 @@
             </div>
             <div class="boxes p-4 flex-grow-1">
                 <h4 class="mb-3">Novo Lançamento</h4>
-                <form>
+                <form action="lancamento" method="post">
                     <div class="d-flex justify-content-around mb-3">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="tipo" value="entrada">
@@ -71,11 +71,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="dataHora" class="form-label">Data e Hora</label>
-                        <input type="datetime-local" class="form-control" id="dataHora">
+                        <input type="datetime-local" class="form-control" name="dataHora" id="dataHora">
                     </div>
                     <div class="mb-3">
                         <label for="categoria" class="form-label">Categoria</label>
-                        <select class="form-select" id="categoria">
+                        <select class="form-select" name="categoria" id="categoria">
                             <option value="">Selecione uma categoria</option>
                             <option value="1">Aluguel</option>
                             <option value="2">Condomínio</option>
@@ -86,11 +86,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="valor" class="form-label">Valor</label>
-                        <input type="text" class="form-control" id="valor">
+                        <input type="text" class="form-control" name="valor" id="valor">
                     </div>
                     <div class="mb-3">
                         <label for="descricao" class="form-label">Descrição</label>
-                        <textarea class="form-control" id="descricao" rows="3"></textarea>
+                        <textarea class="form-control" name ="descricao" id="descricao" rows="3"></textarea>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="mb-3 form-check">

@@ -170,7 +170,7 @@ public class OracleUsuarioDAO implements UsuarioDAO, LoginDAO {
 				String sql = "UPDATE T_FNT_LOGIN SET TX_SENHA = ? WHERE NR_CPF = ?";
 
 				stmt = conexao.prepareStatement(sql);
-				usuario.setSenha(novaSenha);
+				usuario.isSenhaValida(novaSenha);
 				stmt.setString(1, usuario.getSenha());
 				stmt.setLong(2, usuario.getNumeroDeCPF());
 

@@ -45,7 +45,7 @@ public class CadastroServlet extends HttpServlet {
 		usuario.setEmail(email);
 		
 		if(senha.equals(confirmarSenha)) {
-			usuario.setSenha(senha);
+			usuario.isSenhaValida(senha);
 		}
 		
 		

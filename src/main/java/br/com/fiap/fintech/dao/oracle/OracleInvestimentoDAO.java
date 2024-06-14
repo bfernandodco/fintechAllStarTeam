@@ -1,7 +1,6 @@
 package br.com.fiap.fintech.dao.oracle;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,22 +37,18 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 		String sql = "INSERT INTO T_FNT_INVST (CD_INVESTIMENTO, NR_CPF, VL_RENTABILIDADE, DT_ENTRADA, DT_VENCIMENTO, VL_INVESTIMENTO, NM_APLICACAO, TP_INVESTIMENTO, NM_BANCO) VALUES (SQ_TB_INVST.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		
-		try {			
-			stmt = conexao.prepareStatement(sql);			
-			//stmt.setLong(1, usuario.getNumeroDoCPF);
-			stmt.setLong(1, 41300);
-			
-			stmt.setDouble(2, investimento.getValorDaRentabilidade());
-			stmt.setDate(3, Date.valueOf(investimento.getDataDeEntrada()));
-			stmt.setDate(4, Date.valueOf(investimento.getDataDeVencimento()));
-			stmt.setDouble(5, investimento.getValorDeInvestimento());
-			stmt.setString(6, investimento.getNomeDoInvestimento());
-			stmt.setString(7, investimento.getTipoDeInvestimento().getTipoDeInvestimento());
-			stmt.setString(8, investimento.getBanco().getBanco());			
-					
-			stmt.executeUpdate();
-
-			
+		try {	
+			connection = ConnectionManager.getInstance().getConnection();
+			pstmt = connection.prepareStatement(sqlQuery);			
+			pstmt.setLong(1, investimento.getNumeroDoCPF());
+			pstmt.setDouble(2, investimento.getValorDaRentabilidade());
+			pstmt.setDate(3, investimento.getDataDeEntrada());
+			pstmt.setDate(4, investimento.getDataDeVencimento());
+			pstmt.setDouble(5, investimento.getValorDoInvestimento());
+			pstmt.setString(6, investimento.getNomeDoInvestimento());
+			pstmt.setString(7, investimento.getTipoDeInvestimento());
+			pstmt.setString(8, investimento.getBanco());			
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DBException("Erro ao cadastrar investimento.");
@@ -81,30 +76,18 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 		String sqlInvestimentoAberto = "INSERT INTO T_FNT_INV_ABRTO (CD_INVESTIMENTO, DT_MES, VL_TOTAL_RENT) VALUES (?, ?, ?)";
 		
 		try {
-			conexao.setAutoCommit(false);
-			
-			stmtBuscaCodigo = conexao.prepareStatement(sqlConsultaCodigo);
-
-			stmtBuscaCodigo.setString(1, investimento.getNomeDoInvestimento());
-			rsBuscaCodigo = stmtBuscaCodigo.executeQuery();
-			
-			if(rsBuscaCodigo.next()) {
-				System.out.println("2");
-				codigo = rsBuscaCodigo.getInt("CD_INVESTIMENTO");
-				System.out.println("2");
-			}
-			
-					
-			stmtInvestimentoAberto = conexao.prepareStatement(sqlInvestimentoAberto);
-			stmtInvestimentoAberto.setInt(1, codigo);
-			//VERIFICAR FUNCIONAMENTO DA SERVLET
-			stmtInvestimentoAberto.setDate(2, Date.valueOf(investimento.getDataDeEntrada()));
-			stmtInvestimentoAberto.setDouble(3, 0.0);
-			
-			
-			stmtInvestimentoAberto.executeUpdate();
-			conexao.commit();
-			
+			connection = ConnectionManager.getInstance().getConnection();
+			pstmt = connection.prepareStatement(sqlQuery);
+			pstmt.setDouble(1, investimento.getValorDaRentabilidade());
+			pstmt.setDate(2, investimento.getDataDeEntrada());
+			pstmt.setDate(3, investimento.getDataDeVencimento());
+			pstmt.setDouble(4, investimento.getValorDoInvestimento());
+			pstmt.setString(5, investimento.getNomeDoInvestimento());
+			pstmt.setString(6, investimento.getTipoDeInvestimento());
+			pstmt.setString(7, investimento.getBanco());
+			pstmt.setInt(8, investimento.getCodigoDoInvestimento());
+			pstmt.setLong(9, investimento.getNumeroDoCPF());
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			conexao.rollback();
 			e.printStackTrace();
@@ -386,10 +369,14 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				investimentoAberto = new InvestimentoAberto();
-				investimentoAberto.setChavePrimariaEstrantrangeira(rs.getInt("cd_investimento"));
-				investimentoAberto.setValorTotalDoRendimento(rs.getDouble("vl_total_rent"));
-				investimentosAbertos.add(investimentoAberto);
+				investimento = new Investimento();
+				investimento.setCodigoDoInvestimento(rs.getInt("cd_investimento"));
+				investimento.setValorDaRentabilidade(rs.getDouble("vl_rentabilidade"));
+				investimento.setDataDeEntrada(rs.getDate("dt_entrada"));
+				investimento.setDataDeVencimento(rs.getDate("dt_vencimento"));
+				investimento.setValorDoInvestimento(rs.getDouble("vl_investimento"));
+				investimento.setNomeDoInvestimento(rs.getString("nm_aplicacao"));
+				investimentos.add(investimento);
 			}
 		} catch(SQLException e) {
 			System.err.println("ERRO AO LISTAR INVESTIMENTOS ABERTOS");

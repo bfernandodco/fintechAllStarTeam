@@ -1,37 +1,40 @@
 package br.com.fiap.fintech.bean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Investimento {
 
 	private Integer codigoDoInvestimento;
-	private String nomeDoInvestimento;
-	private TipoDeInvestimento tipoDeInvestimento;
-	private Banco banco;
+	private Long numeroDoCPF;
 	private Double valorDaRentabilidade;
 	private LocalDate dataDeEntrada;
 	private LocalDate dataDeVencimento;
-	private Double valorDeInvestimento;
-	private Integer chaveEstrangeira;
-	private InvestimentoAberto investimentoAberto;
-	private InvestimentoFechado investimentoFechado;
+	private Double valorDosInvestimentos;
+	private String nomeDoInvestimento;
+	private TipoDeInvestimento tipoDeInvestimento;
+	private Banco banco;
+	private Integer statusDoInvestimento;
+	private List<Investimento> investimentos;
 
 	public Investimento() {
-		super();
+
 	}
 
-	public Investimento(Integer codigoDoInvestimento, String nomeDoInvestimento, TipoDeInvestimento tipoDeInvestimento,
-			Banco banco, Double valorDaRentabilidade, LocalDate dataDeEntrada, LocalDate dataDeVencimento,
-			Double valorDeInvestimento) {
-		super();
+	public Investimento(Integer codigoDoInvestimento, Long numeroDoCPF, Double valorDaRentabilidade,
+			LocalDate dataDeEntrada, LocalDate dataDeVencimento, Double valorDoInvestimento,
+			String nomeDoInvestimento, TipoDeInvestimento tipoDeInvestimento, Banco banco,
+			Integer statusDoInvestimento) {
 		this.codigoDoInvestimento = codigoDoInvestimento;
-		this.nomeDoInvestimento = nomeDoInvestimento;
-		this.tipoDeInvestimento = tipoDeInvestimento;
-		this.banco = banco;
+		this.numeroDoCPF = numeroDoCPF;
 		this.valorDaRentabilidade = valorDaRentabilidade;
 		this.dataDeEntrada = dataDeEntrada;
 		this.dataDeVencimento = dataDeVencimento;
-		this.valorDeInvestimento = valorDeInvestimento;
+		this.valorDosInvestimentos = valorDoInvestimento;
+		this.nomeDoInvestimento = nomeDoInvestimento;
+		this.tipoDeInvestimento = tipoDeInvestimento;
+		this.banco = banco;
+		this.statusDoInvestimento = statusDoInvestimento;
 	}
 
 	public Integer getCodigoDoInvestimento() {
@@ -42,28 +45,12 @@ public class Investimento {
 		this.codigoDoInvestimento = codigoDoInvestimento;
 	}
 
-	public String getNomeDoInvestimento() {
-		return nomeDoInvestimento;
+	public Long getNumeroDoCPF() {
+		return numeroDoCPF;
 	}
 
-	public void setNomeDoInvestimento(String nomeDoInvestimento) {
-		this.nomeDoInvestimento = nomeDoInvestimento;
-	}
-
-	public TipoDeInvestimento getTipoDeInvestimento() {
-		return tipoDeInvestimento;
-	}
-
-	public void setTipoDeInvestimento(TipoDeInvestimento tipoDeInvestimento) {
-		this.tipoDeInvestimento = tipoDeInvestimento;
-	}
-
-	public Banco getBanco() {
-		return banco;
-	}
-
-	public void setBanco(Banco banco) {
-		this.banco = banco;
+	public void setNumeroDoCPF(Long numeroDoCPF) {
+		this.numeroDoCPF = numeroDoCPF;
 	}
 
 	public Double getValorDaRentabilidade() {
@@ -90,37 +77,66 @@ public class Investimento {
 		this.dataDeVencimento = dataDeVencimento;
 	}
 
-	public Double getValorDeInvestimento() {
-		return valorDeInvestimento;
+	public Double getValorDoInvestimento() {
+		return valorDosInvestimentos;
 	}
 
-	public void setValorDeInvestimento(Double valorDeInvestimento) {
-		this.valorDeInvestimento = valorDeInvestimento;
+	public void setValorDoInvestimento(Double valorDoInvestimento) {
+		this.valorDosInvestimentos = valorDoInvestimento;
 	}
 
-	public Integer getChaveEstrangeira() {
-		return chaveEstrangeira;
+	public String getNomeDoInvestimento() {
+		return nomeDoInvestimento;
 	}
 
-	public void setChaveEstrangeira(Integer chaveEstrangeira) {
-		this.chaveEstrangeira = chaveEstrangeira;
+	public void setNomeDoInvestimento(String nomeDoInvestimento) {
+		this.nomeDoInvestimento = nomeDoInvestimento;
 	}
 
-	public InvestimentoAberto getInvestimentoAberto() {
-		return investimentoAberto;
+	public TipoDeInvestimento getTipoDeInvestimento() {
+		return tipoDeInvestimento;
 	}
 
-	public void setInvestimentoAberto(InvestimentoAberto investimentoAberto) {
-		this.investimentoAberto = investimentoAberto;
+	public void setTipoDeInvestimento(TipoDeInvestimento tipoDeInvestimento) {
+		this.tipoDeInvestimento = tipoDeInvestimento;
 	}
 
-	public InvestimentoFechado getInvestimentoFechado() {
-		return investimentoFechado;
+	public Banco getBanco() {
+		return banco;
 	}
 
-	public void setInvestimentoFechado(InvestimentoFechado investimentoFechado) {
-		this.investimentoFechado = investimentoFechado;
-	}	
-	
-	
+	public void setBanco(Banco banco) {
+		this.banco = banco;
+	}
+
+	public Integer getStatusDoInvestimento() {
+		return statusDoInvestimento;
+	}
+
+	public void setStatusDoInvestimento(Integer statusDoInvestimento) {
+		this.statusDoInvestimento = statusDoInvestimento;
+	}
+
+	public List<Investimento> getInvestimentos() {
+		return investimentos;
+	}
+
+	public void setInvestimentos(List<Investimento> investimentos) {
+		this.investimentos = investimentos;
+	}
+
+	@Override
+	public String toString() {
+		return "\nInvestimento "
+				+ "\nCodigo Do Investimento=" + codigoDoInvestimento 
+				+ "\nNumero Do CPF: " + numeroDoCPF
+				+ "\nValor Da Rentabilidade: R$ " + valorDaRentabilidade 
+				+ "\nData De Entrada: " + dataDeEntrada.getDayOfMonth() + "/" + dataDeEntrada.getMonthValue() + "/" + dataDeEntrada.getYear()
+				+ "\nData De Vencimento: " + dataDeVencimento.getDayOfMonth() + "/" + dataDeVencimento.getMonthValue() + "/" + dataDeVencimento.getYear()
+				+ "\nValor De Investimento: R$ " + valorDosInvestimentos
+				+ "\nNome Do Investimento: " + nomeDoInvestimento 
+				+ "\nTipo De Investimento: " + tipoDeInvestimento
+				+ "\nBanco: " + banco 
+				+ "\nStatus Do Investimento: " + statusDoInvestimento;
+	}
 }

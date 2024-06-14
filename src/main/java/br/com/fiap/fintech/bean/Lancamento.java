@@ -2,6 +2,7 @@ package br.com.fiap.fintech.bean;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Lancamento {
 
@@ -13,6 +14,7 @@ public class Lancamento {
 	private TipoDoLancamento tipoDoLancamento;
 	private CategoriaDoLancamento categoriaDoLancamento;
 	private String descricaoDoLancamento;
+	private List<Lancamento> lancamentos;
 	
 	public Lancamento() {
 		
@@ -95,12 +97,24 @@ public class Lancamento {
 		this.descricaoDoLancamento = descricaoDoLancamento;
 	}
 
+	public List<Lancamento> getLancamentos() {
+		return lancamentos;
+	}
+
+	public void setLancamentos(List<Lancamento> lancamentos) {
+		this.lancamentos = lancamentos;
+	}
+
 	@Override
 	public String toString() {
-		return "Lancamento [codigoDoLancamento=" + codigoDoLancamento + ", numeroDoCPF=" + numeroDoCPF
-				+ ", dataDoLancamento=" + dataDoLancamento + ", horaDoLancamento=" + horaDoLancamento
-				+ ", valorDoLancamento=" + valorDoLancamento + ", tipoDoLancamento=" + tipoDoLancamento
-				+ ", categoriaDoLancamento=" + categoriaDoLancamento + ", descricaoDoLancamento="
-				+ descricaoDoLancamento + "]";
+		return "\nLancamento "
+				+ "\nCodigo Do Lancamento: " + codigoDoLancamento 
+				+ "\nNumero Do CPF: " + numeroDoCPF
+				+ "\nData Do Lancamento: " + dataDoLancamento.getDayOfMonth() + "/" + dataDoLancamento.getMonthValue() + "/" + dataDoLancamento.getYear()
+				+ "\nHora Do Lancamento: " + horaDoLancamento.getHour() + "h:" + horaDoLancamento.getMinute() + "min"
+				+ "\nValor Do Lancamento: R$ " + valorDoLancamento 
+				+ "\nTipo Do Lancamento: " + tipoDoLancamento.getTipoDoLancamento()
+				+ "\nCategoria Do Lancamento: " + categoriaDoLancamento.getCategoriaDoLancamento() 
+				+ "\nDescricao Do Lancamento: " + descricaoDoLancamento;
 	}
 }

@@ -1,29 +1,39 @@
 package br.com.fiap.fintech.bean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class InvestimentoFechado {
 	
-	private LocalDate dataDeSaida;
+	private Integer codigoDoInvestimento;
+	private LocalDate dataDeFechamento;
 	private Double valorDaLiquidez;
-	private Integer chavePrimariaEstrantrangeira;
+	private List<InvestimentoFechado> investimentosFechados;
 	
 	public InvestimentoFechado() {
 		
 	}
 
-	public InvestimentoFechado(LocalDate dataDeSaida, Double valorDaLiquidez) {
-		super();
-		this.dataDeSaida = dataDeSaida;
+	public InvestimentoFechado(Integer codigoDoInvestimento, LocalDate dataDeFechamento, Double valorDaLiquidez) {
+		this.codigoDoInvestimento = codigoDoInvestimento;
+		this.dataDeFechamento = dataDeFechamento;
 		this.valorDaLiquidez = valorDaLiquidez;
 	}
 
-	public LocalDate getDataDeSaida() {
-		return dataDeSaida;
+	public Integer getCodigoDoInvestimento() {
+		return codigoDoInvestimento;
 	}
 
-	public void setDataDeSaida(LocalDate dataDeSaida) {
-		this.dataDeSaida = dataDeSaida;
+	public void setCodigoDoInvestimento(Integer codigoDoInvestimento) {
+		this.codigoDoInvestimento = codigoDoInvestimento;
+	}
+
+	public LocalDate getDataDeFechamento() {
+		return dataDeFechamento;
+	}
+
+	public void setDataDeFechamento(LocalDate dataDeFechamento) {
+		this.dataDeFechamento = dataDeFechamento;
 	}
 
 	public Double getValorDaLiquidez() {
@@ -34,20 +44,20 @@ public class InvestimentoFechado {
 		this.valorDaLiquidez = valorDaLiquidez;
 	}
 
-	public Integer getChavePrimariaEstrantrangeira() {
-		return chavePrimariaEstrantrangeira;
+	public List<InvestimentoFechado> getInvestimentosFechados() {
+		return investimentosFechados;
 	}
 
-	public void setChavePrimariaEstrantrangeira(Integer chavePrimariaEstrantrangeira) {
-		this.chavePrimariaEstrantrangeira = chavePrimariaEstrantrangeira;
+	public void setInvestimentosFechados(List<InvestimentoFechado> investimentosFechados) {
+		this.investimentosFechados = investimentosFechados;
 	}
-	
-	 @Override
-	    public String toString() {
-	        return "Investimento Fechado{" +
-	                "Data do Fechamento = " + dataDeSaida +
-	                ", Valor líquido da aplicação = " + valorDaLiquidez +
-	                '}';
-	    }
-	
+
+	@Override
+	public String toString() {
+		return "\nInvestimento Fechado "
+				+ "\nCodigo Do Investimento: " + codigoDoInvestimento 
+				+ "\nData De Saida: " + dataDeFechamento.getDayOfMonth() + "/" + dataDeFechamento.getMonthValue() + "/" + dataDeFechamento.getYear()
+				+ "\nValor Da Liquidez: R$ " + valorDaLiquidez;
+	}
+
 }

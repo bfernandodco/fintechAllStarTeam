@@ -1,42 +1,36 @@
 package br.com.fiap.fintech.bean;
 
 import java.io.File;
-
-import java.time.LocalDate;
-import br.com.fiap.fintech.util.CriptografiaUtils;
+import java.sql.Date;
 
 public class Usuario {
 
-	private Long numeroDeCPF;
+	private Long numeroDoCPF;
 	private String nomeCompleto;
-	private LocalDate dataDeNascimento;
+	private Date dataDeNascimento;
 	private String genero;
 	private String email;
-	private File imagemFoto;
-	private String senha;
+	private File fotoDoPerfil;
 	
 	public Usuario() {
-		super();
+		
 	}
 
-	public Usuario(Long numeroDeCPF, String nomeCompleto, LocalDate dataDeNascimento, String genero, String email,
-			File imagemFoto, String senha) {
-		super();
-		this.numeroDeCPF = numeroDeCPF;
+	public Usuario(Long numeroDoCPF, String nomeCompleto, Date dataDeNascimento, String genero, 
+			String email) {
+		this.numeroDoCPF = numeroDoCPF;
 		this.nomeCompleto = nomeCompleto;
 		this.dataDeNascimento = dataDeNascimento;
 		this.genero = genero;
 		this.email = email;
-		this.imagemFoto = imagemFoto;
-		isSenhaValida(senha);
 	}
 
-	public Long getNumeroDeCPF() {
-		return numeroDeCPF;
+	public Long getNumeroDoCPF() {
+		return numeroDoCPF;
 	}
 
-	public void setNumeroDeCPF(Long numeroDeCPF) {
-		this.numeroDeCPF = numeroDeCPF;
+	public void setNumeroDoCPF(Long numeroDoCPF) {
+		this.numeroDoCPF = numeroDoCPF;
 	}
 
 	public String getNomeCompleto() {
@@ -47,11 +41,11 @@ public class Usuario {
 		this.nomeCompleto = nomeCompleto;
 	}
 
-	public LocalDate getDataDeNascimento() {
+	public Date getDataDeNascimento() {
 		return dataDeNascimento;
 	}
 
-	public void setDataDeNascimento(LocalDate dataDeNascimento) {
+	public void setDataDeNascimento(Date dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 
@@ -71,18 +65,15 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public File getImagemFoto() {
-		return imagemFoto;
+	public File getFotoDoPerfil() {
+		return fotoDoPerfil;
 	}
 
-	public void setImagemFoto(File imagemFoto) {
-		this.imagemFoto = imagemFoto;
+	public void setFotoDoPerfil(File FotoDoPerfil) {
+		this.fotoDoPerfil = FotoDoPerfil;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
+	/*
 	public Boolean isSenhaValida(String senha) {
 		Boolean senhaValida = false;
 		String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
@@ -93,8 +84,18 @@ public class Usuario {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	    } 
+	    }
 	    return senhaValida;
 	}
-	
+	*/
+
+	@Override
+	public String toString() {
+		return "\nUsuario"
+				+ "\nNumero Do CPF: " + numeroDoCPF 
+				+ "\nNome Completo: " + nomeCompleto 
+				+ "\nData De Nascimento: "+ dataDeNascimento
+				+ "\nGenero: " + genero 
+				+ "\nEmail: " + email;
+	}
 }

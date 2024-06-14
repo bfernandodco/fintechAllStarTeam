@@ -1,0 +1,39 @@
+.boxes {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.b-box {
+    background-color: rgb(13, 110, 253, 0.15);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.tamanho-div{
+	max-width: 300px;
+    min-width: 250px;
+}
+
+/* Estilos para o contêiner da tabela */
+.table-container {
+    overflow-x: auto; /* Adiciona a barra de rolagem horizontal */
+    -webkit-overflow-scrolling: touch; /* Para rolagem suave em dispositivos móveis */
+}
+
+/* Especificar que o texto dentro das células da tabela não deve quebrar */
+.table-container table {
+    white-space: nowrap;
+}
+
+/* Ajustes adicionais para garantir que a tabela fique responsiva */
+@media (max-width: 757px) {
+    th, td {
+        padding: 12px 8px;
+    }
+}

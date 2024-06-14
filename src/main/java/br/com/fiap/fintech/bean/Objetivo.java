@@ -1,38 +1,38 @@
 package br.com.fiap.fintech.bean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Objetivo {
 
 	private Integer codigoDoObjetivo;
-	private Long numeroDeCPF;
+	private Long numeroDoCPF;
 	private String nomeDoObjetivo;
 	private Double valorDoObjetivo;
 	private Double valorAtual;
 	private LocalDate dataDeCriacao;
 	private LocalDate dataDeConclusao;
 	private String descricaoDoObjetivo;
-	private Integer chaveEstrangeira;
-	
+	private List<Objetivo> objetivos;
 	
 	public Objetivo() {
 
 	}
 
-	public Objetivo(Integer codigoDoObjetivo, Long numeroDeCPF, String nomeDoObjetivo, Double valorDoObjetivo, Double valorAtual,
-			LocalDate dataDeCriacao, LocalDate dataDeConclusao, String descricaoDoObjetivo) {
-		super();
+	public Objetivo(Integer codigoDoObjetivo, Long numeroDoCPF, String nomeDoObjetivo, Double valorDoObjetivo,
+			Double valorAtual, LocalDate dataDeCriacao, LocalDate dataDeConclusao, String descricaoDoObjetivo,
+			List<Objetivo> objetivos) {
 		this.codigoDoObjetivo = codigoDoObjetivo;
-		this.numeroDeCPF = numeroDeCPF;
+		this.numeroDoCPF = numeroDoCPF;
 		this.nomeDoObjetivo = nomeDoObjetivo;
 		this.valorDoObjetivo = valorDoObjetivo;
 		this.valorAtual = valorAtual;
 		this.dataDeCriacao = dataDeCriacao;
 		this.dataDeConclusao = dataDeConclusao;
 		this.descricaoDoObjetivo = descricaoDoObjetivo;
+		this.objetivos = objetivos;
 	}
 
-	
 	public Integer getCodigoDoObjetivo() {
 		return codigoDoObjetivo;
 	}
@@ -41,12 +41,12 @@ public class Objetivo {
 		this.codigoDoObjetivo = codigoDoObjetivo;
 	}
 
-	public Long getNumeroDeCPF() {
-		return numeroDeCPF;
+	public Long getNumeroDoCPF() {
+		return numeroDoCPF;
 	}
 
-	public void setNumeroDeCPF(Long numeroDeCPF) {
-		this.numeroDeCPF = numeroDeCPF;
+	public void setNumeroDoCPF(Long numeroDoCPF) {
+		this.numeroDoCPF = numeroDoCPF;
 	}
 
 	public String getNomeDoObjetivo() {
@@ -97,14 +97,25 @@ public class Objetivo {
 		this.descricaoDoObjetivo = descricaoDoObjetivo;
 	}
 
-	public Integer getChaveEstrangeira() {
-		return chaveEstrangeira;
+	public List<Objetivo> getObjetivos() {
+		return objetivos;
 	}
 
-	public void setChaveEstrangeira(Integer chaveEstrangeira) {
-		this.chaveEstrangeira = chaveEstrangeira;
+	public void setObjetivos(List<Objetivo> objetivos) {
+		this.objetivos = objetivos;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Objetivo "
+				+ "\nCodigo Do Objetivo: " + codigoDoObjetivo 
+				+ "\nNumero Do CPF: " + numeroDoCPF 
+				+ "\nNome Do Objetivo: " + nomeDoObjetivo 
+				+ "\nValor Do Objetivo: R$ " + valorDoObjetivo 
+				+ "\nValor Atual: R$ " + valorAtual
+				+ "\nData De Criacao: " + dataDeCriacao.getDayOfMonth() + "/" + dataDeCriacao.getMonthValue() + "/" + dataDeCriacao.getYear()
+				+ "\nData De Conclusao: " + dataDeConclusao.getDayOfMonth() + "/" + dataDeConclusao.getMonthValue() + "/" + dataDeConclusao.getYear()
+				+ "\nDescricao Do Objetivo: " + descricaoDoObjetivo;
+	}
+
 }

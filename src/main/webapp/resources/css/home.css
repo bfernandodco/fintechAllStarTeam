@@ -1,0 +1,45 @@
+body {
+	background: #d9d9d9;
+}
+
+.boxes {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 28.3vw;
+}
+
+.b-box {
+	background-color: rgb(13, 110, 253, 0.15);
+	border-radius: 10px;
+}
+
+.conteudo {
+	gap: 15px;
+}
+
+.margin-left {
+	margin-left: 80px;
+}
+
+.lancamento,
+.investimento,
+.objetivo {
+	width: 30vw;
+	min-width: 350px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+	
+}
+
+.custom-figure {
+	max-width: 100%;
+	height: auto;
+}
+
+.custom-figure img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}

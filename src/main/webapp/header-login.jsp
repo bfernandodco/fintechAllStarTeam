@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -14,15 +15,12 @@
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.3/examples/headers/">
 
-
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
 <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet">
-
 
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath}/resources/css/header.css"
@@ -43,7 +41,7 @@
 				</div>
 
 				<ul class="nav nav-pills">
-					<li class="nav-item"><a href="#" class="nav-link active"
+					<li class="nav-item"><a href="#" class="nav-link"
 						aria-current="page">Home</a></li>
 					<li class="nav-item"><a href="#" class="nav-link">Quem
 							somos</a></li>
@@ -65,7 +63,7 @@
 						class="rounded-circle">
 					</a>
 					<ul class="dropdown-menu text-small">
-						<li><a class="dropdown-item" href="#">Configurações</a></li>
+						<li><a class="dropdown-item" href="#">Configuraï¿½ï¿½es</a></li>
 						<li><a class="dropdown-item" href="#">Perfil</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="#">Sair</a></li>

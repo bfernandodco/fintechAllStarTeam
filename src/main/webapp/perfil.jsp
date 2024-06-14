@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -28,7 +27,7 @@
 
 	<body>
         <div class="d-flex">
-            <div class="form d-flex flex-column p-2">
+            <div class="form d-flex flex-column p-5">
                 <div class="row">
                     <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
                         <label for="fotoPerfil" class="form-label">Foto de Perfil</label>
@@ -42,44 +41,44 @@
                             A foto de perfil deve estar em formato JPG ou PNG, com tamanho máximo de 2 MB e resolução mínima de 400x400 pixels para garantir qualidade e compatibilidade.
                         </small>
                     </div>
-                    <form action="cadastro" method="post" class="col-lg-6 flex-grow-1">
-                        <h4>CADASTRO</h4>
+                    <form class="col-lg-6 flex-grow-1">
+                        <h4>PERFIL</h4>
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" name="nome" id="nome" aria-describedby="nomeHelp">
+                            <input type="text" class="form-control" id="nome" name="nome" value="${usuario.getNomeCompleto}" required>
                         </div>
                         <div>
                             <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" class="form-control" name="cpf" id="cpf">
+                            <input type="text" class="form-control" id="cpf" name="cpf" value="${usuario.getNumeroDoCPF}" required>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-                                <input type="date" class="form-control" name="dataNascimento" id="dataNascimento">
+                                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" value="${usuario.getDataDeNascimento}" required>
                             </div>
                             <div class="col">
                                 <label for="genero" class="form-label">Gênero</label>
-                                <select class="form-select" name="genero" id="genero">
-                                    <option value="masculino">Masculino</option>
-                                    <option value="feminino">Feminino</option>
-                                    <option value="outro">Outro</option>
+                                <select class="form-select" id="genero">
+                                    <option value="masculino" ${usuario.getGenero == 'masculino' ? 'selected' :''}>Masculino</option>
+                                    <option value="feminino" ${usuario.getGenero == 'feminino' ? 'selected' : ''}>Feminino</option>
+                                    <option value="outro" ${usuario.getGenero == 'outro' ? 'selected' : ''}>Outro</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+                                <label for="email" class="form-label"">Email</label>
+                                <input type="email" class="form-control" aria-describedby="emailHelp"  id="email" name="email" value="${usuario.getEmail}" required>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="exampleInputPassword1" class="form-label">Senha</label>
-                                <input type="password" class="form-control" name="senha" id="senha">
+                                <label for="senha" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="senha" name="senha">
                             </div>
                             <div class="col">
-                                <label for="confirmar-senha" class="form-label">Confirmar Senha</label>
-                                <input type="password" required="required" class="form-control" id="confirmar-senha">
+                                <label for="confirmaSenha" class="form-label">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="confirmaSenha">
                             </div>
                         </div>
                         <div class="mb-3 form-check">

@@ -34,19 +34,19 @@
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Saldo Atual</h5>
-					<h4 class="text-primary">R$ 2.967,31</h4>
+					<h4 class="text-primary">R$ 2.967,31 ${saldoLancamentos}</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Total de Recebimentos</h5>
-					<h4>R$ 1.700,50</h4>
+					<h4>R$ 1.700,50 ${saldoRecebimentos}</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Total de Gastos</h5>
-					<h4>R$ 2.967,31</h4>
+					<h4>R$ 2.967,31 ${saldoGastos}</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Último Valor Gasto</h5>
-					<h4>R$ 41,99</h4>
+					<h4>R$ 41,99 ${ultimoGasto}</h4>
 				</div>
 				<div class="d-flex justify-content-center">
 					<button type="button" class="btn btn-primary btn-sm px-4 mt-4"
@@ -135,21 +135,21 @@
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Total de Investimentos</h5>
-					<h4 class="text-primary">R$ 27.517,35</h4>
+					<h4 class="text-primary">R$ 27.517,35 ${totalInvestiemntos}</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Último Investimento</h5>
-					<h4>R$ 12.998,33</h4>
+					<h4>R$ 12.998,33 ${ultimoInvestimento}</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Montante Rentabilizado</h5>
-					<h4>R$ 455,78</h4>
+					<h4>R$ 455,78 ${montante}</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Último Invest. Realizado</h5>
-					<h4>R$ 1.790,80</h4>
-					<p>Nome: Flex Rendimento</p>
-					<p>Data liquidação: 22/05/2024</p>
+					<h4>R$ 1.790,80 ${ultimoInvest}</h4>
+					<p>Nome: Flex Rendimento ${nomeInvestimento}</p>
+					<p>Data liquidação: 22/05/2024 ${dataLiquidicao}</p>
 				</div>
 				<div class="d-flex justify-content-center">
 					<button type="button" class="btn btn-primary btn-sm px-4 mt-4"

@@ -20,7 +20,7 @@
 
 <body class="bg-light">
 	<div>
-		<h2 class=" margin-left">Olá ${usuario.getNomeCompleto()}</h2>
+		<h2 class=" margin-left">Olá ${user}</h2>
 	</div>
 	<div
 		class="conteudo p-3 d-flex flex-wrap container-fluid justify-content-around">

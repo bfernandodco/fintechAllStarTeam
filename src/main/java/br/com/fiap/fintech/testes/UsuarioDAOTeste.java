@@ -15,8 +15,8 @@ public class UsuarioDAOTeste {
 		String caminhoImg = "C:\\Users\\andre\\OneDrive\\Área de Trabalho\\NovaImagemBanco2.jpg";
 		File imagem = new File (caminhoImg);
 		
-		Long cpfValido = 41300703806L;
-		Long cpfInvalido = 12345678900L;
+		String cpfValido = "41300703806";
+		String cpfInvalido = "12345678900";
 		
 		Usuario usuario = new Usuario(cpfValido, "RenatASoares", new Date(91, 2, 28), "Masculino", "RenatASoares@email.com");
 		

@@ -11,20 +11,20 @@ import br.com.fiap.fintech.singleton.ConnectionManager;
 
 public class OracleUsuarioDAO implements UsuarioDAO{
 	
-	private Connection connection;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
+	private Connection connection = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
 	
 	@Override
 	public void cadastrarUsuario(Usuario usuario) throws DatabaseException {
-	    String sqlQuery = "INSERT IntegerO T_FNT_USUARIO (nr_cpf, nm_completo, dt_nascimento, "
+	    String sqlQuery = "INSERT INTO T_FNT_USUARIO (nr_cpf, nm_completo, dt_nascimento, "
 	    		+ "ds_genero, tx_email) "
 	    		+ "VALUES (?, ?, ?, ?, ?)";
 	    
 	    try {
 	    	connection = ConnectionManager.getInstance().getConnection();
 	    	pstmt = connection.prepareStatement(sqlQuery);
-	    	pstmt.setLong(1, usuario.getNumeroDoCPF());
+	    	pstmt.setString(1, usuario.getNumeroDoCPF());
 	    	pstmt.setString(2, usuario.getNomeCompleto());
 	    	pstmt.setDate(3, usuario.getDataDeNascimento());
 	    	pstmt.setString(4, usuario.getGenero());
@@ -56,7 +56,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 			pstmt.setDate(2, usuario.getDataDeNascimento());
 			pstmt.setString(3, usuario.getGenero());
 			pstmt.setString(4, usuario.getEmail());
-			pstmt.setLong(5, usuario.getNumeroDoCPF());
+			pstmt.setString(5, usuario.getNumeroDoCPF());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	}
 	
 	@Override
-	public Usuario buscarUsuario(Long numeroDoCPF) {
+	public Usuario buscarUsuario(String numeroDoCPF) {
 		String sqlQuery = "SELECT * FROM T_FNT_USUARIO "
 				+ "WHERE nr_cpf = ?";
 		Usuario usuario = new Usuario();
@@ -81,7 +81,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, numeroDoCPF);
+			pstmt.setString(1, numeroDoCPF);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -90,7 +90,6 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 				usuario.setGenero(rs.getString("ds_genero"));
 				usuario.setEmail(rs.getString("tx_email"));
 				usuario.setNumeroDoCPF(numeroDoCPF);
-				return usuario;
 			}
 
 		} catch(SQLException e) {
@@ -106,17 +105,17 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return usuario;
 	}
 		
 	@Override
-	public void removerUsuario(Long numeroDoCPF) throws DatabaseException {
+	public void removerUsuario(String numeroDoCPF) throws DatabaseException {
 		String sqlQuery = "DELETE FROM T_FNT_USUARIO WHERE nr_cpf = ? ";
 		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, numeroDoCPF);
+			pstmt.setString(1, numeroDoCPF);
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -145,10 +144,10 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	}
 
 	@Override
-	public Long validarUsuario(String email) {
+	public String validarUsuario(String email) {
 		String sqlQuery = "SELECT nr_cpf FROM T_FNT_USUARIO "
 				+ "WHERE tx_email = ?";
-		Long numeroDoCPF = null;
+		String numeroDoCPF = null;
 		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
@@ -157,7 +156,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				return numeroDoCPF = rs.getLong("nr_cpf");
+				numeroDoCPF = rs.getString("nr_cpf");
 			}
 			
 		} catch(SQLException e) {
@@ -178,7 +177,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 
 	
 	@Override
-	public Boolean isCPFValido(Long numeroDoCPF) {
+	public Boolean isCPFValido(String numeroDoCPF) {
         String cpf = numeroDoCPF.toString();
         
         if (cpf.length() != 11) {

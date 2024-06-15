@@ -10,7 +10,7 @@ public class TesteLoginDAO {
 
 	public static void main(String[] args) throws DatabaseException {
 		
-		Login login = new Login(16887351862L, "123456");
+		Login login = new Login("16887351862", "123456");
 		LoginDAO loginDAO = new OracleLoginDAO();
 		
 		/* CADASTRAR LOGIN

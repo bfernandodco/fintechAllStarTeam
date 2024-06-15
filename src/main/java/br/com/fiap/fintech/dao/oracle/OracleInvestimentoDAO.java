@@ -22,8 +22,8 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 	public void cadastrarInvestimento(Investimento investimento) throws DatabaseException {
 		String sqlQuery = "INSERT INTO T_FNT_INVST ("
 				+ "cd_investimento, nr_cpf, vl_rentabilidade, dt_entrada, dt_vencimento, "
-				+ "vl_investimento, nm_aplicacao, tp_investimento, nm_banco) "
-				+ "VALUES (SQ_TB_INVST.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "vl_investimento, nm_investimento, tp_investimento, nm_banco, st_investimento) "
+				+ "VALUES (SQ_TB_INVST.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {	
 			connection = ConnectionManager.getInstance().getConnection();
@@ -35,7 +35,8 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 			pstmt.setDouble(5, investimento.getValorDoInvestimento());
 			pstmt.setString(6, investimento.getNomeDoInvestimento());
 			pstmt.setString(7, investimento.getTipoDeInvestimento());
-			pstmt.setString(8, investimento.getBanco());			
+			pstmt.setString(8, investimento.getBanco());	
+			pstmt.setInt(9, investimento.getStatusDoInvestimento());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

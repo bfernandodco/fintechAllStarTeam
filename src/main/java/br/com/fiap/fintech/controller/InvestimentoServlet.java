@@ -48,7 +48,7 @@ public class InvestimentoServlet extends HttpServlet {
 			System.out.println(dataHoraVencimento);
 			//String objetivoDaAplicacao = request.getParameter("objetivo");
 			
-			Long numeroDoCPF = 31176731050L;
+			String numeroDoCPF = "31176731050L";
 			Investimento investimento = new Investimento(numeroDoCPF, valorDaRentabilidade, dataHoraEntrada, dataHoraVencimento, valorDaAplicacao, nomeDaAplicacao, tipoDaAplicacao, bancoDaAplicacao, 1);
 			System.out.println("Investimento criado");
 			investimentoDAO.cadastrarInvestimento(investimento);

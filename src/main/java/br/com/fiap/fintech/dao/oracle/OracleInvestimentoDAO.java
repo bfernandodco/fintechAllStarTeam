@@ -28,7 +28,7 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 		try {	
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);			
-			pstmt.setLong(1, investimento.getNumeroDoCPF());
+			pstmt.setString(1, investimento.getNumeroDoCPF());
 			pstmt.setDouble(2, investimento.getValorDaRentabilidade());
 			pstmt.setDate(3, investimento.getDataDeEntrada());
 			pstmt.setDate(4, investimento.getDataDeVencimento());
@@ -69,7 +69,7 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 			pstmt.setString(6, investimento.getTipoDeInvestimento());
 			pstmt.setString(7, investimento.getBanco());
 			pstmt.setInt(8, investimento.getCodigoDoInvestimento());
-			pstmt.setLong(9, investimento.getNumeroDoCPF());
+			pstmt.setString(9, investimento.getNumeroDoCPF());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,7 +110,7 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 	}
 	
 	@Override
-	public List<Investimento> listarInvestimentos(Long numeroDoCPF) {
+	public List<Investimento> listarInvestimentos(String numeroDoCPF) {
 		String sqlQuery = "SELECT * FROM T_FNT_INVST WHERE nr_cpf = ?";
 		List<Investimento> investimentos = new ArrayList<Investimento>();
 		Investimento investimento;
@@ -118,7 +118,7 @@ public class OracleInvestimentoDAO implements InvestimentoDAO {
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, numeroDoCPF);
+			pstmt.setString(1, numeroDoCPF);
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {

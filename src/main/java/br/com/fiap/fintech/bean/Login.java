@@ -1,6 +1,6 @@
 package br.com.fiap.fintech.bean;
 
-import br.com.fiap.fintech.util.criptography.CriptografiaUtils;
+import br.com.fiap.fintech.util.CriptografiaUtils;
 
 public class Login {
 

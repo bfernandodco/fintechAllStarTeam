@@ -10,5 +10,5 @@ public interface InvestimentoDAO {
 	void cadastrarInvestimento(Investimento investimento) throws DatabaseException;
 	void editarInvestimento(Investimento investimento) throws DatabaseException;
 	void removerInvestimento(Integer codigoDoInvestimento) throws DatabaseException;
-	List<Investimento> listarInvestimentos(Long numeroDoCpf);
+	List<Investimento> listarInvestimentos(String numeroDoCpf);
 }

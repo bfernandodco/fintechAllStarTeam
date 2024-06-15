@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionManager {
+public class ConnectionManager implements OracleConnection {
 
 	private static ConnectionManager connectionManager;
 	private Connection connection;
@@ -24,7 +24,7 @@ public class ConnectionManager {
 	public Connection getConnection() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "SYSTEM", "3461092");
+			connection = DriverManager.getConnection(URL, USER, PASSWORD);
 			System.out.println("Conectado ao Oracle DB com sucesso!");
 			return connection;
 		} catch(SQLException e) {

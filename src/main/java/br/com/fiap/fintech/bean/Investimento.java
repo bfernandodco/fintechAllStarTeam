@@ -6,7 +6,7 @@ import java.util.List;
 public class Investimento {
 
 	private Integer codigoDoInvestimento;
-	private Long numeroDoCPF;
+	private String numeroDoCPF;
 	private Double valorDaRentabilidade;
 	private Date dataDeEntrada;
 	private Date dataDeVencimento;
@@ -21,7 +21,7 @@ public class Investimento {
 
 	}
 
-	public Investimento(Integer codigoDoInvestimento, Long numeroDoCPF, Double valorDaRentabilidade,
+	public Investimento(Integer codigoDoInvestimento, String numeroDoCPF, Double valorDaRentabilidade,
 			Date dataDeEntrada, Date dataDeVencimento, Double valorDoInvestimento,
 			String nomeDoInvestimento, String tipoDeInvestimento, String banco,
 			Integer statusDoInvestimento) {
@@ -37,7 +37,7 @@ public class Investimento {
 		this.statusDoInvestimento = statusDoInvestimento;
 	}
 
-	public Investimento(Long numeroDoCPF, Double valorDaRentabilidade,
+	public Investimento(String numeroDoCPF, Double valorDaRentabilidade,
 			Date dataDeEntrada, Date dataDeVencimento, Double valorDoInvestimento,
 			String nomeDoInvestimento, String tipoDeInvestimento, String banco,
 			Integer statusDoInvestimento) {
@@ -60,11 +60,11 @@ public class Investimento {
 		this.codigoDoInvestimento = codigoDoInvestimento;
 	}
 
-	public Long getNumeroDoCPF() {
+	public String getNumeroDoCPF() {
 		return numeroDoCPF;
 	}
 
-	public void setNumeroDoCPF(Long numeroDoCPF) {
+	public void setNumeroDoCPF(String numeroDoCPF) {
 		this.numeroDoCPF = numeroDoCPF;
 	}
 

@@ -20,7 +20,7 @@
 
 <body class="bg-light">
 	<div>
-		<h2 class=" margin-left">Olá ${usuario.getNomeCompleto()}</h2>
+		<h2 class=" margin-left">Olá ${user}</h2>
 	</div>
 	<div
 		class="conteudo p-3 d-flex flex-wrap container-fluid justify-content-around">
@@ -34,19 +34,19 @@
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Saldo Atual</h5>
-					<h4 class="text-primary">SALDO DOS LANÇAMENTOS</h4>
+					<h4 class="text-primary">R$ 2.967,31</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Total de Recebimentos</h5>
-					<h4>TOTAL RECEBIMENTOS</h4>
+					<h4>R$ 1.700,50</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Total de Gastos</h5>
-					<h4>TOTAL GASTOS</h4>
+					<h4>R$ 2.967,31</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Último Valor Gasto</h5>
-					<h4>ULTIMO VALOR GASTO</h4>
+					<h4>R$ 41,99</h4>
 				</div>
 				<div class="d-flex justify-content-center">
 					<button type="button" class="btn btn-primary btn-sm px-4 mt-4"
@@ -135,21 +135,21 @@
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Total de Investimentos</h5>
-					<h4 class="text-primary">TOTAL DE INVESTIMENTOS</h4>
+					<h4 class="text-primary">R$ 27.517,35</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Último Investimento</h5>
-					<h4>TOTAL DE INVESTIMENTOS</h4>
+					<h4>R$ 12.998,33</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Montante Rentabilizado</h5>
-					<h4>MONTANTE</h4>
+					<h4>R$ 455,78</h4>
 				</div>
 				<div class="p-2 mb-3 b-box">
 					<h5>Último Invest. Realizado</h5>
-					<h4>MONTANTE</h4>
-					<p>Nome: ${investimento.getNomeDoInvestimento()}</p>
-					<p>Data liquidação: ${investimento.getDataDeVencimento()}</p>
+					<h4>R$ 1.790,80</h4>
+					<p>Nome: Flex Rendimento</p>
+					<p>Data liquidação: 22/05/2024</p>
 				</div>
 				<div class="d-flex justify-content-center">
 					<button type="button" class="btn btn-primary btn-sm px-4 mt-4"
@@ -248,8 +248,8 @@
 			<article class="p-3">
 				<h3>Objetivos</h3>
 				<div class="d-flex">
-					<h5>${objetivo.getNomeDoObjetivo()}</h5>
-					<p>${objetivo.getDataDeVencimento()}</p>
+					<h5>Viagem Disney</h5>
+					<p>31/01/2025</p>
 				</div>
 
 				<figure class="custom-figure">
@@ -258,24 +258,22 @@
 				</figure>
 
 				<div class="d-flex">
-					<h6 class="text-primary">Valor Atual:
-						${objetivo.getValorAtual()}</h6>
-					<h6>Valor do Objetivo: ${objetivo.getValorDoObjetivo()}</h6>
+					<h6 class="text-primary">R$ 7.517,35</h6>
+					<h6>Valor do Objetivo: R$ 12.998,33</h6>
 				</div>
 
 				<hr>
 				<div>
 					<div class="d-flex">
-						<h5>${objetivo.getNomeDoObjetivo()}</h5>
-						<p>${objetivo.getDataDeVencimento()}</p>
+						<h5>Carro novo</h5>
+						<p>22/05/2025</p>
 					</div>
 					<figure class="custom-figure">
 						<img src="resources/images/image 2.png" alt="imagem carro preto">
 					</figure>
 					<div class="d-flex">
-						<h6 class="text-primary">Valor Atual:
-							${objetivo.getValorAtual()}</h6>
-						<h6>Valor do Objetivo: ${objetivo.getValorDoObjetivo()}</h6>
+						<h6 class="text-primary">Valor Atual: R$ 44.369,20</h6>
+						<h6>Valor do Objetivo: R$ 122.998,00</h6>
 					</div>
 				</div>
 				<div class="d-flex justify-content-center">

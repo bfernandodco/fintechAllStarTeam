@@ -26,7 +26,7 @@
 <body class="bg-light">
 
 	<body>
-        <div class="d-flex">
+        <div class="d-flex justify-content-center">
             <div class="form d-flex flex-column p-5">
                 <div class="row">
                     <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
@@ -59,9 +59,9 @@
                             <div class="col">
                                 <label for="genero" class="form-label">Gênero</label>
                                 <select class="form-select" id="genero">
-                                    <option value="masculino" ${usuario.getGenero == 'masculino' ? 'selected' :''}>Masculino</option>
-                                    <option value="feminino" ${usuario.getGenero == 'feminino' ? 'selected' : ''}>Feminino</option>
-                                    <option value="outro" ${usuario.getGenero == 'outro' ? 'selected' : ''}>Outro</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="outro">Outro</option>
                                 </select>
                             </div>
                         </div>

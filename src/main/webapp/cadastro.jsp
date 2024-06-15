@@ -28,8 +28,8 @@
 <body class="bg-light">
 
 	<body>
-        <div class="d-flex">
-            <div class="form d-flex flex-column p-2">
+        <div class="d-flex justify-content-center">
+            <div class="form d-flex flex-column p-5 m-5">
                 <div class="row">
                     <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
                         <label for="fotoPerfil" class="form-label">Foto de Perfil</label>
@@ -43,24 +43,24 @@
                             A foto de perfil deve estar em formato JPG ou PNG, com tamanho máximo de 2 MB e resolução mínima de 400x400 pixels para garantir qualidade e compatibilidade.
                         </small>
                     </div>
-                    <form action="cadastro" method="post" class="col-lg-6 flex-grow-1">
+                    <form action="cadastro" method="post" class="col-lg-6 flex-grow-1" id="form">
                         <h4>CADASTRO</h4>
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" name="nome" id="nome" aria-describedby="nomeHelp">
+                            <input type="text" class="form-control" name="nome" id="nome" aria-describedby="nomeHelp" required>
                         </div>
                         <div>
                             <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" class="form-control" name="cpf" id="cpf">
+                            <input type="text" class="form-control" name="cpf" id="cpf" required>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-                                <input type="date" class="form-control" name="dataNascimento" id="dataNascimento">
+                                <input type="date" class="form-control" name="dataNascimento" id="dataNascimento" required>
                             </div>
                             <div class="col">
                                 <label for="genero" class="form-label">Gênero</label>
-                                <select class="form-select" name="genero" id="genero">
+                                <select class="form-select" name="genero" id="genero" required>
                                     <option value="masculino">Masculino</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="outro">Outro</option>
@@ -70,21 +70,21 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="senha" class="form-label">Senha</label>
-                                <input type="password" class="form-control" name="senha" id="senha">
+                                <input type="password" class="form-control" name="senha" id="senha" required>
                             </div>
                             <div class="col">
                                 <label for="confirmaSenha" class="form-label">Confirmar Senha</label>
-                                <input type="password" class="form-control" id="confirmaSenha">
+                                <input type="password" class="form-control" id="confirmaSenha" required>
                             </div>
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                             <label class="form-check-label" for="exampleCheck1">Aceito os termos e condições de uso</label>
                         </div>
                         <div class="d-flex justify-content-end">
@@ -98,7 +98,7 @@
 
 		    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
             <script src="${pageContext.request.contextPath}/resources/js/foto-perfil.js"></script>
-            <script src="${pageContext.request.contextPath}/resources/js/validacaoSenha.js"></script>
+            <!-- <script src="${pageContext.request.contextPath}/resources/js/validacaoSenha.js"></script> -->
 
 </body>
 

@@ -28,7 +28,7 @@
                             <p class="me-3">Na semana</p>
                             <p class="text-primary text-decoration-underline">Último mês</p>
                         </div>
-                        <h4 class="text-primary">VALOR SALDO</h4>
+                        <h4 class="text-primary">R$ 2.967,31</h4>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between boxes p-5 mb-5 flex-wrap">
@@ -41,7 +41,7 @@
                             <p class="me-3">Na semana</p>
                             <p class="text-primary text-decoration-underline">Último mês</p>
                         </div>
-                        <h4 class="text-primary">RECEBIMENTOS</h4>
+                        <h4 class="text-primary">R$ 2.967,31</h4>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between boxes p-5 mb-4 flex-wrap">
@@ -54,7 +54,7 @@
                             <p class="me-3">Na semana</p>
                             <p class="text-primary text-decoration-underline">Último mês</p>
                         </div>
-                        <h4 class="text-primary">GASTOS</h4>
+                        <h4 class="text-primary">R$ 2.967,31</h4>
                     </div>
                 </div>
             </div>

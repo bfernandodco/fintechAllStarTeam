@@ -19,6 +19,7 @@ function validarSenha(event){
 
     if (senha !== confirmarSenha) {
         alert('As senhas não coincidem.');
+        event.target.submit();
         return false;
     }
 
@@ -28,6 +29,6 @@ function validarSenha(event){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
-    form.addEventListener('submit', validateForm);
+    const form = document.getElementById('form');
+    form.addEventListener('submit', validarSenha);
 });

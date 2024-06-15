@@ -23,11 +23,11 @@ public class UsuarioDAOTeste {
 		//Usuario usuarioTesteEditado = new Usuario(33344466681L, "Novo contato", LocalDate.of(1991, 9, 10), "Feminino", "mel@email.com", null, "12X3456");
 		
 		UsuarioDAO dao = new OracleUsuarioDAO();
+		dao.cadastrarUsuario(usuario);
+		System.out.println("Usuario Cadastrado");
 		/*
 		dao.isCPFValido(usuario.getNumeroDoCPF());
 		System.out.println("Criando DAO de cadastro");
-		dao.cadastrarNovoUsuario(usuario);
-		System.out.println("Usuario Cadastrado");
 		System.out.println("Criando DAO de edicao");
 		dao.editarCadastroDoUsuario(usuarioTesteEditado);
 		System.out.println("Edicao Concluida");
@@ -37,11 +37,11 @@ public class UsuarioDAOTeste {
 		System.out.println("Alteracao Concluida");
 		
 		dao.validarLogin("RenatASoares@email.com", "jk5689");
+		System.out.println("CPF " + cpfValido + " é válido? " + dao.isCPFValido(cpfValido));
+		System.out.println("CPF " + cpfInvalido + " é válido? " + dao.isCPFValido(cpfInvalido));
 		 */
 		
 
-	        System.out.println("CPF " + cpfValido + " é válido? " + dao.isCPFValido(cpfValido));
-	        System.out.println("CPF " + cpfInvalido + " é válido? " + dao.isCPFValido(cpfInvalido));
 	}
 
 }

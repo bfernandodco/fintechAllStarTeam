@@ -46,5 +46,17 @@ public class LancamentoServlet extends HttpServlet {
 		}
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
+	
+	public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Long numeroDoCPF = 39637973800L;
+			Double saldoTotal = lancamentoDAO.saldoRecebimentos();
+			request.setAttribute("saldoTotal", saldoTotal);
+		}catch(DatabaseException e) {
+			request.setAttribute("error", "Erro ao cadastrar usuário.");
+		} catch(Exception e) {
+			request.setAttribute("error", "Dados inválidos. Tente novamente.");
+		}
+	}
 
 }

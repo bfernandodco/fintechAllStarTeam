@@ -142,5 +142,44 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 			}
 		}
 	}
+	
+	@Override
+	public Double saldoRecebimentos() throws DatabaseException {
+		Double saldoTotal = 0.0;
+		String sqlQuery = "SELECT SUM(vl_lancamento) AS saldo_total FROM t_fnt_lnto"
+				+ "WHERE tp_lancamento = 'Recebimento' AND nr_cpf = 39637973800";
+		System.out.println("1");
+		try {
+			System.out.println("1");
+			connection = ConnectionManager.getInstance().getConnection();
+			pstmt = connection.prepareStatement(sqlQuery);
+			//pstmt.setLong(1, lancamento.getNumeroDoCPF());
+			//pstmt.setLong(1, 39637973800L);
+			System.out.println("1");
+			rs = pstmt.executeQuery();
+			System.out.println("1");
+			
+			if(rs.next()) {
+				System.out.println("1");
+				saldoTotal = rs.getDouble("saldo_total");
+				System.out.println("Saldo total de recebimentos:" + saldoTotal);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new DatabaseException("Erro ao buscar saldo.");
+		} finally {
+			try {
+				pstmt.close();
+				rs.close();
+				connection.close();
+			} catch(SQLException e) {
+				System.err.println("Erro ao fechar conexão em OracleLancamentoDAO.saldoRecebimentos()");
+				e.printStackTrace();
+			}
+		}
+		return saldoTotal;
+	}
+	
 
 }

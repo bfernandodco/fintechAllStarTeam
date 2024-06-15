@@ -36,7 +36,7 @@ public class LancamentoServlet extends HttpServlet {
 			String categoriaDoLancamento = request.getParameter("categoria");
 			Double valorDoLancamento = Double.parseDouble(request.getParameter("valor"));
 			String descricaoDoLancamento = request.getParameter("descricao");
-			Long numeroDoCPF = 12345678977L;
+			String numeroDoCPF = "12345678977";
 			Lancamento lancamento = new Lancamento(numeroDoCPF, dataHoraLancamento, valorDoLancamento, tipoDeLancamento, categoriaDoLancamento, descricaoDoLancamento);
 			lancamentoDAO.cadastrarLancamento(lancamento);
 		} catch(DatabaseException e) {
@@ -49,14 +49,12 @@ public class LancamentoServlet extends HttpServlet {
 	
 	public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			Long numeroDoCPF = 39637973800L;
 			Double saldoTotal = lancamentoDAO.saldoRecebimentos();
 			request.setAttribute("saldoTotal", saldoTotal);
-		}catch(DatabaseException e) {
+		} catch(DatabaseException e) {
 			request.setAttribute("error", "Erro ao cadastrar usuário.");
 		} catch(Exception e) {
 			request.setAttribute("error", "Dados inválidos. Tente novamente.");
 		}
 	}
-
 }

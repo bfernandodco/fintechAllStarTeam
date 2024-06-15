@@ -6,7 +6,7 @@ import java.util.List;
 public class Lancamento {
 
 	private Integer codigoDoLancamento;
-	private Long numeroDoCPF;
+	private String numeroDoCPF;
 	private Date dataHoraDoLancamento;
 	private Double valorDoLancamento;
 	private String tipoDoLancamento;
@@ -18,7 +18,7 @@ public class Lancamento {
 		
 	}
 	
-	public Lancamento(Long numeroDoCPF, Integer codigoDoLancamento, Date dataHoraDoLancamento, Double valorDoLancamento,
+	public Lancamento(String numeroDoCPF, Integer codigoDoLancamento, Date dataHoraDoLancamento, Double valorDoLancamento,
 			String tipoDoLancamento, String categoriaDoLancamento, String descricaoDoLancamento) {
 		super();
 		this.numeroDoCPF = numeroDoCPF;
@@ -30,7 +30,7 @@ public class Lancamento {
 		this.descricaoDoLancamento = descricaoDoLancamento;
 	}
 
-	public Lancamento(Long numeroDoCPF, Date dataHoraDoLancamento, Double valorDoLancamento, String tipoDoLancamento,
+	public Lancamento(String numeroDoCPF, Date dataHoraDoLancamento, Double valorDoLancamento, String tipoDoLancamento,
 			String categoriaDoLancamento, String descricaoDoLancamento) {
 		super();
 		this.numeroDoCPF = numeroDoCPF;
@@ -49,11 +49,11 @@ public class Lancamento {
 		this.codigoDoLancamento = codigoDoLancamento;
 	}
 
-	public Long getNumeroDoCPF() {
+	public String getNumeroDoCPF() {
 		return numeroDoCPF;
 	}
 
-	public void setNumeroDoCPF(Long numeroDoCPF) {
+	public void setNumeroDoCPF(String numeroDoCPF) {
 		this.numeroDoCPF = numeroDoCPF;
 	}
 

@@ -22,6 +22,7 @@ public class CadastroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private UsuarioDAO usuarioDAO;
     private LoginDAO loginDAO;
+    private Usuario usuario;
 	
     public CadastroServlet() {
         super();
@@ -56,5 +57,14 @@ public class CadastroServlet extends HttpServlet {
 			request.setAttribute("error", "Dados inválidos. Tente novamente.");
 		}
 		request.getRequestDispatcher("login.jsp").forward(request, response);
+	}
+	
+	public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			
+			request.setAttribute("usuario", usuario);
+		} catch(Exception e) {
+			request.setAttribute("error", "Dados inválidos. Tente novamente.");
+		}
 	}
 }

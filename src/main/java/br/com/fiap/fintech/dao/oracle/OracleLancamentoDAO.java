@@ -27,7 +27,7 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, lancamento.getNumeroDoCPF());
+			pstmt.setString(1, lancamento.getNumeroDoCPF());
 			pstmt.setDate(2, lancamento.getDataHoraDoLancamento());
 			pstmt.setDouble(3, lancamento.getValorDoLancamento());
 			pstmt.setString(4, lancamento.getTipoDoLancamento());
@@ -64,7 +64,7 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 			pstmt.setString(5, lancamento.getCategoriaDoLancamento());
 			pstmt.setString(6, lancamento.getDescricaoDoLancamento());
 			pstmt.setInt(7, lancamento.getCodigoDoLancamento());
-			pstmt.setLong(8, lancamento.getNumeroDoCPF());
+			pstmt.setString(8, lancamento.getNumeroDoCPF());
 			pstmt.executeUpdate();
 			
 		} catch(SQLException e) {
@@ -105,7 +105,7 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 	}
 
 	@Override
-	public List<Lancamento> listarLancamentos(Long numeroDoCPF) {
+	public List<Lancamento> listarLancamentos(String numeroDoCPF) {
 		String sqlQuery = "SELECT * FROM T_FNT_LANTO";
 		List<Lancamento> lancamentos = new ArrayList<Lancamento>();	
 		Lancamento lancamento;
@@ -118,7 +118,7 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 			while(rs.next()) {
 				lancamento = new Lancamento();
 				lancamento.setCodigoDoLancamento(rs.getInt("cd_lancamento"));
-				lancamento.setNumeroDoCPF(rs.getLong("nr_cpf"));
+				lancamento.setNumeroDoCPF(rs.getString("nr_cpf"));
 				lancamento.setDataHoraDoLancamento(rs.getDate("dt_lancamento"));
 				lancamento.setValorDoLancamento(rs.getDouble("vl_lancamento"));
 				lancamento.setTipoDoLancamento(rs.getString("tp_lancamento"));
@@ -153,8 +153,8 @@ public class OracleLancamentoDAO implements LancamentoDAO {
 			System.out.println("1");
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			//pstmt.setLong(1, lancamento.getNumeroDoCPF());
-			//pstmt.setLong(1, 39637973800L);
+			//pstmt.setString(1, lancamento.getNumeroDoCPF());
+			//pstmt.setString(1, 39637973800L);
 			System.out.println("1");
 			rs = pstmt.executeQuery();
 			System.out.println("1");

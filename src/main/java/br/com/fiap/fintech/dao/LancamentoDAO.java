@@ -11,6 +11,6 @@ public interface LancamentoDAO {
 	void cadastrarLancamento(Lancamento produto) throws DatabaseException;
 	void editarLancamento(Lancamento produto) throws DatabaseException;
 	void removerLancamento(Integer codigoDoProduto) throws DatabaseException;
-	List<Lancamento> listarLancamentos(Long numeroDoCPF);
+	List<Lancamento> listarLancamentos(String numeroDoCPF);
 	Double saldoRecebimentos() throws DatabaseException;
 }

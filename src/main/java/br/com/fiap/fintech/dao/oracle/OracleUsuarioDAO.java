@@ -11,9 +11,9 @@ import br.com.fiap.fintech.singleton.ConnectionManager;
 
 public class OracleUsuarioDAO implements UsuarioDAO{
 	
-	private Connection connection;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
+	private Connection connection = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
 	
 	@Override
 	public void cadastrarUsuario(Usuario usuario) throws DatabaseException {
@@ -24,7 +24,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	    try {
 	    	connection = ConnectionManager.getInstance().getConnection();
 	    	pstmt = connection.prepareStatement(sqlQuery);
-	    	pstmt.setLong(1, usuario.getNumeroDoCPF());
+	    	pstmt.setString(1, usuario.getNumeroDoCPF());
 	    	pstmt.setString(2, usuario.getNomeCompleto());
 	    	pstmt.setDate(3, usuario.getDataDeNascimento());
 	    	pstmt.setString(4, usuario.getGenero());
@@ -56,7 +56,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 			pstmt.setDate(2, usuario.getDataDeNascimento());
 			pstmt.setString(3, usuario.getGenero());
 			pstmt.setString(4, usuario.getEmail());
-			pstmt.setLong(5, usuario.getNumeroDoCPF());
+			pstmt.setString(5, usuario.getNumeroDoCPF());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	}
 	
 	@Override
-	public Usuario buscarUsuario(Long numeroDoCPF) {
+	public Usuario buscarUsuario(String numeroDoCPF) {
 		String sqlQuery = "SELECT * FROM T_FNT_USUARIO "
 				+ "WHERE nr_cpf = ?";
 		Usuario usuario = new Usuario();
@@ -81,7 +81,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, numeroDoCPF);
+			pstmt.setString(1, numeroDoCPF);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -90,7 +90,6 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 				usuario.setGenero(rs.getString("ds_genero"));
 				usuario.setEmail(rs.getString("tx_email"));
 				usuario.setNumeroDoCPF(numeroDoCPF);
-				return usuario;
 			}
 
 		} catch(SQLException e) {
@@ -106,17 +105,17 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return usuario;
 	}
 		
 	@Override
-	public void removerUsuario(Long numeroDoCPF) throws DatabaseException {
+	public void removerUsuario(String numeroDoCPF) throws DatabaseException {
 		String sqlQuery = "DELETE FROM T_FNT_USUARIO WHERE nr_cpf = ? ";
 		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, numeroDoCPF);
+			pstmt.setString(1, numeroDoCPF);
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -139,16 +138,16 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 	}
 
 	@Override
-	public boolean isSenhaValida(String senhaParaValidacao) {
+	public Boolean isSenhaValida(String senhaParaValidacao) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Long validarUsuario(String email) {
+	public String validarUsuario(String email) {
 		String sqlQuery = "SELECT nr_cpf FROM T_FNT_USUARIO "
 				+ "WHERE tx_email = ?";
-		Long numeroDoCPF = null;
+		String numeroDoCPF = null;
 		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
@@ -157,7 +156,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				return numeroDoCPF = rs.getLong("nr_cpf");
+				numeroDoCPF = rs.getString("nr_cpf");
 			}
 			
 		} catch(SQLException e) {
@@ -178,7 +177,7 @@ public class OracleUsuarioDAO implements UsuarioDAO{
 
 	
 	@Override
-	public boolean isCPFValido(Long numeroDoCPF) {
+	public Boolean isCPFValido(String numeroDoCPF) {
         String cpf = numeroDoCPF.toString();
         
         if (cpf.length() != 11) {
@@ -189,24 +188,22 @@ public class OracleUsuarioDAO implements UsuarioDAO{
             return false;
         }
 
-        int[] pesos1 = {10, 9, 8, 7, 6, 5, 4, 3, 2};
-        int[] pesos2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
+        Integer[] pesos1 = {10, 9, 8, 7, 6, 5, 4, 3, 2};
+        Integer[] pesos2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
         
         try {
-            int soma1 = 0;
-            for (int i = 0; i < 9; i++) {
+            Integer soma1 = 0;
+            for (Integer i = 0; i < 9; i++) {
                 soma1 += Character.getNumericValue(cpf.charAt(i)) * pesos1[i];
             }
-            int digito1 = 11 - (soma1 % 11);
-            System.out.println(digito1);
+            Integer digito1 = 11 - (soma1 % 11);
             digito1 = (digito1 > 9) ? 0 : digito1;
 
-            int soma2 = 0;
-            for (int i = 0; i < 10; i++) {
+            Integer soma2 = 0;
+            for (Integer i = 0; i < 10; i++) {
                 soma2 += Character.getNumericValue(cpf.charAt(i)) * pesos2[i];
             }
-            int digito2 = 11 - (soma2 % 11);
-            System.out.println(digito2);
+            Integer digito2 = 11 - (soma2 % 11);
             digito2 = (digito2 > 9) ? 0 : digito2;
 
             return cpf.charAt(9) == Character.forDigit(digito1, 10) &&

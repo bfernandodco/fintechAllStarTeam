@@ -168,54 +168,59 @@
 									aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form action="investimento" method="post">
 									<div class="mb-3">
 										<label for="nomeAplicacao" class="form-label">Nome da
-											Aplicação</label> <input type="text" class="form-control"
-											id="nomeAplicacao">
+											Aplicação</label> 
+											<input type="text" class="form-control"
+											id="nomeAplicacao" name="nome">
 									</div>
 									<div class="mb-3">
 										<label for="banco" class="form-label">Banco</label> <select
-											class="form-select" id="banco">
+											class="form-select" id="banco" name="banco">
 											<option value="">Selecione um banco</option>
-											<option value="1">Bradesco</option>
-											<option value="2">Itau</option>
-											<option value="3">Santander</option>
-											<option value="4">Nubank</option>
-											<option value="5">Next</option>
+											<option value="bradesco">Bradesco</option>
+											<option value="itau">Itau</option>
+											<option value="santander">Santander</option>
+											<option value="nubank">Nubank</option>
+											<option value="next">Next</option>
 										</select>
 									</div>
 									<div class="mb-3">
 										<label for="tipoInvestimento" class="form-label">Tipo
-											de Investimento</label> <select class="form-select"
-											id="tipoInvestimento">
+											de Investimento</label> 
+											<select class="form-select"
+											id="tipoInvestimento" name="tipo">
 											<option value="">Selecione um tipo</option>
-											<option value="1">Poupança</option>
-											<option value="2">Tesouro Direto</option>
-											<option value="3">CDB</option>
-											<option value="4">CRI</option>
-											<option value="5">LCA</option>
-											<option value="6">LCI</option>
+											<option value="poupanca">Poupança</option>
+											<option value="tesouroDireto">Tesouro Direto</option>
+											<option value="CDB">CDB</option>
+											<option value="CRI">CRI</option>
+											<option value="LCA">LCA</option>
+											<option value="LCI">LCI</option>
 										</select>
 									</div>
 									<div class="mb-3">
 										<label for="valorInvestimento" class="form-label">Valor
-											do investimento</label> <input type="text" class="form-control"
-											id="valorInvestimento">
+											do investimento</label> 
+											<input type="text" class="form-control"
+											id="valorInvestimento" name="valor">
 									</div>
 									<div class="mb-3">
 										<label for="rentabilidade" class="form-label">Rentabilidade</label>
-										<input type="text" class="form-control" id="rentabilidade">
+										<input type="text" class="form-control" id="rentabilidade" name="rentabilidade">
 									</div>
 									<div class="mb-3">
 										<label for="dataEntrada" class="form-label">Data de
-											entrada</label> <input type="date" class="form-control"
-											id="dataEntrada">
+											entrada</label> 
+											<input type="date" class="form-control"
+											id="dataEntrada" name="dataHoraEntrada">
 									</div>
 									<div class="mb-3">
 										<label for="dataVencimento" class="form-label">Data de
-											vencimento</label> <input type="date" class="form-control"
-											id="dataVencimento">
+											vencimento</label> 
+											<input type="date" class="form-control"
+											id="dataVencimento" name="dataHoraVencimento">
 									</div>
 									<div class="mb-3 form-check">
 										<input type="checkbox" class="form-check-input"
@@ -225,18 +230,18 @@
 									</div>
 									<div class="mb-3">
 										<label for="objetivoInvestimento" class="form-label">Objetivo</label>
-										<select class="form-select" id="objetivoInvestimento">
+										<select class="form-select" id="objetivoInvestimento" name="objetivo">
 											<option value="">Selecione um objetivo</option>
 											<option value="opcao1">Viagem Disney</option>
 											<option value="opcao2">Carro novo</option>
 										</select>
 									</div>
-								</form>
-							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">Fechar</button>
-								<button type="button" class="btn btn-primary">Adicionar</button>
+								<button type="submit" class="btn btn-primary">Adicionar</button>
+							</div>
+								</form>
 							</div>
 						</div>
 					</div>

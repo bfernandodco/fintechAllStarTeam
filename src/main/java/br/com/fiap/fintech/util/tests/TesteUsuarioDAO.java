@@ -1,5 +1,6 @@
 package br.com.fiap.fintech.util.tests;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import br.com.fiap.fintech.bean.Usuario;
@@ -11,10 +12,12 @@ import br.com.fiap.fintech.exception.DatabaseException;
 public class TesteUsuarioDAO {
 
 	public static void main(String[] args) throws DatabaseException {
-		//Usuario usuario = new Usuario(16887351862L, "Harry Potter", LocalDate.now(), "Masculino", "harry@potter.com");
+		Date dataDeEntrada = new Date(2024, 06, 06);
+		Usuario usuario = new Usuario("31176731050", "André Soares", dataDeEntrada, "Masculino", "andre@mail.com");
+		OracleUsuarioDAO dao = new OracleUsuarioDAO();
 		UsuarioDAO usuarioDAO = new OracleUsuarioDAO();
 		
-		/* CADASTRAR USUARIO
+		/*
 		try {
 			usuarioDAO.cadastrarUsuario(usuario);
 			System.out.println("Usuário cadastrado com sucesso!");
@@ -22,7 +25,7 @@ public class TesteUsuarioDAO {
 			e.printStackTrace();
 			throw new DatabaseException("Erro ao testar cadastro do usuário");
 		}
-		*/
+
 		
 		/* EDITAR USUARIO
 		try {
@@ -34,10 +37,11 @@ public class TesteUsuarioDAO {
 		}
 		*/
 		
-		/* BUSCAR USUARIO
-		usuario = usuarioDAO.buscarUsuario(usuario.getNumeroDoCPF());
+
+		usuario = usuarioDAO.buscarUsuario("43841829023");
 		System.out.println(usuario);
-		*/
+		System.out.println(usuario.getNomeCompleto());
+
 		
 		/*
 		try {
@@ -48,6 +52,8 @@ public class TesteUsuarioDAO {
 			throw new DatabaseException("Erro ao testar a remoção do usuário.");
 		}
 		*/
+		
+		
 	}
 
 }

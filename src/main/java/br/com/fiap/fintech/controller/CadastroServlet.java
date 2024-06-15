@@ -37,7 +37,7 @@ public class CadastroServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String nomeCompleto = request.getParameter("nome");
-			Long numeroDoCPF = Long.parseLong(request.getParameter("cpf"));
+			String numeroDoCPF = request.getParameter("cpf");
 			Date dataNascimento = Date.valueOf(request.getParameter("dataNascimento"));
 			String genero = request.getParameter("genero");
 			String email = request.getParameter("email");

@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 			String email = request.getParameter("email");
 			String senha = request.getParameter("senha");
 			
-			Long numeroDoCPF = usuarioDAO.validarUsuario(email);
+			String numeroDoCPF = usuarioDAO.validarUsuario(email);
 			Login login = new Login(numeroDoCPF, senha);
 			
 			if(loginDAO.validarLogin(login)) {

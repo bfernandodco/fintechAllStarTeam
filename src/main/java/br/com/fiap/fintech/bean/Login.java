@@ -4,23 +4,23 @@ import br.com.fiap.fintech.util.criptography.CriptografiaUtils;
 
 public class Login {
 
-	private Long numeroDoCpf;
+	private String numeroDoCpf;
 	private String senha;
 	
 	public Login() {
 		
 	}
 
-	public Login(Long numeroDoCpf, String senha) {
+	public Login(String numeroDoCpf, String senha) {
 		this.numeroDoCpf = numeroDoCpf;
 		this.senha = senha;
 	}
 
-	public Long getNumeroDoCPF() {
+	public String getNumeroDoCPF() {
 		return numeroDoCpf;
 	}
 
-	public void setNumeroDoCPF(Long numeroDoCPF) {
+	public void setNumeroDoCPF(String numeroDoCPF) {
 		this.numeroDoCpf = numeroDoCPF;
 	}
 

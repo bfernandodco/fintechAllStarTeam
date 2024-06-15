@@ -25,7 +25,7 @@ public class OracleLoginDAO implements LoginDAO {
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, login.getNumeroDoCPF());
+			pstmt.setString(1, login.getNumeroDoCPF());
 			pstmt.setString(2, login.getSenha());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -44,13 +44,13 @@ public class OracleLoginDAO implements LoginDAO {
 	}
 	
 	@Override
-	public void removerLogin(Long numeroDoCPF) throws DatabaseException {
+	public void removerLogin(String numeroDoCPF) throws DatabaseException {
 		String sqlQuery = "DELETE FROM T_FNT_LOGIN WHERE nr_cpf = ?";
 		
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, numeroDoCPF);
+			pstmt.setString(1, numeroDoCPF);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class OracleLoginDAO implements LoginDAO {
 		try {
 			connection = ConnectionManager.getInstance().getConnection();
 			pstmt = connection.prepareStatement(sqlQuery);
-			pstmt.setLong(1, login.getNumeroDoCPF());
+			pstmt.setString(1, login.getNumeroDoCPF());
 			pstmt.setString(2, login.getSenha());
 			rs = pstmt.executeQuery();
 			

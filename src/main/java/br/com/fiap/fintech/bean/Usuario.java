@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class Usuario {
 
-	private Long numeroDoCPF;
+	private String numeroDoCPF;
 	private String nomeCompleto;
 	private Date dataDeNascimento;
 	private String genero;
@@ -16,7 +16,7 @@ public class Usuario {
 		
 	}
 
-	public Usuario(Long numeroDoCPF, String nomeCompleto, Date dataDeNascimento, String genero, 
+	public Usuario(String numeroDoCPF, String nomeCompleto, Date dataDeNascimento, String genero, 
 			String email) {
 		this.numeroDoCPF = numeroDoCPF;
 		this.nomeCompleto = nomeCompleto;
@@ -25,15 +25,15 @@ public class Usuario {
 		this.email = email;
 	}
 	
-	public Usuario(Long numeroDoCPF) {
+	public Usuario(String numeroDoCPF) {
 		this.numeroDoCPF = numeroDoCPF;
 	}
 
-	public Long getNumeroDoCPF() {
+	public String getNumeroDoCPF() {
 		return numeroDoCPF;
 	}
 
-	public void setNumeroDoCPF(Long numeroDoCPF) {
+	public void setNumeroDoCPF(String numeroDoCPF) {
 		this.numeroDoCPF = numeroDoCPF;
 	}
 
@@ -98,7 +98,7 @@ public class Usuario {
 		return "\nUsuario"
 				+ "\nNumero Do CPF: " + numeroDoCPF 
 				+ "\nNome Completo: " + nomeCompleto 
-				+ "\nData De Nascimento: "+ dataDeNascimento
+				+ "\nData De Nascimento: " + dataDeNascimento
 				+ "\nGenero: " + genero 
 				+ "\nEmail: " + email;
 	}

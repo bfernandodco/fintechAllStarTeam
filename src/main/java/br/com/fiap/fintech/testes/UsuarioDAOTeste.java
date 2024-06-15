@@ -4,19 +4,23 @@ import java.io.File;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import br.com.fiap.fintech.bean.Investimento;
 import br.com.fiap.fintech.bean.Usuario;
+import br.com.fiap.fintech.dao.InvestimentoDAO;
 import br.com.fiap.fintech.dao.UsuarioDAO;
 import br.com.fiap.fintech.dao.oracle.OracleUsuarioDAO;
+import br.com.fiap.fintech.factory.DAOFactory;
 
 public class UsuarioDAOTeste {
 
 	public static void main(String[] args) throws Exception {
 		
+		/*
 		String caminhoImg = "C:\\Users\\andre\\OneDrive\\Área de Trabalho\\NovaImagemBanco2.jpg";
 		File imagem = new File (caminhoImg);
 		
-		Long cpfValido = 41300703806L;
-		Long cpfInvalido = 12345678900L;
+		String cpfValido = "41300703806";
+		String cpfInvalido = "12345678900";
 		
 		Usuario usuario = new Usuario(cpfValido, "RenatASoares", new Date(91, 2, 28), "Masculino", "RenatASoares@email.com");
 		
